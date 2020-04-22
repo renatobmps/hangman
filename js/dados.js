@@ -1,5 +1,5 @@
 palavras = [
-        //Nome
+    //Nome
     {
         palavra: "Renato",
         dica: "Nome",
@@ -21,10 +21,6 @@ palavras = [
         dica: "Nome",
     },
     {
-        palavra: "Mônica",
-        dica: "Nome",
-    },
-    {
         palavra: "Lucinete",
         dica: "Nome",
     },
@@ -34,10 +30,6 @@ palavras = [
     },
     {
         palavra: "Rodrigo",
-        dica: "Nome",
-    },
-    {
-        palavra: "Mônique",
         dica: "Nome",
     },
     {
@@ -80,8 +72,8 @@ palavras = [
         palavra: "Felicia",
         dica: "Nome",
     },
-
-        //Animal
+    
+    //Animal
     {
         palavra: "Peixe",
         dica: "Animal",
@@ -116,15 +108,17 @@ palavras = [
     },{
         palavra: "Girafa",
         dica: "Animal"
-    },{
+    },
+    {
         palavra: "Tigre",
         dica: "Animal"
-    },{
+    },
+    {
         palavra: "Macaco",
         dica: "Animal"
     },
-
-        //Cor
+    
+    //Cor
     {
         palavra: "Azul",
         dica: "Cor",
@@ -165,8 +159,8 @@ palavras = [
         palavra: "Marrom",
         dica: "Cor",
     },
-
-        //Vestuário
+    
+    //Vestuário
     {
         palavra: "Camisa",
         dica: "Vestuário",
@@ -203,12 +197,8 @@ palavras = [
         palavra: "Chinelo",
         dica: "Vestuário",
     },
-    {
-        palavra: "Chapéu",
-        dica: "Vestuário",
-    },
-
-        //Personagem de contos
+    
+    //Personagem de contos
     {
         palavra: "Fada",
         dica: "Personagem de contos",
@@ -249,26 +239,14 @@ palavras = [
         palavra: "Porquinho",
         dica: "Personagem de contos",
     },
-
-        //Alimento
+    
+    //Alimento
     {
         palavra: "Arroz",
         dica: "Alimento",
     },
     {
-        palavra: "Feijao",
-        dica: "Alimento",
-    },
-    {
         palavra: "Açucar",
-        dica: "Alimento",
-    },
-    {
-        palavra: "Café",
-        dica: "Alimento",
-    },
-    {
-        palavra: "Pão",
         dica: "Alimento",
     },
     {
@@ -307,8 +285,8 @@ palavras = [
         palavra: "Sorvete",
         dica: "Alimento"
     },
-
-        //Pássaro
+    
+    //Pássaro
     {
         palavra: "Andorinha",
         dica: "Pássaro",
@@ -349,8 +327,8 @@ palavras = [
         palavra: "Coruja",
         dica: "Pássaro",
     },
-
-        //País
+    
+    //País
     {
         palavra: "Brasil",
         dica: "País",
@@ -368,10 +346,6 @@ palavras = [
         dica: "País",
     },
     {
-        palavra: "México",
-        dica: "País",
-    },
-    {
         palavra: "Argentina",
         dica: "País",
     },
@@ -384,15 +358,11 @@ palavras = [
         dica: "País",
     },
     {
-        palavra: "França",
-        dica: "País",
-    },
-    {
         palavra: "Canadá",
         dica: "País",
     },
-
-        //Jogo
+    
+    //Jogo
     {
         palavra: "Ludo",
         dica: "Jogo"
@@ -407,10 +377,6 @@ palavras = [
     },
     {
         palavra: "Basquete",
-        dica: "Jogo"
-    },
-    {
-        palavra: "Vôlei",
         dica: "Jogo"
     },
     {
@@ -433,8 +399,8 @@ palavras = [
         palavra: "Buraco",
         dica: "Jogo"
     },
-
-        //Veículo
+    
+    //Veículo
     {
         palavra: "Avião",
         dica: "Veículo"
@@ -475,8 +441,8 @@ palavras = [
         palavra: "Skate",
         dica: "Veículo"
     },
-
-        //Objeto
+    
+    //Objeto
     {
         palavra: "Cama",
         dica: "Objeto"
@@ -498,10 +464,6 @@ palavras = [
         dica: "Objeto"
     },
     {
-        palavra: "Xícara",
-        dica: "Objeto"
-    },
-    {
         palavra: "Chocalho",
         dica: "Objeto"
     },
@@ -517,22 +479,14 @@ palavras = [
         palavra: "Caneta",
         dica: "Objeto"
     },
-
-        //Parte do corpo
+    
+    //Parte do corpo
     {
         palavra: "Umbigo",
         dica: "Parte do corpo"
     },
     {
-        palavra: "Mão",
-        dica: "Parte do corpo"
-    },
-    {
         palavra: "Perna",
-        dica: "Parte do corpo"
-    },
-    {
-        palavra: "Braço",
         dica: "Parte do corpo"
     },
     {
@@ -560,3 +514,18 @@ palavras = [
         dica: "Parte do corpo"
     },
 ]
+
+/*
+Xícara
+Braço
+Vôlei
+Café
+Mão
+Mônique
+Feijão
+Mônica
+França
+México
+Pão
+Chapéu
+*/

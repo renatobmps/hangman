@@ -3,7 +3,7 @@ listaLetras = []
 listaLetras.push(document.querySelectorAll(".escondida"))
 novaLista = []
 
-let pontuacaoInicial = 5
+let pontuacaoInicial = 6
 
 atualizaPontuacao(pontuacaoInicial)
 
