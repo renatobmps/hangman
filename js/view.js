@@ -75,4 +75,16 @@ ${listaAlfabeto.join("")}
 </section>    
 `)
 
+//Rodapé
+
+listaBody.push(`
+<footer>
+    <p>Sugestões ou problemas:</p>
+    <nav>
+        <a href="https://github.com/renatobmps/forca.git" target="_blank" rel="noopener noreferrer">Github</a>
+        <a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </nav>
+</footer>
+`)
+
 document.body.innerHTML = listaBody.join("")

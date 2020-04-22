@@ -48,3 +48,9 @@ body{
     font-weight: bold;
     text-transform: uppercase;
 }
+footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
