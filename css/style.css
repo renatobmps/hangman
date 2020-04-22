@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap');
+
+*{
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+body{
+    text-align: center;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 18px;
+    background: #009688;
+}
+
+.palavra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.palavra p{
+    text-transform: uppercase;
+    font-size: 2em;
+    margin: .1em;
+}
+
+.escondida{
+    color: transparent;
+    border-bottom: 1px solid black;
+}
+
+.alfabeto button{
+    text-transform: uppercase;
+    padding: 1em;
+    margin: .5em;
+    background: lightgray;
+    border: 0;
+    border-radius: 5px;
+}
+.selecionado{
+    background: gray !important;
+    color: white;
+}
+.pontos{
+    color: red;
+}
+.erros{
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+}
