@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            position: relative;
+            display: block;
+            padding: 20px 0 0 0;
+        }
+        span::after {
+            content: attr(data-content);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <span>Algo está acontecendo</span>
+    <script>
+        var span = document.querySelector('span');
+        span.dataset.content = 'Muda valor da propriedade, e isso reflete no pseudo-elemento';
+    </script>
+</body>
+</html>

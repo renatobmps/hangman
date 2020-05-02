@@ -5,13 +5,13 @@ listaBody = []
 listaBody.push(`
 <h1>Jogo da Forca</h1>
 <section class="secao-pontos">
-<p>Pontos: <span class="pontos">0</span></p>
+    <p>Pontos: <span class="pontos">0</span></p>
 </section>
 `)
 
 function atualizaPontuacao(pontuacao) {
     document.querySelector(".pontos").innerText = pontuacao
-
+    
     if(pontuacao < 1){
         alert("Perdeu!")
         document.querySelectorAll(".alfabeto button").forEach(button => {
@@ -33,11 +33,10 @@ function atualizaPontuacao(pontuacao) {
 listaPalavra = []
 
 palavra.forEach(letra => {
-    listaPalavra.push(`<p class="letra-${removeAcento(letra)} escondida">${letra}</p>`)
+    listaPalavra.push(`<p class="letra letra-${removeAcento(letra)} escondida" data-content="${letra}"></p>`)
 })
 
-function removeAcento (text)
-{       
+function removeAcento (text){
     text = text.toLowerCase();                                                         
     text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
     text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
@@ -79,11 +78,11 @@ ${listaAlfabeto.join("")}
 
 listaBody.push(`
 <footer>
-    <p>Sugestões ou problemas:</p>
-    <nav>
-        <a href="https://github.com/renatobmps/forca/" target="_blank" rel="noopener noreferrer">Github</a>
-        <a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    </nav>
+<p>Sugestões ou problemas:</p>
+<nav>
+<a href="https://github.com/renatobmps/forca/" target="_blank" rel="noopener noreferrer">Github</a>
+<a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</nav>
 </footer>
 `)
 
