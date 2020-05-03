@@ -1593,11 +1593,10 @@
                     document.querySelector(".palavra").style = "color: green;"
                     setTimeout(() => {
                         localStorage.setItem("total", parseInt(localStorage.getItem("total")) + parseInt(pontuacaoAtual))
-                        alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total"))
-                        if (localStorage.getItem("total") > 20) {
-                            alert("Vou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")
+                        if (localStorage.getItem("total") > 100) {
+                            alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total")+"Vou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")
                         }else{
-                            alert("Menos de 10")
+                            alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total"))
                         }
                         alert("Recarregando para uma nova partida")
                         document.location.reload(true);
