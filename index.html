@@ -8,145 +8,215 @@
     <link rel="icon" href="icon.svg">
     <link rel="shotcut icon" href="icon.svg">
 </head>
-<body>
-    <!--
-        <script src="js/dados.js"></script>
-        <script src="js/sorteio.js"></script>
-        <script src="js/view.js"></script>
-        <script src="js/jogo.js"></script>
-    -->
-    
+<body>    
     <script>
         palavras = [
         {
             dica: "Nome",
             palavras: [
-            "Renato",
+            "Alexandre",
+            "Ana Júlia",
+            "Danilo",
+            "Felicia",
             "Fernanda",
-            "Nicolas",
-            "Natália",
+            "Francisco",
+            "Gabriel",
+            "Johnny",
+            "Juliano",
+            "Lucinete",
+            "Maria",
+            "Marina",
             "Mônica",
             "Mônique",
-            "Ana Júlia",
-            "Felicia",
-            "Lucinete",
-            "Gabriel",
-            "Rodrigo",
-            "Francisco",
-            "Juliano",
-            "Walquiria",
-            "Johnny",
-            "Marina",
-            "Danilo",
-            "Alexandre",
-            "Maria",
+            "Natália",
+            "Nicolas",
+            "Renato",
             "Rodolfo",
+            "Rodrigo",
+            "Walquiria",
             ]
         },
         {
             dica: "Animal",
             palavras: [
-            "Lobo guará",
-            "Jacaré",
-            "Tamanduá",
             "Antílope",
-            "Búfalo",
             "Babuíno",
-            "Chimpanzé",
-            "Libélula",
-            "Órix do cabo",
-            "Peixe",
-            "Gato",
-            "Rato",
-            "Pato",
-            "Cachorro",
             "Boi",
-            "Vaca",
+            "Búfalo",
+            "Cachorro",
+            "Chimpanzé",
+            "Dragão",
+            "Dinosauro",
             "Elefante",
+            "Flamingo",
+            "Gato",
             "Girafa",
-            "Tigre",
+            "Hopopótamo",
+            "Iguana",
+            "Jacaré",
+            "Krill",
+            "Leão",
+            "Libélula",
+            "Lobo guará",
             "Macaco",
+            "Marsupial",
+            "Morcego",
+            "Naja",
+            "Órix do cabo",
+            "Onça",
+            "Pato",
+            "Peixe",
+            "Quati",
+            "Rato",
+            "Sapo",
+            "Serpente",
+            "Tamanduá",
+            "Tigre",
+            "Urso",
+            "Vaca",
+            "Wallabee",
+            "Yak",
+            "Zebra",
+            "Zebu",
+            "Zangão"
             ]
         },
         {
             dica: "Cor",
             palavras: [
-            "Azul",
-            "Verde",
             "Amarelo",
-            "Rosa",
-            "Vermelho",
+            "Âmbar",
+            "Anil",
+            "Azul",
+            "Beje",
             "Branco",
-            "Preto",
+            "Castanho",
+            "Ciano",
+            "Cinza",
+            "Creme",
+            "Dourado",
+            "Fúcsia",
+            "Índigo",
             "Laranja",
-            "Roxo",
+            "Lilás",
+            "Magenta",
+            "Marfim",
             "Marrom",
+            "Mostarda",
+            "Prata",
+            "Preto",
+            "Púrpura",
+            "Rosa",
+            "Roxo",
+            "Salmão",
+            "Verde",
+            "Vermelho",
+            "Vinho",
+            "Violeta",
             ]
         },
         {
             dica: "Vestuário",
             palavras: [
-            "Camisa",
-            "Saia",
-            "Vestido",
-            "Blusa",
-            "Calça",
             "Bermuda",
-            "Sapato",
-            "Meia",
-            "Chinelo",
+            "Blusa",
+            "Boné",
+            "Calça",
+            "Camisa",
+            "Camiseta",
+            "Casaco",
             "Chapéu",
+            "Chinelo",
+            "Luva",
+            "Meia",
+            "Paletó",
+            "Saia",
+            "Sapato",
+            "Tênis",
+            "Vestido",
             ]
         },
         {
             dica: "Personagem dos contos de fadas",
             palavras: [
-            "Fada",
             "Bruxa",
+            "Boneca",
+            "Boneco",
+            "Caçador",
+            "Fada",
             "Feiticeira",
+            "Lobo",
+            "Porquinho",
             "Príncipe",
             "Princesa",
             "Rainha",
             "Rei",
-            "Caçador",
-            "Lobo",
-            "Porquinho",
             ]
         },
         {
             dica: "Alimento",
             palavras: [
-            "Arroz",
             "Açucar",
-            "Leite",
-            "Doce",
-            "Bolo",
-            "Geleia",
-            "Champanhe",
             "Amendoim",
-            "Manjericão",
-            "Paçoca",
-            "Sorvete",
+            "Arroz",
+            "Bolo",
             "Café",
+            "Champanhe",
+            "Doce",
+            "Espinafre",
             "Feijão",
+            "Geleia",
+            "Hortelã",
+            "Iogurte",
+            "Jaca",
+            "Kiwi",
+            "Leite",
+            "Manjericão",
+            "Naruto",
+            "Nugget",
+            "Omelete",
+            "Paçoca",
             "Pão",
+            "Pizza",
+            "Queijo",
+            "Rabanada",
+            "Rabanete",
+            "Rapadura",
+            "Ratatouille",
+            "Ravioli",
+            "Requeijão",
+            "Risoto",
+            "Rocambole",
+            "Sorvete",
+            "Sopa",
+            "Taco",
+            "Tamara",
+            "Tamarindo",
+            "Tapioca",
+            "Torrada",
+            "Torta",
+            "Uva",
+            "Yakisoba",
             ]
         },
         {
             dica: "Pássaro",
             palavras: [
+            "Águia",
             "Andorinha",
-            "Gaivota",
             "Arara",
-            "Urubu",
-            "Gavião",
-            "Pardal",
-            "Pombo",
-            "Periquito",
+            "Cacatua",
+            "Calopsita",
             "Canário",
             "Coruja",
-            "Águia",
+            "Gaivota",
+            "Gavião",
+            "Pardal",
+            "Papagaio",
+            "Periquito",
+            "Pombo",
             "Sabiá",
+            "Urubu",
             ]
         },
         {
@@ -416,31 +486,40 @@
         {
             dica: "Jogo",
             palavras: [
-            "Ludo",
-            "Dama",
-            "Xadrez",
+            "Amarelinha",
             "Basquete",
-            "Futebol",
-            "Truco",
-            "Forca",
             "Blackjack",
             "Buraco",
+            "Cabra Cega",
+            "Dama",
+            "Esconde Esconde",
+            "Forca",
+            "Futebol",
+            "Ludo",
+            "Mãe da Rua",
+            "Resta Um",
+            "Truco",
             "Vôlei",
+            "Xadrez",
             ]
         },
         {
             dica: "Veículo",
             palavras: [
             "Avião",
-            "Bicicleta",
-            "Carro",
-            "Moto",
             "Barco",
-            "Helicóptero",
+            "Bicicleta",
             "Caminhão",
-            "Carreta",
             "Caminhonete",
+            "Carreta",
+            "Carro",
+            "Helicóptero",
+            "Moto",
+            "Ônibus",
             "Skate",
+            "Trator",
+            "Trem",
+            "Van",
             ]
         },
         {
@@ -456,6 +535,416 @@
             "Tesoura",
             "Caneta",
             "Xícara",
+            /*
+            
+            abajur
+            abre-latas
+            açucareiro
+            agulha
+            alfinete
+            algema
+            alicate
+            almofada
+            âncora
+            anel
+            antena
+            anzol
+            apagador
+            apito
+            apontador
+            aquecedor
+            arco
+            aro
+            aspirador
+            azulejo
+            
+            bacia
+            balança
+            banco
+            bengala
+            berço
+            berimbau
+            bicicleta
+            bidê
+            bigorna
+            binóculo
+            biruta
+            bisturi
+            boia
+            bola
+            boneca
+            borracha
+            botão
+            brinco
+            bule
+            bumerangue
+            
+            cabide
+            cadeado
+            cadeira
+            caderno
+            cajado
+            cálice
+            caneta
+            canivete
+            capa
+            capacete
+            castiçal
+            cata-vento
+            celular
+            chicote
+            chinelo
+            chupeta
+            clipe
+            colchão
+            colher
+            copo
+            
+            dado
+            dardo
+            dedal
+            dentadura
+            desentupidor
+            desfibrilador
+            desodorante
+            despertador
+            detergente
+            diadema
+            diamante
+            diapasão
+            diário
+            dicionário
+            dinamite
+            disco
+            disquete
+            divã
+            dominó
+            DVD
+            
+            edredom
+            elástico
+            envelope
+            enxada
+            escada
+            escorredor
+            escova
+            escudo
+            escumadeira
+            espada
+            espanador
+            espelho
+            esponja
+            espremedor
+            esquadro
+            estátua
+            esteira
+            estetoscópio
+            estojo
+            extintor
+            
+            faca
+            fax
+            ferradura
+            fichário
+            filmadora
+            filtro
+            fio
+            fita
+            fivela
+            flauta
+            flecha
+            fogão
+            foguete
+            foice
+            folha
+            frasco
+            freezer
+            frigideira
+            fruteira
+            funil
+            
+            gaiola
+            gancho
+            gangorra
+            garfo
+            gargantilha
+            garrafa
+            gaveta
+            geladeira
+            gorro
+            gramofone
+            grampeador
+            grampo
+            granada
+            gravata
+            grelha
+            grinalda
+            guarda-chuva
+            guarda-sol
+            guilhotina
+            guitarra
+            
+            haltere
+            harpa
+            haste
+            hélice
+            helicóptero
+            helióstato
+            hidrante
+            hidratante
+            hidroavião
+            hidrômetro
+            higrômetro
+            holofote
+            hóstia
+            
+            iate
+            ímã
+            impressora
+            inalador
+            incenso
+            ingresso
+            inseticida
+            interfone
+            interruptor
+            ioiô
+            isca
+            isopor
+            isqueiro
+            
+            jaleco
+            janela
+            jangada
+            jaqueta
+            jardineira
+            jarra
+            jarro
+            jato
+            jaula
+            joelheira
+            jogo
+            joia
+            jornal
+            joystick
+            
+            karaokê
+            kart
+            ketchup
+            kilt
+            kit
+            
+            lâmina
+            lâmpada
+            lança
+            lancheira
+            lantejoula
+            lanterna
+            lápis
+            lapiseira
+            lata
+            lenço
+            lençol
+            lente
+            leque
+            liquidificador
+            livro
+            lixa
+            luminária
+            luneta
+            lustre
+            luva
+            
+            maçaneta
+            maçarico
+            machado
+            maiô
+            mala
+            mamadeira
+            manequim
+            mangueira
+            manivela
+            máquina
+            marreta
+            martelo
+            máscara
+            medalha
+            megafone
+            meia
+            microfone
+            microscópio
+            mochila
+            mola
+            
+            nadadeira
+            narguilé
+            navalha
+            nave
+            navio
+            nebulizador
+            notebook
+            novelo
+            
+            oboé
+            óculos
+            odre
+            oftalmoscópio
+            olho mágico
+            ombreira
+            orelhão
+            órgão
+            ouro
+            OVNI
+            ovo
+            oxigenador
+            
+            pá
+            paliteiro
+            pandeiro
+            panela
+            pano
+            papel
+            parafuso
+            paraquedas
+            piano
+            picareta
+            pinça
+            pincel
+            pingente
+            pistola
+            placa
+            pote
+            prancha
+            prateleira
+            prato
+            pulseira
+            
+            quadriciclo
+            quadro
+            quadro negro
+            quebra-cabeça
+            quebra-nozes
+            queijeira
+            quepe
+            quimono
+            
+            rádio
+            ralador
+            ralo
+            raquete
+            ratoeira
+            reco-reco
+            rede
+            régua
+            relógio
+            remo
+            retrovisor
+            revista
+            revólver
+            rímel
+            roda
+            rodo
+            rolamento
+            roleta
+            rolha
+            rolo
+            
+            sabonete
+            saca-rolhas
+            sacola
+            saleiro
+            sandália
+            sanfona
+            sapato
+            saxofone
+            scanner
+            secador
+            selim
+            seringa
+            serpentina
+            serrote
+            sino
+            sirene
+            skate
+            sofá
+            sombrinha
+            spray
+            
+            tábua
+            tabuleiro
+            taça
+            tamanco
+            tambor
+            tampa
+            teclado
+            telefone
+            telescópio
+            televisão
+            telha
+            tênis
+            termômetro
+            tesoura
+            tigela
+            tijolo
+            touca
+            trampolim
+            travesseiro
+            troféu
+            
+            ukulele
+            ultraleve
+            umbral
+            umidificador
+            unha postiça
+            uniforme
+            urinol
+            urna
+            urso de pelúcia
+            
+            válvula
+            vaporizador
+            vara
+            varal
+            vareta
+            varinha
+            vaso
+            vassoura
+            vela
+            velocímetro
+            ventilador
+            vídeo
+            vidro
+            viola
+            violão
+            violino
+            violoncelo
+            viseira
+            vitrola
+            volante
+            
+            wafer
+            walkie-talkie
+            walkman
+            webcam
+            
+            xadrez
+            xale
+            xampu
+            xarope
+            xequerê
+            xícara
+            xilofone
+            xilogravura
+            
+            yacht
+            yagi
+            yen
+            
+            zabumba
+            zambê
+            zarabatana
+            zinco
+            zíper
+            */
             ]
         },
         {
@@ -471,8 +960,433 @@
             "Pulso",
             "Braço",
             "Mão",
+            /*
+            Cabeça —Testa — Olho —Orelha — Nariz — Boca — Língua — Dente — Mandíbula — Face —Bochecha — Queixo
+            Pescoço — Garganta — Pomo de adão — Ombros
+            Braço — Cotovelo — Pulso  — Mão — Dedos da mão — Polegar
+            Coluna — Peito — Mama — Costela
+            Abdómen — Umbigo — Órgão sexual (Pênis/Escroto ou Clitóris/Vagina) — Reto — Ânus
+            Quadril — Nádegas —Coxa  — Joelho — Perna  —Panturrilha  — Calcanhar — Tornozelo — Pé — Dedos do pé
+            */
             ]
         },
+        {
+            dica: "Filme",
+            palavras: [
+            "Coming soon",
+            /*
+            100. Os Sete Samurais (1954)
+            
+            99. Bonnie e Clyde – Uma Rajada de Balas (1967)
+            
+            
+            98. Cães de Aluguel (1992)
+            
+            97. Apertem os Cintos… O Piloto Sumiu (1980)
+            
+            96. O Labirinto do Fauno (2006)
+            
+            95. Doutor Jivago (1965)
+            
+            94. O Franco-Atirador (1978)
+            
+            93. Contatos Imediatos de Terceiro Grau (1977)
+            
+            92. Up – Altas Aventuras (2009)
+            
+            91. Rocky, um Lutador (1976)
+            
+            90. Amnésia (2000)
+            
+            89. Coração Valente (1995)
+            
+            88. Quem Quer Ser um Milionário? (2008)
+            
+            87. Senhor dos Anéis: O Retorno do Rei (2003)
+            
+            86. A Bela e a Fera (1991)
+            
+            85. Seven – Os Sete Crimes Capitais (1995)
+            
+            84. A Origem (2010)
+            
+            83. Duro de Matar (1988)
+            
+            82. Senhor dos Anéis: A Sociedade do Anel (2001)
+            
+            81. Amadeus (1984)
+            
+            80. Sindicato de Ladrões (1954)
+            
+            79. Wall-E (2008)
+            
+            78. 12 Homens e uma Sentença (1957)
+            
+            77. Os Caça-Fantasmas (1984)
+            
+            76. O Segredo de Brokeback Mountain (2005)
+            
+            75. A Ponte do Rio Kwai (1957)
+            
+            74. Banzé no Oeste (1974)
+            
+            73. Todos os Homens do Presidente (1976)
+            
+            72. O Jovem Frankenstein (1974)
+            
+            71. Quase Famosos (2000)
+            
+            70. Um Corpo que Cai (1958)
+            
+            69. Gladiador (2000)
+            
+            68. Monty Python Em Busca do Cálice Sagrado (1975)
+            
+            67. Avatar (2009)
+            
+            66. O Rei Leão (1994)
+            
+            65. Touro Indomável (1980)
+            
+            64. Mary Poppins (1964)
+            
+            63. Feitiço do Tempo (1993)
+            
+            62. Intriga Internacional (1959)
+            
+            61. Amor, Sublime Amor (1961)
+            
+            60. O Fabuloso Destino de Amélie Poulain (2001)
+            
+            59. Thelma & Louise (1991)
+            
+            58. Crepúsculo dos Deuses (1950)
+            
+            57. Batman: O Cavaleiro das Trevas (2008)
+            
+            56. Brilho Eterno de uma Mente sem Lembranças (2004)
+            
+            55. Taxi Driver – Motorista de Táxi (1976)
+            
+            54. Butch Cassidy (1969)
+            
+            53. Gênio Indomável (1997)
+            
+            52. A Malvada (1950)
+            
+            51. O Grande Lebowski (1998)
+            
+            50. Jurassic Park: O Parque dos Dinossauros (1993)
+            
+            49. Janela Indiscreta (1954)
+            
+            48. Os Suspeitos (1995)
+            
+            47. Quanto Mais Quente Melhor (1959)
+            
+            46. O Resgate do Soldado Ryan (1998)
+            
+            45. Titanic (1997)
+            
+            44. Matrix (1999)
+            
+            43. Toy Story (1995)
+            
+            42. Alien, o Oitavo Passageiro (1979)
+            
+            41. Psicose (1960)
+            
+            40. Clube da Luta (1999)
+            
+            39. O Iluminado (1980)
+            
+            38. Harry e Sally – Feitos Um para o Outro (1989)
+            
+            37. Dr. Fantástico (1964)
+            
+            36. Curtindo a Vida Adoidado (1986)
+            
+            35. Laranja Mecânica (1971)
+            
+            34. Beleza Americana (1999)
+            
+            33. Fargo (1996)
+            
+            32. Star Wars: O Império Contra-Ataca (1980)
+            
+            31. A Princesa Prometida (1987)
+            
+            30. Um Estranho no Ninho (1975)
+            
+            29. Blade Runner, o Caçador de Andróides (1982)
+            
+            28. A Primeira Noite de um Homem (1967)
+            
+            27. Clube dos Cinco (1985)
+            
+            26. Cantando na Chuva (1952)
+            
+            25. A Noviça Rebelde (1965)
+            
+            24. Tubarão (1975)
+            
+            23. Lawrence da Arábia (1962)
+            
+            22. O Silêncio dos Inocentes (1991)
+            
+            21. Chinatown (1974)
+            
+            20. A Felicidade Não se Compra (1946)
+            
+            19. Os Bons Companheiros (1990)
+            
+            18. Noivo Neurótico, Noiva Nervosa (1977)
+            
+            17. Apocalypse Now (1979)
+            
+            16. O Sol é Para Todos (1962)
+            
+            15. …E o Vento Levou (1939)
+            
+            14. Forrest Gump: O Contador de Histórias (1994)
+            
+            13. Indiana Jones e os Caçadores da Arca Perdida (1981)
+            
+            12. De Volta Para o Futuro (1985)
+            
+            11. Star Wars: Uma Nova Esperança (1977)
+            
+            10. A Lista de Schindler (1993)
+            
+            9. 2001: Uma Odisséia no Espaço (1968)
+            
+            8. E.T. – O Extraterrestre (1982)
+            
+            7. O Poderoso Chefão: Parte II (1974)
+            
+            6. Casablanca (1942)
+            
+            5. Pulp Fiction – Tempo de Violência (1994)
+            
+            4. Um Sonho de Liberdade (1994)
+            
+            3. Cidadão Kane (1941)
+            
+            2. O Mágico de Oz (1939)
+            
+            1. O Poderoso Chefão (1972)
+            */
+            ]
+        },
+        {
+            dica: "Conto infantil",
+            palavras: [
+            "Coming soon",
+            /*A Batalha na Neve
+            A Bela Adormecida
+            A Bela e a Fera
+            A Cigarra e a Formiga
+            A Cigarra e a Formiga 2
+            A Festa no Céu
+            A Galinha dos Ovos de Ouro
+            A Galinha Ruiva
+            A Lebre e a Tartaruga
+            A Lebre e o Cágado
+            A Menina do Leite
+            A Menina e o Vampiro
+            A Patinha Esmeralda
+            A Pequena Sereia
+            A Pequena Vendedora de Fósforos
+            A Raposa e as Uvas
+            A Velha e suas Criadas
+            Ali Babá e os Quarenta Ladrões
+            Tocador de áudio
+            
+            00:00
+            00:00
+            As Fadas
+            Branca de Neve
+            Cachinhos Dourados e os Três Ursos
+            Chapeuzinho Vermelho
+            Cinderela
+            Cinderela 2
+            Guerra de travesseiros ( história em audio)
+            João e Maria
+            No Circo
+            O Asno e o Cavalo
+            O Cão e a Carne.
+            O Corvo e a Raposa
+            O Gato de Botas
+            O Leão e o Ratinho
+            O Patinho Feio
+            O Príncipe Sapo
+            O Soldadinho de Chumbo
+            O Vento e o Sol
+            Os Três Porquinhos
+            Os Sacis
+            Papai Contos
+            Pinóquio
+            Rapunzel
+            Um Visitante Diferente
+            Zinho, O Detetive
+            */
+            ]
+        },
+        {
+            dica: "Personagem",
+            palavras: [
+            "Coming soon",
+            ]
+        },
+        {
+            dica: "Animação",
+            palavras: [
+            "Coming soon",
+            ]
+        },
+        {
+            dica: "Aplicativo",
+            palavras: [
+            "Coming soon",
+            /*
+            Facebook
+            Facebook Messenger
+            WhatsApp
+            Instagram
+            Snapchat
+            Skype
+            TikTok
+            UC Browser
+            YouTube
+            Twitter
+            Veja a lista dos apps mais rentáveis da década:
+            Netflix
+            Tinder
+            Pandora Music
+            Tencent Video
+            LINE
+            IQIYI
+            Spotify
+            YouTube
+            HBO Now
+            Kwai
+            */
+            ]
+        },
+        {
+            dica: "Video-game",
+            palavras: [
+            "Coming soon",
+            /*
+            The Last of Us
+            The Legend of Zelda: The Ocarina of Time
+            World of Warcraft
+            Final Fantasy VII
+            Metal Gear Solid
+            GoldenEye: 007
+            Shenmue
+            Grand Theft Auto V
+            Red Dead Redemption
+            Halo: Combat Evolved
+            The Elder Scrolls V: Skyrim
+            Batman: Arkham City
+            Dark Souls
+            BioShock
+            Half-Life 2
+            Super Mario 64
+            Deus Ex
+            Mass Effect 2
+            Grand Theft Auto: San Andreas
+            Super Mario World
+            Call of Duty 4: Modern Warfare
+            Uncharted 2: Among Thieves
+            The Legend of Zelda: The Twilight Princess
+            Super Mario Kart
+            Cadastre-se em nosso canal
+            
+            Fallout 3
+            Metal Gear Solid 3: Snake Eater
+            Resident Evil 4
+            Batman: Arkham Asylum
+            Pokemon Red/Blue/Yellow
+            Mass Effect
+            Grand Theft Auto: Vice City
+            Doom
+            Shadow of the Colossus
+            Halo: Reach
+            The Legend of Zelda: A Link to the Past
+            Half-Life
+            Assassin’s Creed II
+            Tetris
+            Mario Kart 64
+            Street Fighter II
+            Portal 2
+            Resident Evil
+            Star Wars: Knights of the Old Republic
+            Super Mario Bros.
+            Final Fantasy X
+            Tomb Raider
+            The Secret of Monkey Island
+            Bioshock Infinite
+            Resident Evil 2
+            Cadastre-se em nosso canal
+            
+            The Legend of Zelda: Majora’s Mask
+            Shenmue II
+            Diablo II
+            Sonic the Hedgehog
+            Call of Juarez
+            The Elder Scolls III: Morrowind
+            The Legend of Zelda: The Wind Waker
+            Portal
+            Warcraft III: Reign Of Chaos
+            Kingdom Hearts
+            Final Fantasy VIII
+            The Elder Scrolls IV: Oblivion
+            Baldur’s Gate II: Shadows of Amn
+            The Walking Dead
+            Silent Hill 2
+            Metal Gear Solid 2: Sons of Liberty
+            Planescape: Torment
+            Elite
+            StarCraft
+            Uncharted 3: Drake’s Deception
+            Dead Space
+            Super Mario Galaxy
+            Metroid Prime
+            Final Fantasy IX
+            Sid Meier’s Civilization
+            Gears Of War
+            Cadastre-se em nosso canal
+            
+            Chrono Trigger
+            Age of Empires II: The Age Of Kings
+            Counter-Strike
+            System Shock 2
+            Okami
+            Dragon Age: Origins
+            Metal Gear Solid 4: Guns of the Patriots
+            Championship Manager
+            Grim Fandango
+            Super Smash Bros. Brawl
+            Heavy Rain
+            Left 4 Dead
+            Star Wars: Battlefront II
+            Max Payne
+            Vampire The Masquerade: Bloodlines
+            Duke Nukem 3D
+            The Legend of Zelda: Skyward Sword
+            S.T.A.L.K.E.R.: Shadow of Chernobyl
+            Super Metroid
+            League of Legends
+            Team Fortress 2
+            Super Mario Galaxy 2
+            Homeworld
+            Crash Bandicoot
+            Journey
+            */
+            ]
+        }
         ]
         {
             if (palavras.length == 0) {
@@ -557,7 +1471,6 @@
                         testePalavras.push(p)
                     })
                 })
-                console.log(testePalavras)
                 
                 semEspaco = `${removeAcento(testePalavras.join(""))}`
                 tecladoArray = semEspaco.split("")
@@ -605,7 +1518,8 @@
                 document.querySelector(".pontos").innerText = pontuacao
                 
                 if(pontuacao < 1){
-                    alert("Perdeu!")
+                    localStorage.setItem("total", parseInt(localStorage.getItem("total")) - 1)
+                    alert("Perdeu!\n\n-1 ponto\n\nTotal: "+localStorage.getItem("total"))
                     document.querySelectorAll(".alfabeto button").forEach(button => {
                         button.setAttribute("disabled", true)
                     })
@@ -627,6 +1541,9 @@
             novaLista = []
             
             let pontuacaoInicial = 6
+            if(!localStorage.getItem('total')){
+                localStorage.setItem('total', 0);
+            }
             
             atualizaPontuacao(pontuacaoInicial)
             
@@ -644,8 +1561,6 @@
                     listaNaoSelecionado = document.querySelectorAll("button:not(.selecionado)")
                     
                     verificaLetra(palavraArraySemAcento, letraAlfabeto.value)
-                    palavraArray.forEach(p=>console.log(p))
-                    console.log(`Pressionado: ${letraAlfabeto.value}`)
                     
                     listaTem.forEach(letra => {
                         document.querySelectorAll(`.letra-${letra}`).forEach(encontrada => {
@@ -681,7 +1596,8 @@
                 if(listaFaltantes.length == 0){
                     document.querySelector(".palavra").style = "color: green;"
                     setTimeout(() => {
-                        alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos: '+pontuacaoAtual)
+                        localStorage.setItem("total", parseInt(localStorage.getItem("total")) + parseInt(pontuacaoAtual))
+                        alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total"))
                         alert("Recarregando para uma nova partida")
                         document.location.reload(true);
                     }, 2000)
