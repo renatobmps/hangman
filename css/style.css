@@ -30,11 +30,6 @@ body{
 .escondida::after{
     color: transparent;
 }
-
-.alfabeto{
-    z-index: 3;
-    margin-bottom: 3em;
-}
 .alfabeto button{
     text-transform: uppercase;
     padding: 1em;
@@ -54,9 +49,13 @@ body{
     color: red;
     font-weight: bold;
     text-transform: uppercase;
+    background: gray;
+    width: fit-content;
+    margin: 1em auto;
+    padding: 0 1em;
+    border-radius: 5px;
 }
 footer{
-    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -70,4 +69,7 @@ footer{
 .letra-{
     width: .5em;
     border: 0;
+}
+.secao-alfabeto{
+    margin-bottom: 3em;
 }
