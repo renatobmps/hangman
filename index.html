@@ -9,10 +9,800 @@
     <link rel="shotcut icon" href="icon.svg">
 </head>
 <body>
-    <script src="js/dados.js"></script>
-    <script src="js/sorteio.js"></script>
-    <script src="js/view.js"></script>
-    <script src="js/jogo.js"></script>
+    <!--
+        <script src="js/dados.js"></script>
+        <script src="js/sorteio.js"></script>
+        <script src="js/view.js"></script>
+        <script src="js/jogo.js"></script>
+    -->
+    
+    <script>
+        palavras = [
+        {
+            dica: "Nome",
+            palavras: [
+            "Renato",
+            "Fernanda",
+            "Nicolas",
+            "Natália",
+            "Mônica",
+            "Mônique",
+            "Ana Júlia",
+            "Felicia",
+            "Lucinete",
+            "Gabriel",
+            "Rodrigo",
+            "Francisco",
+            "Juliano",
+            "Walquiria",
+            "Johnny",
+            "Marina",
+            "Danilo",
+            "Alexandre",
+            "Maria",
+            "Rodolfo",
+            ]
+        },
+        {
+            dica: "Animal",
+            palavras: [
+            "Lobo guará",
+            "Jacaré",
+            "Tamanduá",
+            "Antílope",
+            "Búfalo",
+            "Babuíno",
+            "Chimpanzé",
+            "Libélula",
+            "Órix do cabo",
+            "Peixe",
+            "Gato",
+            "Rato",
+            "Pato",
+            "Cachorro",
+            "Boi",
+            "Vaca",
+            "Elefante",
+            "Girafa",
+            "Tigre",
+            "Macaco",
+            ]
+        },
+        {
+            dica: "Cor",
+            palavras: [
+            "Azul",
+            "Verde",
+            "Amarelo",
+            "Rosa",
+            "Vermelho",
+            "Branco",
+            "Preto",
+            "Laranja",
+            "Roxo",
+            "Marrom",
+            ]
+        },
+        {
+            dica: "Vestuário",
+            palavras: [
+            "Camisa",
+            "Saia",
+            "Vestido",
+            "Blusa",
+            "Calça",
+            "Bermuda",
+            "Sapato",
+            "Meia",
+            "Chinelo",
+            "Chapéu",
+            ]
+        },
+        {
+            dica: "Personagem dos contos de fadas",
+            palavras: [
+            "Fada",
+            "Bruxa",
+            "Feiticeira",
+            "Príncipe",
+            "Princesa",
+            "Rainha",
+            "Rei",
+            "Caçador",
+            "Lobo",
+            "Porquinho",
+            ]
+        },
+        {
+            dica: "Alimento",
+            palavras: [
+            "Arroz",
+            "Açucar",
+            "Leite",
+            "Doce",
+            "Bolo",
+            "Geleia",
+            "Champanhe",
+            "Amendoim",
+            "Manjericão",
+            "Paçoca",
+            "Sorvete",
+            "Café",
+            "Feijão",
+            "Pão",
+            ]
+        },
+        {
+            dica: "Pássaro",
+            palavras: [
+            "Andorinha",
+            "Gaivota",
+            "Arara",
+            "Urubu",
+            "Gavião",
+            "Pardal",
+            "Pombo",
+            "Periquito",
+            "Canário",
+            "Coruja",
+            "Águia",
+            "Sabiá",
+            ]
+        },
+        {
+            dica: "País",
+            palavras: [
+            "Afeganistão",
+            "África do Sul",
+            "Akrotiri",
+            "Albânia",
+            "Alemanha",
+            "Andorra",
+            "Angola",
+            "Anguila",
+            "Antárctida",
+            "Antígua e Barbuda",
+            "Arábia Saudita",
+            "Arctic Ocean",
+            "Argélia",
+            "Argentina",
+            "Arménia",
+            "Aruba",
+            "Ashmore and Cartier Islands",
+            "Atlantic Ocean",
+            "Austrália",
+            "Áustria",
+            "Azerbaijão",
+            "Baamas",
+            "Bangladeche",
+            "Barbados",
+            "Barém",
+            "Bélgica",
+            "Belize",
+            "Benim",
+            "Bermudas",
+            "Bielorrússia",
+            "Birmânia",
+            "Bolívia",
+            "Bósnia e Herzegovina",
+            "Botsuana",
+            "Brasil",
+            "Brunei",
+            "Bulgária",
+            "Burquina Faso",
+            "Burúndi",
+            "Butão",
+            "Cabo Verde",
+            "Camarões",
+            "Camboja",
+            "Canadá",
+            "Catar",
+            "Cazaquistão",
+            "Chade",
+            "Chile",
+            "China",
+            "Chipre",
+            "Clipperton Island",
+            "Colômbia",
+            "Comores",
+            "Congo Brazzaville",
+            "Congo Kinshasa",
+            "Coral Sea Islands",
+            "Coreia do Norte",
+            "Coreia do Sul",
+            "Costa do Marfim",
+            "Costa Rica",
+            "Croácia",
+            "Cuba",
+            "Curacao",
+            "Dhekelia",
+            "Dinamarca",
+            "Domínica",
+            "Egipto",
+            "Emiratos Árabes Unidos",
+            "Equador",
+            "Eritreia",
+            "Eslováquia",
+            "Eslovénia",
+            "Espanha",
+            "Estados Unidos",
+            "Estónia",
+            "Etiópia",
+            "Faroé",
+            "Fiji",
+            "Filipinas",
+            "Finlândia",
+            "França",
+            "Gabão",
+            "Gâmbia",
+            "Gana",
+            "Gaza Strip",
+            "Geórgia",
+            "Geórgia do Sul e Sandwich do Sul",
+            "Gibraltar",
+            "Granada",
+            "Grécia",
+            "Gronelândia",
+            "Guame",
+            "Guatemala",
+            "Guernsey",
+            "Guiana",
+            "Guiné",
+            "Guiné Equatorial",
+            "Guiné Bissau",
+            "Haiti",
+            "Honduras",
+            "Hong Kong",
+            "Hungria",
+            "Iémen",
+            "Ilha Bouvet",
+            "Ilha do Natal",
+            "Ilha Norfolk",
+            "Ilhas Caimão",
+            "Ilhas Cook",
+            "Ilhas dos Cocos",
+            "Ilhas Falkland",
+            "Ilhas Heard e McDonald",
+            "Ilhas Marshall",
+            "Ilhas Salomão",
+            "Ilhas Turcas e Caicos",
+            "Ilhas Virgens Americanas",
+            "Ilhas Virgens Britânicas",
+            "Índia",
+            "Indian Ocean",
+            "Indonésia",
+            "Irão",
+            "Iraque",
+            "Irlanda",
+            "Islândia",
+            "Israel",
+            "Itália",
+            "Jamaica",
+            "Jan Mayen",
+            "Japão",
+            "Jersey",
+            "Jibuti",
+            "Jordânia",
+            "Kosovo",
+            "Kuwait",
+            "Laos",
+            "Lesoto",
+            "Letónia",
+            "Líbano",
+            "Libéria",
+            "Líbia",
+            "Listenstaine",/*
+            "Lituânia
+            Luxemburgo
+            Macau
+            Macedónia
+            Madagáscar
+            Malásia
+            Malávi
+            Maldivas
+            Mali
+            Malta
+            Man, Isle of
+            Marianas do Norte
+            Marrocos
+            Maurícia
+            Mauritânia
+            México
+            Micronésia
+            Moçambique
+            Moldávia
+            Mónaco
+            Mongólia
+            Monserrate
+            Montenegro
+            Mundo
+            Namíbia
+            Nauru
+            Navassa Island
+            Nepal
+            Nicarágua
+            Níger
+            Nigéria
+            Niue
+            Noruega
+            Nova Caledónia
+            Nova Zelândia
+            Omã
+            Pacific Ocean
+            Países Baixos
+            Palau
+            Panamá
+            Papua Nova Guiné
+            Paquistão
+            Paracel Islands
+            Paraguai
+            Peru
+            Pitcairn
+            Polinésia Francesa
+            Polónia
+            Porto Rico
+            Portugal
+            Quénia
+            Quirguizistão
+            Quiribáti
+            Reino Unido
+            República Centro Africana
+            República Dominicana
+            Roménia
+            Ruanda
+            Rússia
+            Salvador
+            Samoa
+            Samoa Americana
+            Santa Helena
+            Santa Lúcia
+            São Bartolomeu",*/
+            "São Cristóvão e Neves",
+            "São Marinho",
+            "São Martinho",
+            "São Pedro e Miquelon",
+            "São Tomé e Príncipe",
+            "São Vicente e Granadinas",
+            "Sara Ocidental",
+            "Seicheles",
+            "Senegal",
+            "Serra Leoa",
+            "Sérvia",
+            /*Singapura
+            Sint Maarten
+            Síria
+            Somália
+            Southern Ocean
+            Spratly Islands
+            Sri Lanca
+            Suazilândia
+            Sudão
+            Sudão do Sul
+            Suécia
+            Suíça
+            Suriname
+            Svalbard e Jan Mayen
+            Tailândia
+            Taiwan
+            Tajiquistão
+            Tanzânia
+            Território Britânico do Oceano Índico
+            Territórios Austrais Franceses
+            Timor Leste
+            Togo
+            Tokelau
+            Tonga
+            Trindade e Tobago
+            Tunísia
+            Turquemenistão
+            Turquia
+            Tuvalu
+            Ucrânia
+            Uganda
+            União Europeia
+            Uruguai
+            Usbequistão
+            Vanuatu
+            Vaticano",*/
+            "Venezuela",
+            "Vietname",
+            "Wake Island",
+            "Wallis e Futuna",
+            "West Bank",
+            "Zâmbia",
+            "Zimbabué",
+            ]
+        },
+        {
+            dica: "Jogo",
+            palavras: [
+            "Ludo",
+            "Dama",
+            "Xadrez",
+            "Basquete",
+            "Futebol",
+            "Truco",
+            "Forca",
+            "Blackjack",
+            "Buraco",
+            "Vôlei",
+            ]
+        },
+        {
+            dica: "Veículo",
+            palavras: [
+            "Avião",
+            "Bicicleta",
+            "Carro",
+            "Moto",
+            "Barco",
+            "Helicóptero",
+            "Caminhão",
+            "Carreta",
+            "Caminhonete",
+            "Skate",
+            ]
+        },
+        {
+            dica: "Objeto",
+            palavras: [
+            "Cama",
+            "Estojo",
+            "Faca",
+            "Óculos",
+            "Esparadrapo",
+            "Chocalho",
+            "Mamadeira",
+            "Tesoura",
+            "Caneta",
+            "Xícara",
+            ]
+        },
+        {
+            dica: "Parte do corpo",
+            palavras: [
+            "Umbigo",
+            "Perna",
+            "Torax",
+            "Costas",
+            "Cabelo",
+            "Barriga",
+            "Dedo",
+            "Pulso",
+            "Braço",
+            "Mão",
+            ]
+        },
+        ]
+        {
+            if (palavras.length == 0) {
+                alert("Nenhuma palavra foi cadastrada ainda! :(")
+            }else{
+                
+                function sorteio(array) {
+                    return array[Math.floor(Math.random() * ((array.length - 1) - 0 + 1))]
+                }
+                
+                function removeAcento (text){
+                    text = text.toLowerCase();
+                    text = text.split(" ").join("")
+                    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+                    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+                    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+                    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+                    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+                    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+                    return text;                 
+                }
+            }
+            
+            let sorteada = sorteio(palavras)
+            
+            dica = sorteada.dica
+            palavra = sorteio(sorteada.palavras)
+            palavraArray = palavra.toLowerCase().split("")
+            palavraSemAcento = removeAcento(palavra)
+            palavraArraySemAcento = removeAcento(palavra).split("")
+        }
+        {
+            listaBody = []
+            
+            //Seção placar
+            function desenhaPlacar() {
+                
+                listaBody.push(`
+                <h1>Jogo da Forca</h1>
+                <section class="secao-pontos">
+                    <p>Pontos: <span class="pontos">0</span></p>
+                </section>
+                `)
+                
+                document.body.innerHTML = listaBody.join("")
+            }
+            desenhaPlacar()
+            
+            //Seção palavra
+            function desenhaJogo() {
+                
+                listaLetrasHtml = []
+                
+                palavraArray.forEach(letra => {
+                    listaLetrasHtml.push(`<p class="letra letra-${removeAcento(letra)} escondida" data-content="${letra}"></p>`)
+                });
+                
+                let objetoPalavra = {
+                    dica: dica,
+                    html: listaLetrasHtml.join(""),
+                }
+                
+                listaBody.push(`
+                <section class="secao-palavra">
+                    <div class="palavra">
+                        ${objetoPalavra.html}
+                    </div>
+                    <p>Dica: ${objetoPalavra.dica}</p>
+                </section>
+                `)
+                
+                document.body.innerHTML = listaBody.join("")
+            }
+            desenhaJogo()
+            
+            //Seção teclado
+            function desenhaTeclado() {
+                let testePalavras = []
+                
+                palavras.forEach(dica => {
+                    dica.palavras.forEach(p => {
+                        testePalavras.push(p)
+                    })
+                })
+                console.log(testePalavras)
+                
+                semEspaco = `${removeAcento(testePalavras.join(""))}`
+                tecladoArray = semEspaco.split("")
+                teclado = tecladoArray.sort().filter((este, i) => tecladoArray.indexOf(este) === i)
+                listaTeclado = []
+                
+                teclado.forEach(letra => {
+                    listaTeclado.push(`
+                    <button id="letra-${letra}" value="${letra}">${letra}</button>
+                    `)
+                })
+                
+                listaBody.push(`
+                <section class="secao-alfabeto">
+                    <div class="alfabeto">
+                        ${listaTeclado.join("")}
+                    </div>
+                    <p class="erros"></p>
+                </section>
+                `)
+                
+                document.body.innerHTML = listaBody.join("")
+            }
+            desenhaTeclado()
+            
+            //Seção footer
+            function desenhaFooter() {
+                listaBody.push(`
+                <footer>
+                    <p>Sugestões ou problemas:</p>
+                    <nav>
+                        <a href="https://github.com/renatobmps/forca/" target="_blank" rel="noopener noreferrer">Github</a>
+                        <a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </nav>
+                </footer>
+                `)
+                document.body.innerHTML = listaBody.join("")
+            }
+            desenhaFooter()
+            
+            document.body.innerHTML = listaBody.join("")
+        }
+        {
+            function atualizaPontuacao(pontuacao) {
+                document.querySelector(".pontos").innerText = pontuacao
+                
+                if(pontuacao < 1){
+                    alert("Perdeu!")
+                    document.querySelectorAll(".alfabeto button").forEach(button => {
+                        button.setAttribute("disabled", true)
+                    })
+                    document.querySelectorAll(".escondida").forEach(letra => {
+                        letra.style = "color: red; font-weight: bold;"
+                        letra.classList.add("perdeu")
+                    })
+                    document.querySelector(".palavra").style = "color: red;"
+                    setTimeout(function(){
+                        alert("Recarregando para uma nova partida")
+                        document.location.reload(true);
+                    }, 5000)
+                }
+            }
+            
+            listaTem = []
+            listaLetras = []
+            listaLetras.push(document.querySelectorAll(".escondida"))
+            novaLista = []
+            
+            let pontuacaoInicial = 6
+            
+            atualizaPontuacao(pontuacaoInicial)
+            
+            document.querySelectorAll(".alfabeto button").forEach(letraAlfabeto => {
+                
+                letraAlfabeto.addEventListener("click", () => {
+                    document.querySelector(`#letra-${letraAlfabeto.value}`).setAttribute("disabled", true)
+                    document.querySelector(`#letra-${letraAlfabeto.value}`).classList.add("selecionado")
+                    
+                    listaSelecionado = []
+                    listaNaoSelecionado = []
+                    
+                    listaSelecionado = document.querySelectorAll(".selecionado")
+                    
+                    listaNaoSelecionado = document.querySelectorAll("button:not(.selecionado)")
+                    
+                    verificaLetra(palavraArraySemAcento, letraAlfabeto.value)
+                    palavraArray.forEach(p=>console.log(p))
+                    console.log(`Pressionado: ${letraAlfabeto.value}`)
+                    
+                    listaTem.forEach(letra => {
+                        document.querySelectorAll(`.letra-${letra}`).forEach(encontrada => {
+                            encontrada.classList.remove("escondida")
+                        })
+                    })
+                    novaListaSelecionado = []
+                    
+                    listaSelecionado.forEach(item => {
+                        novaListaSelecionado.push(item.value)
+                    })
+                    
+                    document.querySelector(".erros").innerText = validarDiferenca(novaListaSelecionado, novaLista).join(" - ")
+                    
+                    atualizaPontuacao(pontuacaoAtual);
+                    verificaFim();
+                })
+            })
+            
+            function verificaLetra(palavra, letra) {
+                palavra.forEach(letraPalavra => {
+                    if(letraPalavra == letra){
+                        listaTem.push(letra)
+                        novaLista = listaTem.filter(function(este, i){
+                            return listaTem.indexOf(este) === i
+                        })
+                    }
+                })
+                pontuacaoAtual = pontuacaoInicial - (listaSelecionado.length - novaLista.length)
+            }
+            function verificaFim() {
+                listaFaltantes = document.querySelectorAll(".escondida:not(.letra-)")
+                if(listaFaltantes.length == 0){
+                    document.querySelector(".palavra").style = "color: green;"
+                    setTimeout(() => {
+                        alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos: '+pontuacaoAtual)
+                        alert("Recarregando para uma nova partida")
+                        document.location.reload(true);
+                    }, 2000)
+                }
+            }
+            
+            function validarDiferenca(diferenciado, comparativo) {
+                
+                var diferenca = diferenciado.filter(function (element, index, array) {
+                    if(comparativo.indexOf(element) == -1)
+                    return element;
+                });
+                
+                return diferenca
+            }
+        }       
+        {
+            //Ctrl+Q para depurar
+            let testePalavras = []
+            
+            palavras.forEach(dica => {
+                dica.palavras.forEach(p => {
+                    testePalavras.push(p)
+                })
+            })
+            
+            var pressedCtrl = false;
+            //Quando uma tecla for liberada verifica se é o CTRL para notificar que CTRL não está pressionado
+            document.onkeyup=function(e){
+                if(e.which == 17)
+                pressedCtrl =false;
+            }
+            // Quando alguma tecla for pressionada:
+            // Primeiro if - verifica se é o CTRL e avisa que CTRL está pressionado
+            // Segundo if - verifica se a tecla é o "s" (keycode 83) para executar a ação
+            document.onkeydown=function(e){
+                if(e.which == 17)
+                pressedCtrl = true;
+                if(e.which == 81 && pressedCtrl == true) {
+                    //Aqui vai o código e chamadas de funções para o ctrl+s
+                    
+                    testar()
+                }
+            }
+            
+            function testar() {
+                alert("Versão de teste")
+                
+                window.open(document.URL)
+                
+                listaNova = []
+                
+                testePalavras.forEach(palavra => {
+                    listaNova.push(`
+                    <div style="display: flex; align-items: center; justify-content: space-between;" class="${palavra}">
+                        <p>${palavra}</p>
+                        <div>
+                            <label for="dica-${palavra}-sim">S</label>
+                            <input type="radio" id="dica-${palavra}-sim" class="sim">
+                            <label for="dica-${palavra}-nao">N</label>
+                            <input type="radio" id="dica-${palavra}-nao" class="nao">
+                        </div>
+                    </div>
+                    `)
+                })
+                
+                document.body.innerHTML = `
+                ${listaNova.join("")}
+                <h2>Sim</h2>
+                <ul class="ul-sim" style="padding: 0; list-style: none;">
+                    
+                </ul>
+                <h2>Não</h2>
+                <ul class="ul-nao" style="padding: 0; list-style: none;">
+                    
+                </ul>
+                `
+                
+                listaSim = []
+                listaNao = []
+                
+                document.querySelectorAll(".sim").forEach(item => {
+                    item.addEventListener("click", function(){
+                        console.clear()
+                        listaSim.push(this.parentElement.parentElement.classList)
+                        this.parentElement.parentElement.style = "display: none;"
+                        console.log("-- Sim --")
+                        listaSim.forEach(item => {
+                            console.log(item.value)
+                        })
+                        console.log("-- Não --")
+                        listaNao.forEach(item => {
+                            console.log(item.value)
+                        })
+                        let li = document.createElement("li");
+                        li.innerText = this.parentElement.parentElement.classList
+                        document.querySelector(".ul-sim").appendChild(li)
+                    })
+                })
+                
+                document.querySelectorAll(".nao").forEach(item => {
+                    item.addEventListener("click", function(){
+                        console.clear()
+                        listaNao.push(this.parentElement.parentElement.classList)
+                        this.parentElement.parentElement.style = "display: none;"
+                        console.log("-- Sim --")
+                        listaSim.forEach(item => {
+                            console.log(item.value)
+                        })
+                        console.log("-- Não --")
+                        listaNao.forEach(item => {
+                            console.log(item.value)
+                        })
+                        let li = document.createElement("li");
+                        li.innerText = this.parentElement.parentElement.classList
+                        document.querySelector(".ul-nao").appendChild(li)
+                    })
+                })
+            }
+        }
+    </script>
     <script src="js/depuracao.js"></script>
 </body>
 </html>

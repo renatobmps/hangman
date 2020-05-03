@@ -72,6 +72,16 @@ palavras = [
         palavra: "Felicia",
         dica: "Nome",
     },
+    /*
+    {
+        palavra: "Mônique",
+        dica: "Nome"
+    },
+    {
+        palavra: "Mônica",
+        dica: "Nome"
+    }
+    */
     
     //Animal
     {
@@ -197,6 +207,12 @@ palavras = [
         palavra: "Chinelo",
         dica: "Vestuário",
     },
+    /*
+    {
+        palavra: "Chapéu",
+        dica: "Vestuário"
+    }
+    */
     
     //Personagem de contos
     {
@@ -285,6 +301,20 @@ palavras = [
         palavra: "Sorvete",
         dica: "Alimento"
     },
+    /*
+    {
+        palavra: "Café",
+        dica: "Alimento"
+    },
+    {
+        palavra: "Feijão",
+        dica: "Alimento"
+    },
+    {
+        palavra: "Pão",
+        dica: "Alimento"
+    }
+    */
     
     //Pássaro
     {
@@ -361,6 +391,16 @@ palavras = [
         palavra: "Canadá",
         dica: "País",
     },
+    /*
+    {
+        palavra: "França",
+        dica: "País"
+    },
+    {
+        palavra: "México",
+        dica: "País"
+    }
+    */
     
     //Jogo
     {
@@ -399,6 +439,12 @@ palavras = [
         palavra: "Buraco",
         dica: "Jogo"
     },
+    /*
+    {
+        palavra: "Vôlei",
+        dica: "Jogo"
+    },
+    */
     
     //Veículo
     {
@@ -479,6 +525,12 @@ palavras = [
         palavra: "Caneta",
         dica: "Objeto"
     },
+    /*
+    {
+        palavra: "Xícara",
+        dica: "Objeto"
+    },
+    */
     
     //Parte do corpo
     {
@@ -513,19 +565,14 @@ palavras = [
         palavra: "Pulso",
         dica: "Parte do corpo"
     },
+    /*
+    {
+        palavra: "Braço",
+        dica: "Parte do corpo"
+    },
+    {
+        palavra: "Mão",
+        dica: "Parte do corpo"
+    }
+    */
 ]
-
-/*
-Xícara
-Braço
-Vôlei
-Café
-Mão
-Mônique
-Feijão
-Mônica
-França
-México
-Pão
-Chapéu
-*/

@@ -58,5 +58,7 @@ footer{
 }
 .letra::after{
     content: attr(data-content);
-    
+}
+.perdeu::after{
+    color: red;
 }
