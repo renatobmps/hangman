@@ -67,3 +67,7 @@ footer{
 .perdeu::after{
     color: red;
 }
+.letra-{
+    width: .5em;
+    border: 0;
+}

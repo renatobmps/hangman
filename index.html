@@ -1276,19 +1276,19 @@
         {
             dica: "Video-game",
             palavras: [
-            "The Last of Us",
-            "The Legend of Zelda The Ocarina of Time",
-            "World of Warcraft",
-            "Final Fantasy VII",
-            "Metal Gear Solid",
-            "Shenmue",
-            "Grand Theft Auto V",
-            "Red Dead Redemption",
-            "Halo Combat Evolved",
-            "The Elder Scrolls V Skyrim",
             "Batman Arkham City",
-            "Dark Souls",
             "BioShock",
+            "Dark Souls",
+            "Final Fantasy",
+            "Grand Theft Auto",
+            "Halo Combat Evolved",
+            "Metal Gear Solid",
+            "Red Dead Redemption",
+            "Shenmue",
+            "The Elder Scrolls V Skyrim",
+            "The Last of Us",
+            "The Legend of Zelda",
+            "World of Warcraft",
             /*
             Half-Life 2
             Super Mario 64
@@ -1357,32 +1357,30 @@
             Gears Of War
             Cadastre-se em nosso canal
             
-            Chrono Trigger
-            Age of Empires II: The Age Of Kings
-            Counter-Strike
-            System Shock 2
-            Okami
-            Dragon Age: Origins
-            Metal Gear Solid 4: Guns of the Patriots
-            Championship Manager
-            Grim Fandango
-            Super Smash Bros. Brawl
-            Heavy Rain
-            Left 4 Dead
-            Star Wars: Battlefront II
-            Max Payne
-            Vampire The Masquerade: Bloodlines
-            Duke Nukem 3D
-            The Legend of Zelda: Skyward Sword
-            S.T.A.L.K.E.R.: Shadow of Chernobyl
-            Super Metroid
-            League of Legends
-            Team Fortress 2
-            Super Mario Galaxy 2
-            Homeworld
-            Crash Bandicoot
-            Journey
+            "Chrono Trigger",
+            "Age of Empires",
+            "Counter Strike",
+            "System Shock",
+            "Okami",
+            "Dragon Age",
+            "Metal Gear Solid",
+            "Championship Manager",
+            "Grim Fandango",
+            "Super Smash Bros",
+            "Heavy Rain",
             */
+            "Crash Bandicoot",
+            "Duke Nukem",
+            "Homeworld",
+            "Journey",
+            "League of Legends",
+            "Max Payne",
+            "Star Wars Battlefront",
+            "Super Mario Galaxy",
+            "Super Metroid",
+            "Team Fortress",
+            "The Legend of Zelda",
+            "Vampire The Masquerade Bloodlines",
             ]
         }
         ]
@@ -1516,8 +1514,8 @@
                 document.querySelector(".pontos").innerText = pontuacao
                 
                 if(pontuacao < 1){
-                    localStorage.setItem("total", parseInt(localStorage.getItem("total")) - 1)
-                    alert("Perdeu!\n\n-1 ponto\n\nTotal: "+localStorage.getItem("total"))
+                    localStorage.setItem("total", parseInt(localStorage.getItem("total")) - pontuacaoInicial)
+                    alert("Perdeu! \ud83d\ude3f\n\n-"+pontuacaoInicial+" pontos\n\nTotal: "+localStorage.getItem("total"))
                     document.querySelectorAll(".alfabeto button").forEach(button => {
                         button.setAttribute("disabled", true)
                     })
@@ -1596,6 +1594,11 @@
                     setTimeout(() => {
                         localStorage.setItem("total", parseInt(localStorage.getItem("total")) + parseInt(pontuacaoAtual))
                         alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total"))
+                        if (localStorage.getItem("total") > 20) {
+                            alert("Vou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")
+                        }else{
+                            alert("Menos de 10")
+                        }
                         alert("Recarregando para uma nova partida")
                         document.location.reload(true);
                     }, 2000)
