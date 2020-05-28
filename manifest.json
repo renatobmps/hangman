@@ -1,0 +1,16 @@
+{
+    "name": "Jodo da Forca",
+    "short_name": "Forca",
+    "theme_color": "#009688",
+    "background_color": "#2196f3",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+          "src": "icon.svg",
+          "sizes": "72x72",
+          "type": "image/png"
+        }
+      ]
+}
