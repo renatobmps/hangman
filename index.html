@@ -10,7 +10,18 @@
     <!--PWA-->
     <link rel="manifest" href="/manifest.json">
 </head>
-<body>    
+<body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+            .then(function () {
+                console.log('service worker registered');
+            })
+            .catch(function () {
+                console.warn('service worker failed');
+            });
+        }
+    </script>
     <script>
         palavras = [
         {
@@ -529,6 +540,7 @@
         {
             dica: "Objeto \ud83d\udecb\ufe0f",
             palavras: [
+            "abajur",
             "Cama",
             "Estojo",
             "Faca",
@@ -541,7 +553,6 @@
             "Xícara",
             /*
             
-            abajur
             abre-latas
             açucareiro
             agulha
