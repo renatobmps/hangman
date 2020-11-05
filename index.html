@@ -9,6 +9,9 @@
     <link rel="shotcut icon" href="icon.svg">
     <!--PWA-->
     <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#009688">
+    <meta name="description" content="A game of Hangman make white valilla JS">
+    <link rel="apple-touch-icon" href="icon.svg">
 </head>
 <body>
     <div
@@ -17,6 +20,7 @@
         data-width="450"
         data-show-faces="true">
     </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js')
