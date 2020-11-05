@@ -1,15 +1,25 @@
 {
-    "name": "Jodo da Forca",
-    "short_name": "Forca",
-    "theme_color": "#009688",
-    "background_color": "#2196f3",
-    "display": "fullscreen",
-    "start_url": "/",
-    "icons": [
-        {
-          "src": "icon.svg",
-          "sizes": "72x72",
-          "type": "image/svg"
-        }
-      ]
+  "short_name": "Forca",
+  "name": "Jogo da Forca",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icon.svg",
+      "type": "image/png",
+      "sizes": "77x77"
+    },
+    {
+      "src": "icon.svg",
+      "type": "image/png",
+      "sizes": "500x500"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#009688"
 }
