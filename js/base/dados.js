@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forca</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="icon.svg">
-    <link rel="shotcut icon" href="icon.svg">
-    <!--PWA-->
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-            .then(function () {
-                console.log('service worker registered');
-            })
-            .catch(function () {
-                console.warn('service worker failed');
-            });
-        }
-    </script>
-    <script>
-        palavras = [
-        {
-            dica: "Nome \ud83d\udc64",
-            palavras: [
+palavras = [
+    {
+        dica: "Nome \ud83d\udc64",
+        palavras: [
             "Alexandre",
             "Ana Júlia",
             "Danilo",
@@ -48,11 +23,11 @@
             "Rodolfo",
             "Rodrigo",
             "Walquiria",
-            ]
-        },
-        {
-            dica: "Animal \ud83d\udc3e",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Animal \ud83d\udc3e",
+        palavras: [
             "Antílope",
             "Babuíno",
             "Boi",
@@ -93,11 +68,11 @@
             "Zebra",
             "Zebu",
             "Zangão"
-            ]
-        },
-        {
-            dica: "Cor \ud83d\udd8c\ufe0f",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Cor \ud83d\udd8c\ufe0f",
+        palavras: [
             "Amarelo",
             "Âmbar",
             "Anil",
@@ -127,11 +102,11 @@
             "Vermelho",
             "Vinho",
             "Violeta",
-            ]
-        },
-        {
-            dica: "Vestuário \ud83d\udc55",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Vestuário \ud83d\udc55",
+        palavras: [
             "Bermuda",
             "Blusa",
             "Boné",
@@ -149,11 +124,11 @@
             "Sapato",
             "Tênis",
             "Vestido",
-            ]
-        },
-        {
-            dica: "Personagem dos contos de fadas \ud83d\udc78",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Personagem dos contos de fadas \ud83d\udc78",
+        palavras: [
             "Bruxa",
             "Boneca",
             "Boneco",
@@ -161,16 +136,17 @@
             "Fada",
             "Feiticeira",
             "Lobo",
+            "Madrasta",
             "Porquinho",
             "Príncipe",
             "Princesa",
             "Rainha",
             "Rei",
-            ]
-        },
-        {
-            dica: "Alimento \ud83c\udf72",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Alimento \ud83c\udf72",
+        palavras: [
             "Açucar",
             "Amendoim",
             "Arroz",
@@ -212,11 +188,11 @@
             "Torta",
             "Uva",
             "Yakisoba",
-            ]
-        },
-        {
-            dica: "Pássaro \ud83d\udc26",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Pássaro \ud83d\udc26",
+        palavras: [
             "Águia",
             "Andorinha",
             "Arara",
@@ -232,11 +208,11 @@
             "Pombo",
             "Sabiá",
             "Urubu",
-            ]
-        },
-        {
-            dica: "País \ud83d\uddfa\ufe0f",
-            palavras: [
+        ]
+    },
+    {
+        dica: "País \ud83d\uddfa\ufe0f",
+        palavras: [
             "Afeganistão",
             "África do Sul",
             "Akrotiri",
@@ -496,11 +472,11 @@
             "West Bank",
             "Zâmbia",
             "Zimbabué",
-            ]
-        },
-        {
-            dica: "Jogo \ud83c\udfb2",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Jogo \ud83c\udfb2",
+        palavras: [
             "Amarelinha",
             "Basquete",
             "Blackjack",
@@ -516,11 +492,11 @@
             "Truco",
             "Vôlei",
             "Xadrez",
-            ]
-        },
-        {
-            dica: "Veículo \ud83d\ude97",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Veículo \ud83d\ude97",
+        palavras: [
             "Avião",
             "Barco",
             "Bicicleta",
@@ -535,11 +511,11 @@
             "Trator",
             "Trem",
             "Van",
-            ]
-        },
-        {
-            dica: "Objeto \ud83d\udecb\ufe0f",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Objeto \ud83d\udecb\ufe0f",
+        palavras: [
             "abajur",
             "abre latas",
             "Cama",
@@ -605,8 +581,7 @@
             capa
             capacete
             castiçal
-            cata
-            vento
+            cata-vento
             celular
             chicote
             chinelo
@@ -961,11 +936,11 @@
             zinco
             zíper
             */
-            ]
-        },
-        {
-            dica: "Parte do corpo \ud83d\udcaa",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Parte do corpo \ud83d\udcaa",
+        palavras: [
             "Umbigo",
             "Perna",
             "Torax",
@@ -976,45 +951,53 @@
             "Pulso",
             "Braço",
             "Mão",
-                "Cabeça",
-                "Testa",
-                "Olho",
-                "Orelha",
             /*
-             — —  — — Nariz — Boca — Língua — Dente — Mandíbula — Face —Bochecha — Queixo
+            Cabeça —Testa — Olho —Orelha — Nariz — Boca — Língua — Dente — Mandíbula — Face —Bochecha — Queixo
             Pescoço — Garganta — Pomo de adão — Ombros
             Braço — Cotovelo — Pulso  — Mão — Dedos da mão — Polegar
             Coluna — Peito — Mama — Costela
             Abdómen — Umbigo — Órgão sexual (Pênis/Escroto ou Clitóris/Vagina) — Reto — Ânus
             Quadril — Nádegas —Coxa  — Joelho — Perna  —Panturrilha  — Calcanhar — Tornozelo — Pé — Dedos do pé
             */
-            ]
-        },
-        {
-            dica: "Filme \ud83c\udfac",
-            palavras: [
-                "A Bela e a Fera",
-                "A Origem",
-                "Amnésia",
-                "Apertem os Cintos O Piloto Sumiu",
-                "Bonnie e Clyde Uma Rajada de Balas",
-                "Cães de Aluguel",
-                "Contatos Imediatos de Terceiro Grau",
-                "Coração Valente",
-                "Doutor Jivago",
-                "Duro de Matar",
-                "O Franco Atirador",
-                "O Labirinto do Fauno",
-                "Os Sete Samurais",
-                "Quem Quer Ser um Milionário",
-                "Rocky um Lutador",
-                "Senhor dos Anéis",
-                "Seven Os Sete Crimes Capitais",
-                "Up Altas Aventuras",
-            
-            
-            
+        ]
+    },
+    {
+        dica: "Filme \ud83c\udfac",
+        palavras: [
+            "Os Sete Samurais",
+            "Bonnie e Clyde Uma Rajada de Balas",
+            "Cães de Aluguel",
             /*
+            
+            97. Apertem os Cintos… O Piloto Sumiu (1980)
+            
+            96. O Labirinto do Fauno (2006)
+            
+            95. Doutor Jivago (1965)
+            
+            94. O Franco-Atirador (1978)
+            
+            93. Contatos Imediatos de Terceiro Grau (1977)
+            
+            92. Up – Altas Aventuras (2009)
+            
+            91. Rocky, um Lutador (1976)
+            
+            90. Amnésia (2000)
+            
+            89. Coração Valente (1995)
+            
+            88. Quem Quer Ser um Milionário? (2008)
+            
+            87. Senhor dos Anéis: O Retorno do Rei (2003)
+            
+            86. A Bela e a Fera (1991)
+            
+            85. Seven – Os Sete Crimes Capitais (1995)
+            
+            84. A Origem (2010)
+            
+            83. Duro de Matar (1988)
             
             82. Senhor dos Anéis: A Sociedade do Anel (2001)
             
@@ -1180,11 +1163,11 @@
             
             1. O Poderoso Chefão (1972)
             */
-            ]
-        },
-        {
-            dica: "Conto infantil \ud83d\udcd6",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Conto infantil \ud83d\udcd6",
+        palavras: [
             "A Batalha na Neve",
             "A Bela Adormecida",
             "A Bela e a Fera",
@@ -1230,11 +1213,11 @@
             Um Visitante Diferente
             Zinho, O Detetive
             */
-            ]
-        },
-        {
-            dica: "Personagem \ud83d\udc38",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Personagem \ud83d\udc38",
+        palavras: [
             "Aladdin",
             "Boomberman",
             "Chaves",
@@ -1250,11 +1233,11 @@
             "Ralph",
             "Sonic The Hedgehog",
             "Tails",
-            ]
-        },
-        {
-            dica: "Animação \ud83d\udcfa",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Animação \ud83d\udcfa",
+        palavras: [
             "A Viagem de Chihiro",
             "Alice No País Das Maravilhas",
             "Branca de Neve e Os Sete Anões",
@@ -1277,11 +1260,11 @@
             "Up Altas Aventuras",
             "Wall E",
             "Yu Yu Hakusho"
-            ]
-        },
-        {
-            dica: "Aplicativo \ud83d\udcf1",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Aplicativo \ud83d\udcf1",
+        palavras: [
             "Facebook",
             "Facebook Messenger",
             "WhatsApp",
@@ -1302,11 +1285,11 @@
             "YouTube",
             "HBO Now",
             "Kwai",
-            ]
-        },
-        {
-            dica: "Video-game \ud83c\udfae",
-            palavras: [
+        ]
+    },
+    {
+        dica: "Video-game \ud83c\udfae",
+        palavras: [
             "Age of Empires",
             "Assassins Creed",
             "Baldurs Gate",
@@ -1376,366 +1359,6 @@
             "Vampire The Masquerade Bloodlines",
             "Warcraft",
             "World of Warcraft",
-            ]
-        }
         ]
-        {
-            if (palavras.length == 0) {
-                alert("Nenhuma palavra foi cadastrada ainda! :(")
-            }else{
-                
-                function sorteio(array) {
-                    return array[Math.floor(Math.random() * ((array.length - 1) - 0 + 1))]
-                }
-                
-                function removeAcento (text){
-                    text = text.toLowerCase();
-                    text = text.split(" ").join("")
-                    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
-                    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
-                    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
-                    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
-                    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
-                    text = text.replace(new RegExp('[Ç]','gi'), 'c');
-                    return text;                 
-                }
-            }
-            
-            let sorteada = sorteio(palavras)
-            
-            dica = sorteada.dica
-            palavra = sorteio(sorteada.palavras)
-            palavraArray = palavra.toLowerCase().split("")
-            palavraSemAcento = removeAcento(palavra)
-            palavraArraySemAcento = removeAcento(palavra).split("")
-        }
-        {
-            listaBody = []
-            
-            //Seção placar
-            function desenhaPlacar() {
-                
-                listaBody.push(`
-                <h1>Jogo da Forca</h1>
-                <section class="secao-pontos">
-                    <p>Pontos: <span class="pontos">0</span></p>
-                </section>
-                `)
-                
-                document.body.innerHTML = listaBody.join("")
-            }
-            desenhaPlacar()
-            
-            //Seção palavra
-            function desenhaJogo() {
-                
-                listaLetrasHtml = []
-                
-                palavraArray.forEach(letra => {
-                    listaLetrasHtml.push(`<p class="letra letra-${removeAcento(letra)} escondida" data-content="${letra}"></p>`)
-                });
-                
-                let objetoPalavra = {
-                    dica: dica,
-                    html: listaLetrasHtml.join(""),
-                }
-                
-                listaBody.push(`
-                <section class="secao-palavra">
-                    <div class="palavra">
-                        ${objetoPalavra.html}
-                    </div>
-                    <p>Dica: ${objetoPalavra.dica}</p>
-                </section>
-                `)
-                
-                document.body.innerHTML = listaBody.join("")
-            }
-            desenhaJogo()
-            
-            //Seção teclado
-            function desenhaTeclado() {
-                let testePalavras = []
-                
-                palavras.forEach(dica => {
-                    dica.palavras.forEach(p => {
-                        testePalavras.push(p)
-                    })
-                })
-                
-                semEspaco = `${removeAcento(testePalavras.join(""))}`
-                tecladoArray = semEspaco.split("")
-                teclado = tecladoArray.sort().filter((este, i) => tecladoArray.indexOf(este) === i)
-                listaTeclado = []
-                
-                teclado.forEach(letra => {
-                    listaTeclado.push(`
-                    <button id="letra-${letra}" value="${letra}">${letra}</button>
-                    `)
-                })
-                
-                listaBody.push(`
-                <section class="secao-alfabeto">
-                    <div class="alfabeto">
-                        ${listaTeclado.join("")}
-                    </div>
-                    <p class="erros"></p>
-                </section>
-                `)
-                
-                document.body.innerHTML = listaBody.join("")
-            }
-            desenhaTeclado()
-            
-            //Seção footer
-            function desenhaFooter() {
-                listaBody.push(`
-                <footer>
-                    <p>Sugestões ou problemas:</p>
-                    <nav>
-                        <a href="https://github.com/renatobmps/forca/" target="_blank" rel="noopener noreferrer">Github</a>
-                        <a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    </nav>
-                </footer>
-                `)
-                document.body.innerHTML = listaBody.join("")
-            }
-            desenhaFooter()
-            
-            document.body.innerHTML = listaBody.join("")
-        }
-        {
-            function atualizaPontuacao(pontuacao) {
-                document.querySelector(".pontos").innerText = pontuacao
-                
-                if(pontuacao < 1){
-                    localStorage.setItem("total", parseInt(localStorage.getItem("total")) - pontuacaoInicial)
-                    alert("Perdeu! \ud83d\ude3f\n\n-"+pontuacaoInicial+" pontos\n\nTotal: "+localStorage.getItem("total"))
-                    if (localStorage.getItem("total") < 0) {
-                        localStorage.setItem("total", 0)
-                        alert("Placar zerado! \ud83d\ude44\n\nBoa sorte na próxima! \ud83c\udf40")
-                    }
-                    document.querySelectorAll(".alfabeto button").forEach(button => {
-                        button.setAttribute("disabled", true)
-                    })
-                    document.querySelectorAll(".escondida").forEach(letra => {
-                        letra.style = "color: red; font-weight: bold;"
-                        letra.classList.add("perdeu")
-                    })
-                    document.querySelector(".palavra").style = "color: red;"
-                    setTimeout(function(){
-                        alert("Recarregando para uma nova partida")
-                        document.location.reload(true);
-                    }, 5000)
-                }
-            }
-            
-            listaTem = []
-            listaLetras = []
-            listaLetras.push(document.querySelectorAll(".escondida"))
-            novaLista = []
-            
-            let pontuacaoInicial = 6
-            if(!localStorage.getItem('total')){
-                localStorage.setItem('total', 0);
-            }
-            
-            atualizaPontuacao(pontuacaoInicial)
-            
-            document.querySelectorAll(".alfabeto button").forEach(letraAlfabeto => {
-                
-                letraAlfabeto.addEventListener("click", () => {
-                    document.querySelector(`#letra-${letraAlfabeto.value}`).setAttribute("disabled", true)
-                    document.querySelector(`#letra-${letraAlfabeto.value}`).classList.add("selecionado")
-                    
-                    listaSelecionado = []
-                    listaNaoSelecionado = []
-                    
-                    listaSelecionado = document.querySelectorAll(".selecionado")
-                    
-                    listaNaoSelecionado = document.querySelectorAll("button:not(.selecionado)")
-                    
-                    verificaLetra(palavraArraySemAcento, letraAlfabeto.value)
-                    
-                    listaTem.forEach(letra => {
-                        document.querySelectorAll(`.letra-${letra}`).forEach(encontrada => {
-                            encontrada.classList.remove("escondida")
-                        })
-                    })
-                    novaListaSelecionado = []
-                    
-                    listaSelecionado.forEach(item => {
-                        novaListaSelecionado.push(item.value)
-                    })
-                    
-                    document.querySelector(".erros").innerText = validarDiferenca(novaListaSelecionado, novaLista).join(" - ")
-                    
-                    atualizaPontuacao(pontuacaoAtual);
-                    verificaFim();
-                })
-            })
-            
-            function verificaLetra(palavra, letra) {
-                palavra.forEach(letraPalavra => {
-                    if(letraPalavra == letra){
-                        listaTem.push(letra)
-                        novaLista = listaTem.filter(function(este, i){
-                            return listaTem.indexOf(este) === i
-                        })
-                    }
-                })
-                pontuacaoAtual = pontuacaoInicial - (listaSelecionado.length - novaLista.length)
-            }
-            function verificaFim() {
-                listaFaltantes = document.querySelectorAll(".escondida:not(.letra-)")
-                if(listaFaltantes.length == 0){
-                    document.querySelector(".palavra").style = "color: green;"
-                    setTimeout(() => {
-                        localStorage.setItem("total", parseInt(localStorage.getItem("total")) + parseInt(pontuacaoAtual))
-                        if (localStorage.getItem("total") > 100) {
-                            alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total")+"\n\nVou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")
-                        }else{
-                            alert('Parabéns!!\nEncontrado: '+palavra+'\nPontos da partida: '+pontuacaoAtual+'\n\nTotal: '+localStorage.getItem("total"))
-                        }
-                        alert("Recarregando para uma nova partida")
-                        document.location.reload(true);
-                    }, 2000)
-                }
-            }
-            
-            function validarDiferenca(diferenciado, comparativo) {
-                
-                var diferenca = diferenciado.filter(function (element, index, array) {
-                    if(comparativo.indexOf(element) == -1)
-                    return element;
-                });
-                
-                return diferenca
-            }
-        }       
-        {
-            //Ctrl+Q para depurar
-            let testePalavras = []
-            
-            palavras.forEach(dica => {
-                dica.palavras.forEach(p => {
-                    testePalavras.push(p)
-                })
-            })
-            
-            var pressedCtrl = false;
-            //Quando uma tecla for liberada verifica se é o CTRL para notificar que CTRL não está pressionado
-            document.onkeyup=function(e){
-                if(e.which == 17)
-                pressedCtrl =false;
-            }
-            // Quando alguma tecla for pressionada:
-            // Primeiro if - verifica se é o CTRL e avisa que CTRL está pressionado
-            // Segundo if - verifica se a tecla é o "s" (keycode 83) para executar a ação
-            document.onkeydown=function(e){
-                if(e.which == 17)
-                pressedCtrl = true;
-                if(e.which == 81 && pressedCtrl == true) {
-                    //Aqui vai o código e chamadas de funções para o ctrl+s
-                    
-                    testar()
-                }
-            }
-            
-            function testar() {
-                alert("Versão de teste")
-                
-                window.open(document.URL)
-                
-                listaNova = []
-                
-                testePalavras.forEach(palavra => {
-                    listaNova.push(`
-                    <div style="display: flex; align-items: center; justify-content: space-between;" class="${palavra}">
-                        <p>${palavra}</p>
-                        <div>
-                            <label for="dica-${palavra}-sim">S</label>
-                            <input type="radio" id="dica-${palavra}-sim" class="sim">
-                            <label for="dica-${palavra}-nao">N</label>
-                            <input type="radio" id="dica-${palavra}-nao" class="nao">
-                        </div>
-                    </div>
-                    `)
-                })
-                
-                document.body.innerHTML = `
-                ${listaNova.join("")}
-                <h2>Sim</h2>
-                <ul class="ul-sim" style="padding: 0; list-style: none;">
-                    
-                </ul>
-                <h2>Não</h2>
-                <ul class="ul-nao" style="padding: 0; list-style: none;">
-                    
-                </ul>
-                `
-                
-                listaSim = []
-                listaNao = []
-                
-                document.querySelectorAll(".sim").forEach(item => {
-                    item.addEventListener("click", function(){
-                        console.clear()
-                        listaSim.push(this.parentElement.parentElement.classList)
-                        this.parentElement.parentElement.style = "display: none;"
-                        console.log("-- Sim --")
-                        listaSim.forEach(item => {
-                            console.log(item.value)
-                        })
-                        console.log("-- Não --")
-                        listaNao.forEach(item => {
-                            console.log(item.value)
-                        })
-                        let li = document.createElement("li");
-                        li.innerText = this.parentElement.parentElement.classList
-                        document.querySelector(".ul-sim").appendChild(li)
-                    })
-                })
-                
-                document.querySelectorAll(".nao").forEach(item => {
-                    item.addEventListener("click", function(){
-                        console.clear()
-                        listaNao.push(this.parentElement.parentElement.classList)
-                        this.parentElement.parentElement.style = "display: none;"
-                        console.log("-- Sim --")
-                        listaSim.forEach(item => {
-                            console.log(item.value)
-                        })
-                        console.log("-- Não --")
-                        listaNao.forEach(item => {
-                            console.log(item.value)
-                        })
-                        let li = document.createElement("li");
-                        li.innerText = this.parentElement.parentElement.classList
-                        document.querySelector(".ul-nao").appendChild(li)
-                    })
-                })
-            }
-        }
-    </script>
-    <script src="js/depuracao.js"></script>
-    <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '1112275809147363',
-            xfbml      : true,
-            version    : 'v8.0'
-          });
-          FB.AppEvents.logPageView();
-        };
-      
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "https://connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
-</body>
-</html>
+    }
+]
