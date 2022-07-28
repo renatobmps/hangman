@@ -1,3 +1,6 @@
+const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
+// const apiUrl = 'http://localhost:3000/'
+
 function postLogin(event) {
   event.preventDefault();
 
@@ -16,7 +19,7 @@ function postLogin(event) {
     return document.getElementById('password').focus();
   }
 
-  fetch('http://localhost:3000/login', {
+  fetch(apiUrl + 'login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
