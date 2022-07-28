@@ -36,7 +36,7 @@ function postSign(event) {
 
     if (body.error) throw new Error(body.error);
 
-    fetch('http://localhost:3000/login/', {
+    fetch(apiUrl + 'login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
