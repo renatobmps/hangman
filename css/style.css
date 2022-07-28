@@ -1,51 +1,62 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap');
 
-*{
+* {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-body{
+body {
     text-align: center;
     font-family: 'Ubuntu Mono', monospace;
     font-size: 18px;
     background: #009688;
 }
 
-.palavra{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.palavra p{
+.palavra {
     text-transform: uppercase;
     font-size: 2em;
     margin: .1em;
+    letter-spacing: .3rem;
 }
 
-.escondida{
+.escondida {
     border-bottom: 1px solid black;
 }
-.escondida::after{
+
+.escondida::after {
     color: transparent;
 }
-.alfabeto button{
+
+.alfabeto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 2.3rem);
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.alfabeto>button {
+    height: 3rem;
     text-transform: uppercase;
-    padding: 1em;
-    margin: .5em;
     background: lightgray;
     border: 0;
     border-radius: 5px;
+    cursor: pointer;
 }
-.selecionado{
+
+.alfabeto>button[disabled] {
+    cursor: not-allowed;
+}
+
+.selecionado {
     background: gray !important;
     color: white;
 }
-.pontos{
+
+.pontos {
     color: red;
 }
-.erros{
+
+.erros {
     color: red;
     font-weight: bold;
     text-transform: uppercase;
@@ -55,21 +66,59 @@ body{
     padding: 0 1em;
     border-radius: 5px;
 }
-footer{
+
+footer {
     left: 0;
     right: 0;
     bottom: 0;
 }
-.letra::after{
+
+.letra::after {
     content: attr(data-content);
 }
-.perdeu::after{
+
+.perdeu::after {
     color: red;
 }
-.letra-{
+
+.letra- {
     width: .5em;
     border: 0;
 }
-.secao-alfabeto{
+
+.secao-alfabeto {
     margin-bottom: 3em;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+header .player_information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+header .player_information p {
+    margin: 0;
+}
+
+header .btn_logout {
+    background: transparent;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s color;
+}
+
+header .btn_logout:hover {
+    color: blue;
+    transition: .3s color;
 }

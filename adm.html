@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form onsubmit="newWord(event)">
+    <label for="word">Word</label>
+    <input type="text" id="word">
+    <label for="hint">Hint</label>
+    <input type="text" id="hint">
+    <button type="submit">Save</button>
+    <button type="reset">Clear</button>
+  </form>
+
+  <script>
+    function newWord(event) {
+      event.preventDefault();
+      var word = document.getElementById('word').value;
+      var hint = document.getElementById('hint').value;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:3000/words/', true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', localStorage.getItem('token'));
+      xhr.send('word=' + word + '&hint=' + hint);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 201) {
+          alert('Word saved!');
+        } else {
+          alert('Error!');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
