@@ -42,7 +42,7 @@
           },
           body: JSON.stringify({
             word: word.toLowerCase(),
-            hint: word.toLowerCase(),
+            hint: hint.toLowerCase(),
           }),
         }).then(async data => {
           const body = await data.json();
