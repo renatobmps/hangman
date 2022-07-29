@@ -63,6 +63,17 @@
                     console.error(err);
                     alert(err || 'Erro ao iniciar partida');
                     if (err != 'Error: There is no more words!') logout();
+
+                    render({
+                        lives: 30,
+                        word: 'Voltar mais tarde',
+                        hint: 'O que devo fazer?',
+                        triedLetters: [],
+                        state: 'Playing',
+                        user: 'best_of_the_bests!',
+                        points: 0,
+                    })
+
                     reject();
                 });
             })
