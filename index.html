@@ -56,13 +56,13 @@
                         authorization: localStorage.getItem('token')
                     }
                 }).then(async response => {
-                    if (response.status !== 200) throw new Error(response.statusText);
                     const body = await response.json();
+                    if (response.status !== 200) throw new Error(body.error || response.statusText);
                     resolve(render(body));
                 }).catch(err => {
                     console.error(err);
                     alert(err || 'Erro ao iniciar partida');
-                    //logout();
+                    if (err != 'Error: There is no more words!') logout();
                     reject();
                 });
             })
