@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header></header>
+    <header><!-- header --></header>
     <main>
         <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -34,8 +34,8 @@
         }
     </script>
     <script>
-const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
-// const apiUrl = 'http://localhost:3000/'
+        const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
+        // const apiUrl = 'http://localhost:3000/'
         (async () => {
             const token = localStorage.getItem('token');
             if (!token) window.location.href = 'login.html';
@@ -62,7 +62,7 @@ const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
                 }).catch(err => {
                     console.error(err);
                     alert(err || 'Erro ao iniciar partida');
-                    logout();
+                    //logout();
                     reject();
                 });
             })
