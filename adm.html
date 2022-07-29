@@ -30,31 +30,34 @@
     // const apiUrl = 'http://localhost:3000/'
     function newWord(event) {
       event.preventDefault();
-      const word = document.getElementById('word').value;
+      const wordBatch = document.getElementById('word').value;
       const hint = document.getElementById('hint').value;
 
-      try {
-        fetch(apiUrl + 'words', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            authorization: localStorage.getItem('token'),
-          },
-          body: JSON.stringify({
-            word: word.toLowerCase(),
-            hint: hint.toLowerCase(),
-          }),
-        }).then(async data => {
-          const body = await data.json();
-          if (data.status !== 201) throw new Error(body.error || data.statusText);
-          return body;
-        }).catch(err => {
-          throw new Error(err);
-        })
-      } catch (error) {
-        console.error(err);
-        return alert(err || 'Error!');
-      }
+      wordBatch.split('#').forEach(word => {
+        try {
+          fetch(apiUrl + 'words', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: localStorage.getItem('token'),
+            },
+            body: JSON.stringify({
+              word: word.toLowerCase(),
+              hint: hint.toLowerCase(),
+            }),
+          }).then(async data => {
+            const body = await data.json();
+            if (data.status !== 201) throw new Error(body.error || data.statusText);
+            document.getElementById('word').value = '';
+            return body;
+          }).catch(err => {
+            throw new Error(err);
+          })
+        } catch (error) {
+          console.error(err);
+          return alert(err || 'Error!');
+        }
+      });
     }
   </script>
 </body>
