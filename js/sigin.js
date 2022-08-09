@@ -1,5 +1,6 @@
 // const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
-const apiUrl = 'http://localhost:3000/';
+// const apiUrl = 'http://localhost:3000/';
+const apiUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/' : 'https://hangman-renatobmps.herokuapp.com/';
 
 function postSign(event) {
   event.preventDefault();

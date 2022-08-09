@@ -194,7 +194,8 @@
 
   <script>
     // const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
-    const apiUrl = 'http://localhost:3000/';
+    // const apiUrl = 'http://localhost:3000/';
+    const apiUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/' : 'https://hangman-renatobmps.herokuapp.com/';
     function newWord(event) {
       event.preventDefault();
       const wordBatch = document.getElementById('word').value;
