@@ -16,7 +16,9 @@
 </head>
 
 <body>
-    <header><!-- header --></header>
+    <header>
+        <!-- header -->
+    </header>
     <main>
         <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -34,8 +36,8 @@
         }
     </script>
     <script>
-        const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
-        // const apiUrl = 'http://localhost:3000/'
+        // const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
+        const apiUrl = 'http://localhost:3000/';
         (async () => {
             const token = localStorage.getItem('token');
             if (!token) window.location.href = 'login.html';
@@ -68,7 +70,7 @@
                         lives: 1000,
                         word: 'Voltar mais tarde',
                         hint: 'O que devo fazer?',
-                        triedLetters: 'Voltar mais tarde'.split(''),
+                        triedLetters: 'qwertyuiopasdfghjklzxcvbnm'.split(''),
                         state: 'Playing',
                         user: 'best_of_the_bests!',
                         points: 'TODOS',
@@ -80,7 +82,8 @@
         }
 
         function render(data) {
-            const { lives, word, hint, triedLetters, state, user, points } = data;
+            console.log(data);
+            const { lives, word, hint, triedLetters, state, user, points, description } = data;
 
             const headerDom = document.querySelector('header');
             let headerHtml = '';
@@ -88,15 +91,21 @@
 
             const mainDom = document.querySelector('main');
             let mainHtml = '';
+            mainHtml += '<div class="game">';
             mainHtml += desenhaPlacar(lives);
             mainHtml += desenhaJogo(word, hint);
+            mainHtml += '</div>';
+            mainHtml += '<div class="keyboard">';
             mainHtml += desenhaTeclado(triedLetters, word);
+            mainHtml += '</div>';
             mainHtml += desenhaFooter();
 
             headerDom.innerHTML = headerHtml;
             mainDom.innerHTML = mainHtml;
 
-            checkEndGame(state, word);
+            setTimeout(() => {
+                checkEndGame(state, word, description);
+            }, 800);
         }
         {
             function desenhaHeader(playerName = '', playerPoints = 0) {
@@ -133,7 +142,7 @@
                     const isTried = triedLetters.includes(letra);
 
                     if (!isTried) return `<button id="letra-${letra}" value="${letra}" onclick="tryLetter('${letra}')">${letra}</button>`;
-                    
+
                     return `
                     <button id="letra-${letra}" value="${letra}" onclick="tryLetter('${letra}')" disabled class="selecionado">${letra}</button>
                     `
@@ -190,14 +199,15 @@
                 })
             };
 
-            function checkEndGame(state = '', word = '') {
+            function checkEndGame(state = '', word = '', description = null) {
                 const possibilities = {
                     playing: () => {
                         // nada
                     },
                     won: async () => {
-                        // alert('Parabéns!!\nEncontrado: ' + palavra + '\nPontos da partida: ' + pontuacaoAtual + '\n\nTotal: ' + localStorage.getItem("total") + "\n\nVou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")
-                        alert(`Parabéns!!\nEncontrado: ${word}`);
+                        // alert('Parabéns!!\nEncontrado: ' + palavra + '\nPontos da partida: ' + pontuacaoAtual + '\n\nTotal: ' + localStorage.getItem("total") + "\n\nVou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")                        
+                        const descriptionText = !!description && description != '' ? `\nDescrição: ${description}` : '';
+                        alert(`Parabéns!!\nEncontrado: ${word}${descriptionText}`);
                         alert('Iniciando nova partida...');
                         await init();
                     },
@@ -219,7 +229,7 @@
             }
         }
     </script>
-    
+
     <script>
         window.fbAsyncInit = function () {
             FB.init({

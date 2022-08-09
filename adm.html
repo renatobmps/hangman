@@ -1,33 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-size: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        flex-direction: row;
+      }
+    }
+
     form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
+
+    input {
+      padding: .5rem 1rem;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: .5rem 1rem;
+      border-radius: 8px;
+      background-color: #009688;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    main {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      flex: 1;
+      overflow: hidden;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .loading {
+      background: #00000028;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading::before {
+      content: '';
+      border: 1px solid red;
+      border-left-color: pink;
+      border-radius: 50%;
+      height: 3rem;
+      width: 3rem;
+      animation: spin 1s linear infinite;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #00000028;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #009688;
+    }
+
+    .card ul {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .card li {
+      list-style: none;
+      display: flex;
+      padding: .5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      gap: 1rem;
+    }
+
+    .card .card-options {
+      width: 0rem;
+      transition: .3s ease-in-out;
+      display: flex;
+      overflow: hidden;
+      border-radius: 10px;
+      opacity: 0;
+    }
+
+    .card .card-options button {
+      width: 50%;
+      border-radius: 0px;
+    }
+
+    .card .card-options button:hover {
+      background-color: #008577;
+      color: #fff;
+    }
+
+    .card li:hover {
+      background-color: #0000001f;
+    }
+
+    .card li:hover * {
+      color: #fff;
+    }
+
+    .card li:hover .card-options {
+      width: 8rem;
+      transition: .3s ease-in-out;
+      opacity: 1;
+    }
+
+    .card .card-info {
+      flex: 1;
+    }
+
+    .card .card-timestamp {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: .5rem;
+    }
+
+    .card .card-timestamp * {
+      color: gray;
+      font-size: .7rem;
+    }
   </style>
 </head>
+
 <body>
   <form onsubmit="newWord(event)">
     <label for="hint">Hint</label>
-    <input type="text" id="hint">
+    <input type="text" id="hint" list="hints">
+    <datalist id="hints">
+      <option>Carregando...</option>
+    </datalist>
     <label for="word">Word</label>
     <input type="text" id="word">
     <div style="display: flex; gap: 1rem;">
       <button type="submit">Save</button>
       <button type="reset">Clear</button>
     </div>
+    <a href="/">Home</a>
   </form>
 
+  <main>
+    <div class="loading"></div>
+  </main>
+
   <script>
-    const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
-    // const apiUrl = 'http://localhost:3000/'
+    // const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
+    const apiUrl = 'http://localhost:3000/';
     function newWord(event) {
       event.preventDefault();
       const wordBatch = document.getElementById('word').value;
@@ -58,7 +225,153 @@
           return alert(err || 'Error!');
         }
       });
+
+      return window.location.reload();
     }
+
+    async function getWords() {
+      return new Promise((resolve, reject) => {
+        try {
+          fetch(apiUrl + 'words', {
+            headers: {
+              authorization: localStorage.getItem('token'),
+            },
+          }).then(async response => {
+            if (response.status === 401) window.location.href = '/';
+            if (response.status !== 200) throw new Error(response.statusText);
+
+            const body = await response.json();
+
+            if (body.error) throw new Error(body.error);
+
+            resolve(body);
+          })
+        } catch (error) {
+          reject(error);
+        }
+      })
+    }
+
+    function formatDateSp(date) {
+      const jsDate = new Date(date);
+      const spDate = jsDate.toLocaleDateString('sp-BR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      });
+
+      return spDate;
+    }
+
+    function openEdit(id, data = {}) {
+      const { hint, word, description } = data;
+      const newHint = prompt('Hint', hint || '');
+      const newWordText = prompt('Word', word || '');
+      const newDescription = prompt('Description', description || '');
+      const isConfirmed = confirm(`Hint: ${newHint}\nWord: ${newWordText}\nDescription: ${newDescription}\n\nAre you sure?`);
+
+      if (isConfirmed) {
+        try {
+          fetch(apiUrl + 'words/' + id, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: localStorage.getItem('token'),
+            },
+            body: JSON.stringify({
+              hint: newHint,
+              word: newWordText,
+              description: newDescription,
+            }),
+          }).then(response => {
+            if (response.status !== 200) throw new Error(response.statusText);
+
+            return window.location.reload();
+          }).catch(error => {
+            throw new Error(error.message || error || 'Error while updating word');
+          })
+        } catch (error) {
+          console.error(error);
+          return alert(error || 'Error!');
+        }
+      }
+    }
+
+    function openDelete(id, word = null) {
+      const isConfirmed = confirm(`Deleting ${word || 'word ' + id || 'a word'}\n\nAre you sure?`);
+
+      if (isConfirmed) {
+        try {
+          fetch(apiUrl + 'words/' + id, {
+            method: 'DELETE',
+            headers: {
+              authorization: localStorage.getItem('token'),
+            },
+          }).then(async response => {
+            const body = await response.json();
+            if (response.status === 500 && body.error.name === 'SequelizeForeignKeyConstraintError') throw new Error('This word is being used by other words');
+            if (response.status !== 200) throw new Error(response.statusText);
+
+            return window.location.reload();
+          }).catch(error => {
+            alert(error || 'Error!');
+            throw new Error(error.message || error || 'Error while deleting word');
+          })
+        } catch (error) {
+          console.error(error);
+          return alert(error || 'Error!');
+        }
+      }
+    }
+
+    (async () => {
+      try {
+        const data = await getWords();
+        const hints = new Set(data.map(word => word.hint.toLowerCase()));
+        document.querySelector('datalist#hints').innerHTML = Array.from(hints).map(hint => `<option>${hint}</option>`).join('');
+
+        const html = Array.from(hints).map(hint => `
+          <div class="card">
+            <h2>${hint}</h2>
+            <ul>
+              ${data.filter(word => word.hint.toLowerCase() === hint.toLowerCase()).map(word => `
+                <li>
+                  <div class="card-options">
+                    <button onclick="openEdit(${word.id}, {
+                      hint: '${word.hint}',
+                      word: '${word.word}',
+                      description: '${word.description}',
+                    });">&#x270F;&#xFE0F;</button>
+                    <button onclick="openDelete('${word.id}', '${word.word}')">&#x274C;</button>
+                  </div>
+                  <div class="card-info">
+                    <span>${word.id} - </span>
+                    <span><b>${word.word}</b></span><br>
+                    <span>${word.description || 'Sem descrição'}</span>
+                  </div>
+                  <div class="card-timestamp">
+                    <span>Created: ${formatDateSp(word.createdAt)}</span>
+                    <span>Updated: ${formatDateSp(word.updatedAt)}</span>
+                  </div>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `).join('');
+
+        const words = data.map(word => {
+          return `<div>${word.word}</div>`;
+        }).join('');
+
+        document.querySelector('main').innerHTML = html;
+      } catch (error) {
+        console.error(error);
+        alert(error);
+      }
+    })()
   </script>
 </body>
+
 </html>
