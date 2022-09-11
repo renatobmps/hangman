@@ -9,6 +9,14 @@ export async function submitStartGame(
   handleModalOpened: (isOpened: boolean) => void
 ) {
   try {
+    if (
+      !localStorage.getItem("token") ||
+      localStorage.getItem("token") === ""
+    ) {
+      localStorage.removeItem("token");
+      window.location.href = process.env.PUBLIC_URL + "/login";
+      throw Error("Forbidden");
+    }
     const response = await axios.get(
       `${process.env.REACT_APP_API_ENDPOINT}/games/start`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
@@ -30,7 +38,7 @@ export async function submitStartGame(
   } catch (error: any) {
     if (error.response.status === 403) {
       localStorage.removeItem("token");
-      window.location.href = process.env.PUBLIC_URL + "/";
+      window.location.href = process.env.PUBLIC_URL + "/login";
     }
 
     console.error(error);
