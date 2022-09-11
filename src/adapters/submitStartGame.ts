@@ -14,7 +14,7 @@ export async function submitStartGame(
       localStorage.getItem("token") === ""
     ) {
       localStorage.removeItem("token");
-      window.location.href = process.env.PUBLIC_URL + "/login";
+      // window.location.href = process.env.PUBLIC_URL + "/login";
       throw Error("Forbidden");
     }
     const response = await axios.get(
@@ -38,7 +38,7 @@ export async function submitStartGame(
   } catch (error: any) {
     if (error.response.status === 403) {
       localStorage.removeItem("token");
-      window.location.href = process.env.PUBLIC_URL + "/login";
+      // window.location.href = process.env.PUBLIC_URL + "/login";
     }
 
     console.error(error);
