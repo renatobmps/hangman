@@ -20,7 +20,7 @@ export async function submitPassword(
     );
     if (response.status !== 200) throw new Error(response.data);
 
-    window.location.href = process.env.PUBLIC_URL + "/";
+    window.location.href = "/";
   } catch (error: any) {
     alert(
       error.response.data.error ||

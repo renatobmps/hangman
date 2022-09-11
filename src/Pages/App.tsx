@@ -9,7 +9,6 @@ import { IGameState } from "../adapters/interfaces";
 import { GameRanking } from "../Components/GameRanking";
 import MainTitle from "../Components/Style/MainTitle";
 import { handleGameKeyboard } from "../adapters/handleGameKeyboard";
-import Login from "./Login";
 
 export default function App() {
   const initialGameData: IGameState = {
@@ -79,14 +78,6 @@ export default function App() {
       setNewGame
     );
   };
-
-  if (
-    !localStorage.getItem("token") ||
-    localStorage.getItem("token") === ""
-  ) {
-    localStorage.removeItem("token");
-    return <Login />
-  }
 
   return (
     <PageDefault

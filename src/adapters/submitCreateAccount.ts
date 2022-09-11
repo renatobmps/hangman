@@ -15,7 +15,7 @@ export async function submitCreateAccount(
       fields
     );
     if (response.status !== 201) throw new Error(response.data);
-    window.location.href = process.env.PUBLIC_URL + "/login";
+    window.location.href = "/login";
   } catch (error: any) {
     alert(
       error.response.data.error ||

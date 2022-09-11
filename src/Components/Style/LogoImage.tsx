@@ -5,8 +5,6 @@ const Style = styled.img`
   height: 100%;
 `;
 
-export default function LogoImage(props: any & { src: string }) {
-  const publicSrc =
-    process.env.PUBLIC_URL + props.src || process.env.PUBLIC_URL;
-  return <Style {...props} src={publicSrc} />;
+export default function LogoImage(props: any) {
+  return <Style {...props} />;
 }
