@@ -48,6 +48,7 @@ export default function App() {
       setModalMessage,
       setOpenedModal
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newGame]);
 
   const handleKeyDown = (event: KeyboardEvent) => {

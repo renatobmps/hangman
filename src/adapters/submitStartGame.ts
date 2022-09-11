@@ -30,7 +30,7 @@ export async function submitStartGame(
   } catch (error: any) {
     if (error.response.status === 403) {
       localStorage.removeItem("token");
-      window.location.href = "/";
+      window.location.href = process.env.PUBLIC_URL + "/";
     }
 
     console.error(error);

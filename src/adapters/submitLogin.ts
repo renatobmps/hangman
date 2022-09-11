@@ -14,7 +14,7 @@ export async function submitLogin(
     if (response.status !== 200) throw new Error(response.data);
 
     localStorage.setItem("token", response.data.token);
-    window.location.href = "/";
+    window.location.href = process.env.PUBLIC_URL + "/";
   } catch (error: any) {
     alert(
       error.response.data.error ||

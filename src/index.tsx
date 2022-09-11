@@ -13,8 +13,9 @@ import NotFound from "./Pages/NotFound";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+console.log(process.env.PUBLIC_URL);
 root.render(
-  <BrowserRouter basename="{process.env.PUBLIC_URL}">
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/change_password" element={<ChangePassword />} />

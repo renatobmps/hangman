@@ -18,7 +18,7 @@ export default function MenuFloating(props: {
           <button
             onClick={() => {
               localStorage.removeItem("token");
-              window.location.href = "/login";
+              window.location.href = process.env.PUBLIC_URL + "/login";
             }}
           >
             Sair

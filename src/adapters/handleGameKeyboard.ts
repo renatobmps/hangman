@@ -26,7 +26,7 @@ export async function handleGameKeyboard(
     );
     if (response.status === 403) {
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = process.env.PUBLIC_URL + "/login";
       throw Error("Forbidden");
     }
     if (response.data.state === "playing") {
