@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9QCK0S5QW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-S9QCK0S5QW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forca</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="icon.svg">
+    <link rel="shotcut icon" href="icon.svg">
+    <!--PWA-->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#009688">
+    <meta name="description" content="A game of Hangman make white vanilla JS">
+    <link rel="apple-touch-icon" href="icon.svg">
+</head>
+
+<body>
+    <header>
+        <!-- header -->
+    </header>
+    <main>
+        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+    </main>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function () {
+                    console.info('service worker registered');
+                })
+                .catch(function () {
+                    console.warn('service worker failed');
+                    console.error(navigator)
+                });
+        }
+    </script>
+    <script>
+        // const apiUrl = 'https://hangman-renatobmps.herokuapp.com/';
+        // const apiUrl = 'http://localhost:3000/';
+        const apiUrl = window.location.origin.includes('localhost') ? 'http://localhost:3000/' : 'https://hangman-renatobmps.herokuapp.com/';
+        (async () => {
+            const token = localStorage.getItem('token');
+            if (!token) window.location.href = 'login.html';
+
+            document.addEventListener('keydown', (e) => {
+                console.info('[keydown]', e.key);
+                const hasButton = document.querySelector(`button[value="${e.key}"]`);
+                if (hasButton) hasButton.click();
+            });
+
+            await init();
+        })();
+
+        function init() {
+            return new Promise((resolve, reject) => {
+                fetch(apiUrl + 'games/start', {
+                    headers: {
+                        authorization: localStorage.getItem('token')
+                    }
+                }).then(async response => {
+                    const body = await response.json();
+                    if (response.status !== 200) throw new Error(body.error || response.statusText);
+                    resolve(render(body));
+                }).catch(err => {
+                    console.error(err);
+                    alert(err || 'Erro ao iniciar partida');
+                    if (err != 'Error: There is no more words!') logout();
+
+                    render({
+                        lives: 1000,
+                        word: 'Voltar mais tarde',
+                        hint: 'O que devo fazer?',
+                        triedLetters: 'qwertyuiopasdfghjklzxcvbnm'.split(''),
+                        state: 'Playing',
+                        user: 'best_of_the_bests!',
+                        points: 'TODOS',
+                    })
+
+                    reject();
+                });
+            })
+        }
+
+        function render(data) {
+            console.log(data);
+            const { lives, word, hint, triedLetters, state, user, points, description } = data;
+
+            const headerDom = document.querySelector('header');
+            let headerHtml = '';
+            headerHtml += desenhaHeader(user, points);
+
+            const mainDom = document.querySelector('main');
+            let mainHtml = '';
+            mainHtml += '<div class="game">';
+            mainHtml += desenhaPlacar(lives);
+            mainHtml += desenhaJogo(word, hint);
+            mainHtml += '</div>';
+            mainHtml += '<div class="keyboard">';
+            mainHtml += desenhaTeclado(triedLetters, word);
+            mainHtml += '</div>';
+            mainHtml += desenhaFooter();
+
+            headerDom.innerHTML = headerHtml;
+            mainDom.innerHTML = mainHtml;
+
+            setTimeout(() => {
+                checkEndGame(state, word, description);
+            }, 800);
+        }
+        {
+            function desenhaHeader(playerName = '', playerPoints = 0) {
+                return `
+                    <div class="player_information">
+                        <p>${playerName}</p>
+                        <p>${playerPoints}</p>
+                    </div>
+                    <button class="btn_logout" onclick="logout()">Sair</button>
+                `;
+            }
+            function desenhaPlacar(lives = 0) {
+                return `
+                    <h1>Jogo da Forca</h1>
+                    <section class="secao-pontos">
+                        <p>Pontos: <span class="pontos">${lives}</span></p>
+                    </section>
+                `
+            };
+            function desenhaJogo(word = '', hint = '') {
+                return `
+                    <section class="secao-palavra">
+                        <div class="palavra">
+                            ${word}
+                        </div>
+                        <p>Dica: ${hint}</p>
+                    </section>
+                `;
+            };
+            function desenhaTeclado(triedLetters = [], word = '') {
+                const allowedLetters = 'abcdefghijklmnopqrstuvwxyz';
+
+                const listaTeclado = allowedLetters.split("").map(letra => {
+                    const isTried = triedLetters.includes(letra);
+
+                    if (!isTried) return `<button id="letra-${letra}" value="${letra}" onclick="tryLetter('${letra}')">${letra}</button>`;
+
+                    return `
+                    <button id="letra-${letra}" value="${letra}" onclick="tryLetter('${letra}')" disabled class="selecionado">${letra}</button>
+                    `
+                }).join("");
+
+                const errors = triedLetters.filter(letra => !word.includes(letra));
+                const errorsHTML = errors.sort().join(' - ');
+
+                return `
+                <section class="secao-alfabeto">
+                    <div class="alfabeto">
+                        ${listaTeclado}
+                    </div>
+                    <p class="erros">
+                        ${errorsHTML}
+                    </p>
+                </section>
+                `
+            };
+            function desenhaFooter() {
+                return `
+                <footer>
+                    <p>Sugestões ou problemas:</p>
+                    <nav>
+                        <a href="https://github.com/renatobmps/forca/" target="_blank" rel="noopener noreferrer">Github</a>
+                        <a href="http://api.whatsapp.com/send?phone=5511947689391" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </nav>
+                </footer>
+                `
+            };
+        }
+        {
+            function tryLetter(letter) {
+                return new Promise((resolve, reject) => {
+                    fetch(apiUrl + 'games/guess', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization: localStorage.getItem('token'),
+                        },
+                        body: JSON.stringify({
+                            letter: letter,
+                        })
+                    }).then(response => {
+                        return response.json();
+                    }).then(data => {
+                        render(data);
+                        resolve();
+                    }).catch(err => {
+                        console.error(err);
+                        alert(err || 'Erro. Tente novamente.');
+                        reject();
+                    });
+                })
+            };
+
+            function checkEndGame(state = '', word = '', description = null) {
+                const possibilities = {
+                    playing: () => {
+                        // nada
+                    },
+                    won: async () => {
+                        // alert('Parabéns!!\nEncontrado: ' + palavra + '\nPontos da partida: ' + pontuacaoAtual + '\n\nTotal: ' + localStorage.getItem("total") + "\n\nVou até sorrir para você tirar um print!\n\n\n\ud83d\ude38")                        
+                        const descriptionText = !!description && description != '' ? `\nDescrição: ${description}` : '';
+                        alert(`Parabéns!!\nEncontrado: ${word}${descriptionText}`);
+                        alert('Iniciando nova partida...');
+                        await init();
+                    },
+                    lost: async () => {
+                        // alert("Perdeu! \ud83d\ude3f\n\n-" + pontuacaoInicial + " pontos\n\nTotal: " + localStorage.getItem("total"))
+                        alert("Perdeu! \ud83d\ude3f")
+                        alert('Iniciando nova partida...');
+                        await init();
+                    }
+                };
+                const choosePossibility = possibilities[state];
+
+                if (choosePossibility) choosePossibility();
+            }
+
+            function logout() {
+                localStorage.removeItem('token');
+                window.location.reload();
+            }
+        }
+    </script>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1112275809147363',
+                xfbml: true,
+                version: 'v8.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+
+</html>
