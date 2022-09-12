@@ -7,7 +7,7 @@ const Style = styled.div`
   flex-direction: ${(props: { flexDirection: string }) => props.flexDirection || 'row'};
   gap: 2rem 1rem;
   margin: auto;
-  max-width: 1000px;
+  max-width: calc(1000px - 2rem);
   padding: 1rem;
   width: 100%;
   @media (max-width: 650px) {
