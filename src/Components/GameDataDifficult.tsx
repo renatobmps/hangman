@@ -2,7 +2,11 @@ import { IGameDataProps } from "../adapters/interfaces";
 import Difficult from "./Style/Difficult";
 
 export default function GameDataDifficult(props: IGameDataProps) {
-  if (!props.gameData.difficult) return <></>;
+  if (
+    props.gameData.difficult === null ||
+    props.gameData.difficult === undefined
+  )
+    return <></>;
 
   const color =
     props.gameData.difficult < 33
@@ -15,7 +19,7 @@ export default function GameDataDifficult(props: IGameDataProps) {
     <p>
       Dificuldade:{" "}
       <Difficult color={color}>
-        {props.gameData.difficult.toFixed(2)}%
+        {props.gameData.difficult.toFixed(0)}%
       </Difficult>
     </p>
   );
