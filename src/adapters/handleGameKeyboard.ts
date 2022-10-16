@@ -49,7 +49,7 @@ export async function handleGameKeyboard(
       );
       setOpenedModal(true);
     }
-    buttonDom.classList.remove("loading");
+    // buttonDom.classList.remove("loading");
     const voidTriedLetters: string[] = [];
     setNewGame({
       ...gameDataState,
