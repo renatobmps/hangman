@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Style = styled.header`
+export const GameHeader = styled.header`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,3 @@ const Style = styled.header`
   padding: 1rem;
   width: 100%;
 `;
-
-export default function GameHeader(props: any) {
-  return <Style {...props} />;
-}

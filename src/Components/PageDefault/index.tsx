@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { IPageDefaultProps } from "../adapters/interfaces";
-import { pageDefaultStart } from "../adapters/pageDefaultStarts";
-import Footer from "./Footer";
-import Menu from "./Menu";
-import { Modal } from "./Modal";
+import { pageDefaultStart } from "../../adapters/pageDefaultStarts";
+import Footer from "../Footer";
+import Menu from "../Menu";
+import { Modal } from "../Modal";
+import { IProps } from "./types";
 
-export default function PageDefault(props: IPageDefaultProps) {
+export default function PageDefault(props: IProps) {
   const [openedModal, setOpenedModal] = useState(true);
   useEffect(() => {
     pageDefaultStart(handleKeyboard, handleClick, props);
@@ -22,7 +22,7 @@ export default function PageDefault(props: IPageDefaultProps) {
 
   return (
     <>
-      <Menu user_name={props.userData.name} />
+      <Menu />
       <main>{props.children}</main>
       <Footer />
       {!localStorage.getItem("hello_word") ? (

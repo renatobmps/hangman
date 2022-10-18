@@ -1,21 +1,3 @@
-import { JSXElementConstructor, ReactElement, ReactFragment } from "react";
-
-export interface IPageDefaultProps {
-  userData: { name: string };
-  children:
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment;
-  callbackKeydown?: (event: any) => any;
-  callbackClick?: (event: any) => any;
-  pageTitle?: string;
-}
-
-export interface IMenuFloatingTriggerProps {
-  handleOpenMenu: (newState: boolean) => void;
-  currentState: boolean;
-  user_name: string;
-}
-
 export interface ILoginFormProps {
   fieldState: {
     user: string;

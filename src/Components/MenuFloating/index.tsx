@@ -1,15 +1,18 @@
-import A from "./Style/A";
-import FloatingMenu from "./Style/FloatingMenu";
-import ListMenu from "./Style/ListMenu";
-import TitleMenu from "./Style/TitleMenu";
+import { useContext } from "react";
+import A from "../Style/A";
+import FloatingMenu from "../Style/FloatingMenu";
+import ListMenu from "../Style/ListMenu";
+import TitleMenu from "../Style/TitleMenu";
+import { UserContext } from "../../Stores/UserContext";
 
 export default function MenuFloating(props: {
   openedMenu: boolean;
-  user_name: string;
 }) {
+  const userContext = useContext(UserContext);
+
   return (
     <FloatingMenu className={props.openedMenu ? "active" : ""}>
-      <TitleMenu>{props.user_name}</TitleMenu>
+      <TitleMenu>{userContext.user.username}</TitleMenu>
       <ListMenu>
         <li>
           <A href="/change_password">Alterar senha</A>

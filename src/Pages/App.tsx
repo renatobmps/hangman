@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PageDefault from "../Components/PageDefault";
 import Keyboard from "../Components/GameKeyboard";
 import GameData from "../Components/GameData";
@@ -9,8 +9,10 @@ import { IGameState } from "../adapters/interfaces";
 import { GameRanking } from "../Components/GameRanking";
 import MainTitle from "../Components/Style/MainTitle";
 import { handleGameKeyboard } from "../adapters/handleGameKeyboard";
+import { UserContext } from "../Stores/UserContext";
 
 export default function App() {
+  const userContext = useContext(UserContext);
   const initialGameData: IGameState = {
     description: "",
     difficult: 0,
@@ -48,8 +50,9 @@ export default function App() {
       setModalMessage,
       setOpenedModal
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newGame]);
+    userContext.setUser({ username: gameData.user });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newGame, gameData]);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     const acceptLetters = "abcdefghijklmnopqrstuvwxyz";

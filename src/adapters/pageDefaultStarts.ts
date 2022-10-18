@@ -1,9 +1,9 @@
-import { IPageDefaultProps } from "./interfaces";
+import { IProps } from "../Components/PageDefault/types";
 
 export function pageDefaultStart(
   handleKeyboard: (event: any) => void,
   handleClick: (event: any) => void,
-  props: IPageDefaultProps
+  props: IProps
 ) {
   if (localStorage.getItem("theme")) {
     document.documentElement.style.setProperty(
