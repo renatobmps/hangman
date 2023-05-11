@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import PageDefault from "../Components/PageDefault";
-import Keyboard from "../Components/GameKeyboard";
-import GameData from "../Components/GameData";
-import GameWrap from "../Components/Style/GameWrap";
-import { Modal } from "../Components/Modal";
+import PageDefault from "../components/PageDefault";
+import Keyboard from "../components/GameKeyboard";
+import GameData from "../components/GameData";
+import GameWrap from "../components/Style/GameWrap";
+import { Modal } from "../components/Modal";
 import { submitStartGame } from "../adapters/submitStartGame";
 import { IGameState } from "../adapters/interfaces";
-import { GameRanking } from "../Components/GameRanking";
-import MainTitle from "../Components/Style/MainTitle";
+import { GameRanking } from "../components/GameRanking";
+import MainTitle from "../components/Style/MainTitle";
 import { handleGameKeyboard } from "../adapters/handleGameKeyboard";
-import { UserContext } from "../Stores/UserContext";
+import { UserContext } from "../stores/UserContext";
 
 export default function App() {
   const userContext = useContext(UserContext);

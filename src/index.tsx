@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 // import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-import UserContext from "./Stores/UserContext";
+import UserContext from "./stores/UserContext";
 
-import App from "./Pages/App";
-import ChangePassword from "./Pages/ChangePassword";
-import CreateLogin from "./Pages/CreateLogin";
-import Login from "./Pages/Login";
-import NotFound from "./Pages/NotFound";
+import App from "./pages/App";
+import ChangePassword from "./pages/ChangePassword";
+import CreateLogin from "./pages/CreateLogin";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

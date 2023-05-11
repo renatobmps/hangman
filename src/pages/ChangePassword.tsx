@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import LoginPanel from "../Components/Style/LoginPanel";
-import PasswordForm from "../Components/PasswordForm";
+import LoginPanel from "../components/Style/LoginPanel";
+import PasswordForm from "../components/PasswordForm";
 import { submitPassword } from "../adapters/submitPassword";
 import { handleFields } from "../adapters/handleFields";
-import PageDefault from "../Components/PageDefault";
-import { UserContext } from "../Stores/UserContext";
+import PageDefault from "../components/PageDefault";
+import { UserContext } from "../stores/UserContext";
 
 export default function ChangePassword() {
   const userContext = useContext(UserContext);

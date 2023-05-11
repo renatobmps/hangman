@@ -1,4 +1,4 @@
-import { IProps } from "../Components/PageDefault/types";
+import { IProps } from "../components/PageDefault/types";
 
 export function pageDefaultStart(
   handleKeyboard: (event: any) => void,

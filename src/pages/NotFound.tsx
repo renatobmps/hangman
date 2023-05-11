@@ -1,5 +1,5 @@
-import PageDefault from "../Components/PageDefault";
-import A from "../Components/Style/A";
+import PageDefault from "../components/PageDefault";
+import A from "../components/Style/A";
 
 export default function NotFound() {
   return (

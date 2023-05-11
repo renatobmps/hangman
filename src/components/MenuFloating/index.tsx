@@ -3,7 +3,7 @@ import A from "../Style/A";
 import FloatingMenu from "../Style/FloatingMenu";
 import ListMenu from "../Style/ListMenu";
 import TitleMenu from "../Style/TitleMenu";
-import { UserContext } from "../../Stores/UserContext";
+import { UserContext } from "../../stores/UserContext";
 
 export default function MenuFloating(props: {
   openedMenu: boolean;

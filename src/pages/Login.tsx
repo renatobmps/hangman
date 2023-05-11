@@ -1,21 +1,20 @@
 import { useState } from "react";
-import LoginPanel from "../Components/Style/LoginPanel";
-import CreateUserForm from "../Components/CreateUserForm";
+import LoginPanel from "../components/Style/LoginPanel";
+import LoginForm from "../components/LoginForm";
 import { handleFields } from "../adapters/handleFields";
-import { submitCreateAccount } from "../adapters/submitCreateAccount";
+import { submitLogin } from "../adapters/submitLogin";
 
-export default function CreateLogin() {
+export default function Login() {
   const initialState = {
-    name: "",
+    user: "",
     password: "",
-    confirm: "",
   };
   const [fields, setFields] = useState(initialState);
 
   return (
     <>
-      <LoginPanel onSubmit={(event: any) => submitCreateAccount(event, fields)}>
-        <CreateUserForm
+      <LoginPanel onSubmit={(event: any) => submitLogin(event, fields)}>
+        <LoginForm
           fieldState={fields}
           handleFields={(event: any) => handleFields(event, setFields, fields)}
         />
