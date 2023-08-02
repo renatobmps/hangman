@@ -1,9 +1,12 @@
 import axios from "axios";
+import { FormEvent } from "react";
 
 export async function submitLogin(
-  event: { preventDefault: () => void },
+  event: FormEvent,
   fields: { user: string; password: string }
 ) {
+  const submitter = event.currentTarget.querySelector('[type="submit"]');
+  submitter?.classList.add('loading');
   try {
     event.preventDefault();
 
@@ -18,8 +21,10 @@ export async function submitLogin(
   } catch (error: any) {
     alert(
       error.response.data.error ||
-        error.response.statusText ||
-        "Ocorreu um erro!"
+      error.response.statusText ||
+      "Ocorreu um erro!"
     );
+  } finally {
+    submitter?.classList.remove('loading');
   }
 }

@@ -13,7 +13,10 @@ export default function CreateUserFormInput(props: ICreateUserFormProps) {
           id="name"
           name="name"
           value={props.fieldState.name}
-          onInput={props.handleFields}
+          onInput={(e: { currentTarget: { value: string; }; }) => {
+            e.currentTarget.value = e.currentTarget.value.toLowerCase().replace(' ', '_').trim();
+            props.handleFields(e);
+          }}
           minLength="5"
           required
           autoFocus

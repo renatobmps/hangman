@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import LoginPanel from "../components/Style/LoginPanel";
 import LoginForm from "../components/LoginForm";
 import { handleFields } from "../adapters/handleFields";
@@ -13,7 +13,7 @@ export default function Login() {
 
   return (
     <>
-      <LoginPanel onSubmit={(event: any) => submitLogin(event, fields)}>
+      <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)}>
         <LoginForm
           fieldState={fields}
           handleFields={(event: any) => handleFields(event, setFields, fields)}

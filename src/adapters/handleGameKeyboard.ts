@@ -1,15 +1,40 @@
 import axios from "axios";
 import { IGameState } from "./interfaces";
+import { GameState } from "../pages/App";
 
-export async function handleGameKeyboard(
-  letter: string,
-  triedLettersList: string[],
-  buttonDom: HTMLButtonElement,
-  gameDataState: IGameState,
-  setModalMessage: (message: string) => void,
-  setOpenedModal: (state: boolean) => void,
-  setNewGame: (state: IGameState) => void
-) {
+export interface HandleGameKeyboard {
+  letter: string;
+  triedLettersList: string[];
+  buttonDom: HTMLButtonElement;
+  gameDataState: IGameState;
+  setModalMessage: (message: string) => void;
+  setOpenedModal: (state: boolean) => void;
+  setGameData: (state: IGameState) => void;
+  setGameState: (state: GameState) => void;
+}
+
+interface TryResponse {
+  description?: string;
+  difficult: number;
+  hint: string,
+  lives: number;
+  points: number;
+  state: 'playing' | 'won' | 'lost';
+  triedLetters: string[],
+  user: string;
+  word: string;
+}
+
+export async function handleGameKeyboard({
+  buttonDom,
+  gameDataState,
+  letter,
+  setGameState,
+  setModalMessage,
+  setGameData,
+  setOpenedModal,
+  triedLettersList,
+}: HandleGameKeyboard) {
   if (triedLettersList.includes(letter.toLowerCase())) {
     setModalMessage(`Letra ${letter.toUpperCase()} já foi.`);
     setOpenedModal(true);
@@ -17,9 +42,10 @@ export async function handleGameKeyboard(
   }
 
   buttonDom.classList.add("loading");
+  setGameState('checking');
 
   try {
-    const response = await axios.post(
+    const response = await axios.post<TryResponse>(
       `${process.env.REACT_APP_API_ENDPOINT}/games/guess`,
       { letter },
       { headers: { Authorization: localStorage.getItem("token") || "" } }
@@ -29,35 +55,19 @@ export async function handleGameKeyboard(
       window.location.href = "/login";
       throw Error("Forbidden");
     }
-    if (response.data.state === "playing") {
-      buttonDom.disabled = true;
-    }
-    if (response.data.state === "won") {
-      const description = response.data.description
-        ? `\nDescrição: ${response.data.description}`
-        : "";
-      setModalMessage(
-        `Parabéns, ${response.data.user}!\nEncontrou: ${
-          response.data.word
-        }${description}\nSua pontuação atual é: ${response.data.points + 1}`
-      );
-      setOpenedModal(true);
-    }
-    if (response.data.state === "lost") {
-      setModalMessage(
-        "Oh não, você perdeu! Essa palavra poderá voltar novamente depois, então boa sorte na próxima!"
-      );
-      setOpenedModal(true);
-    }
-    // buttonDom.classList.remove("loading");
-    const voidTriedLetters: string[] = [];
-    setNewGame({
+
+    setGameState('waiting');
+    buttonDom.disabled = true;
+    setGameData({
       ...gameDataState,
       ...response.data,
-      triedLetters: voidTriedLetters,
     });
+
+    if (response.data.state === "won") setGameState('won');
+    if (response.data.state === "lost") setGameState('lost');
   } catch (error: any & { response?: { data?: { error?: string } } }) {
     buttonDom.classList.remove("loading");
+    setGameState('waiting');
     if (
       !!error.response.data.error &&
       !error.response.data.error.includes("already tried")
@@ -66,5 +76,7 @@ export async function handleGameKeyboard(
       setOpenedModal(true);
     }
     console.error("Error:", error);
+  } finally {
+    buttonDom.classList.remove("loading");
   }
 }

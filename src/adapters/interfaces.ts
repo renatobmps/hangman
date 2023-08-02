@@ -7,9 +7,9 @@ export interface ILoginFormProps {
 }
 
 export interface IGameKeyboardProps {
-  setNewGame: any;
   alreadyTried: string[];
   handleKeyboardButton: (event: any) => void;
+  isBlocked: boolean;
 }
 
 export interface IGameDataProps {

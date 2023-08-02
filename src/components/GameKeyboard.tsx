@@ -1,8 +1,12 @@
 import Keyboard from "./Style/Keyboard";
-import Key from "./Style/Key";
+import * as S from "./Style/Key";
 import { IGameKeyboardProps } from "../adapters/interfaces";
 
-export default function GameKeyboard(props: IGameKeyboardProps) {
+export default function GameKeyboard({
+  alreadyTried,
+  handleKeyboardButton,
+  isBlocked = false,
+}: IGameKeyboardProps) {
   const allKeys = Array.from(
     new Set("qwertyuiopasdfghjklzxcvbnm".toLowerCase().split(""))
   ).sort();
@@ -10,14 +14,15 @@ export default function GameKeyboard(props: IGameKeyboardProps) {
   return (
     <Keyboard>
       {allKeys.map((k) => (
-        <Key
+        <S.Key
           key={`keyboard-${k}`}
           data-keyboard={`${k}`}
-          onClick={props.handleKeyboardButton}
-          disabled={!!props.alreadyTried.includes(k)}
+          onClick={handleKeyboardButton}
+          disabled={!!alreadyTried.includes(k) || isBlocked}
+          state={alreadyTried.includes(k) ? 'used' : 'active'}
         >
           {k}
-        </Key>
+        </S.Key>
       ))}
     </Keyboard>
   );

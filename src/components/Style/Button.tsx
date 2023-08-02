@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const spinner = keyframes`
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+`;
 
 const Style = styled.button`
   background: var(--color-1);
@@ -16,6 +22,24 @@ const Style = styled.button`
   }
   &:hover {
     fill: hue-rotate(10deg);
+  }
+  &.loading {
+    color: transparent;
+    position: relative;
+    &:before {
+      animation: ${spinner} 1s linear infinite;
+      content: '';
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid white;
+      border-radius: 50%;
+      border-bottom-color: transparent;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 `;
 

@@ -1,15 +1,21 @@
 import styled, { keyframes } from "styled-components";
 
-const charging = keyframes`
-  to { border: 10px solid lightgray }
+const spinner = keyframes`
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 `;
 
-const Style = styled.button`
-  background: var(--color-1);
+export interface KeyProps {
+  state: 'active' | 'loading' | 'used'
+}
+
+export const Key = styled.button<KeyProps>`
+  background: ${p => p.state === 'active' ? 'var(--color-1)' : 'lightgray'};
   border: 0;
   border-radius: 0.3rem;
   display: inline-block;
-  color: white;
+  color: ${p => p.state === 'active' ? 'lightgray' : 'var(--color-1)'};
   cursor: pointer;
   height: 3rem;
   text-transform: uppercase;
@@ -20,16 +26,28 @@ const Style = styled.button`
     transition: all 0.3s;
   }
   &:disabled {
-    background: lightgray;
-    color: var(--color-1);
+    cursor: not-allowed;
     opacity: 0.5;
   }
   &.loading {
     border: 1px solid lightgray;
-    animation: ${charging} 1s linear infinite;
+    color: transparent;
+    cursor: wait;
+    position: relative;
+    &:before {
+      animation: ${spinner} 1s linear infinite;
+      content: '';
+      border: 1px solid lightgray;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: block;
+      height: .8rem;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: .8rem;
+    }
   }
 `;
 
-export default function Key(props: any) {
-  return <Style {...props} />;
-}

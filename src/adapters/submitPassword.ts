@@ -1,9 +1,12 @@
 import axios from "axios";
+import { FormEvent } from "react";
 
 export async function submitPassword(
-  event: { preventDefault: () => void },
+  event: FormEvent,
   fields: { password: string; confirmPassword: string }
 ) {
+  const submitter = event.currentTarget.querySelector('[type="submit"]');
+  submitter?.classList.add('loading');
   try {
     event.preventDefault();
 
@@ -24,8 +27,10 @@ export async function submitPassword(
   } catch (error: any) {
     alert(
       error.response.data.error ||
-        error.response.statusText ||
-        "Ocorreu um erro!"
+      error.response.statusText ||
+      "Ocorreu um erro!"
     );
+  } finally {
+    submitter?.classList.remove('loading');
   }
 }

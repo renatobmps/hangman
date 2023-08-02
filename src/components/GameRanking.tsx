@@ -2,10 +2,14 @@ import { IGameDataRanking } from "../adapters/interfaces";
 import GameRankingLoading from "./GameRankingLoading";
 import { GameRankingTable } from "./GameRankingTable";
 
-export function GameRanking(props: { rankingData: IGameDataRanking[] }) {
-  if (!props.rankingData.length) {
+interface GameRankingProps {
+  rankingData: IGameDataRanking[] | null;
+}
+
+export function GameRanking({ rankingData }: GameRankingProps) {
+  if (!rankingData) {
     return <GameRankingLoading />;
   }
 
-  return <GameRankingTable gameRanking={props.rankingData} />;
+  return <GameRankingTable gameRanking={rankingData} />;
 }
