@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FormEvent } from "react";
+import throwAlertError from './throwAlertError';
 
 export async function submitLogin(
   event: FormEvent,
@@ -19,11 +20,10 @@ export async function submitLogin(
     localStorage.setItem("token", response.data.token);
     window.location.href = "/";
   } catch (error: any) {
-    alert(
-      error.response.data.error ||
-      error.response.statusText ||
-      "Ocorreu um erro!"
-    );
+    throwAlertError({
+      err: error,
+      genericMessage: "Ocorreu um erro!",
+    });
   } finally {
     submitter?.classList.remove('loading');
   }

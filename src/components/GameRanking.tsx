@@ -4,12 +4,13 @@ import { GameRankingTable } from "./GameRankingTable";
 
 interface GameRankingProps {
   rankingData: IGameDataRanking[] | null;
+  tableLabel?: string,
 }
 
-export function GameRanking({ rankingData }: GameRankingProps) {
+export function GameRanking({ rankingData, tableLabel = 'Ranking' }: GameRankingProps) {
   if (!rankingData) {
     return <GameRankingLoading />;
   }
 
-  return <GameRankingTable gameRanking={rankingData} />;
+  return <GameRankingTable gameRanking={rankingData} tableLabel={tableLabel} />;
 }

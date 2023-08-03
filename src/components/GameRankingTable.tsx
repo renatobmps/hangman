@@ -4,12 +4,18 @@ import { GameRankingTableHeader } from "./GameRankingTableHeader";
 import GameWrap from "./Style/GameWrap";
 import Table from "./Style/Table";
 
-export function GameRankingTable(props: { gameRanking: IGameDataRanking[] }) {
+interface GameRankingTableProps {
+  gameRanking: IGameDataRanking[],
+  tableLabel: string,
+}
+
+export function GameRankingTable({ gameRanking, tableLabel }: GameRankingTableProps) {
   return (
-    <GameWrap>
+    <GameWrap flexDirection="column">
+      <h2>{tableLabel}</h2>
       <Table>
         <GameRankingTableHeader />
-        <GameRankingTableBody gameRanking={props.gameRanking} />
+        <GameRankingTableBody gameRanking={gameRanking} />
       </Table>
     </GameWrap>
   );

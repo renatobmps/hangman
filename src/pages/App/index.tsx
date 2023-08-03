@@ -25,6 +25,7 @@ export default function App() {
     triedLetters: [],
     user: "",
     word: "",
+    rankingTopTen: [],
     ranking: [],
     performance: {
       game: {
@@ -44,6 +45,7 @@ export default function App() {
   const [modalMessage, setModalMessage] = useState("");
 
   const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(null);
+  const [rankingTopTenState, setRankingTopTenState] = useState<IGameDataRanking[] | null>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     const acceptLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -84,6 +86,7 @@ export default function App() {
         setGameData,
         setGameState,
         setRankingData: setRankingState,
+        setRankingTopTenData: setRankingTopTenState,
         setUserName: (username: string) => userContext.setUser({ username }),
       }),
       waiting: () => {
@@ -130,7 +133,8 @@ export default function App() {
           isBlocked={gameState !== 'waiting'}
         />
       </GameWrap>
-      <GameRanking rankingData={rankingState} />
+      <GameRanking tableLabel="Os melhores dos últimos 7 dias" rankingData={rankingTopTenState} />
+      <GameRanking tableLabel="Ranking geral" rankingData={rankingState} />
       <Modal
         isOpened={openedModal}
         closeFunction={setOpenedModal}

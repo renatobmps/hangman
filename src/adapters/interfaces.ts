@@ -55,6 +55,7 @@ export interface IGameState {
   triedLetters: string[];
   user: string;
   word: string;
+  rankingTopTen: IGameDataRanking[];
   ranking: IGameDataRanking[];
   performance: IGameDataRankingPerformance;
 }
