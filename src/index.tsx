@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-// import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
 import UserContext from "./stores/UserContext";
 
@@ -28,5 +28,5 @@ root.render(
   </UserContext>
 );
 
-// reportWebVitals(console.log);
+reportWebVitals(console.info);
 serviceWorker.register();

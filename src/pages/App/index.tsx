@@ -121,7 +121,7 @@ export default function App() {
   return (
     <PageDefault
       userData={{ name: gameData.user }}
-      callbackKeydown={gameState === 'waiting' ? handleKeyDown : () => { }}
+      callbackKeydown={handleKeyDown}
     >
       <MainTitle>Jogo da forca</MainTitle>
       <GameWrap>

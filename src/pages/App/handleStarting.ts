@@ -36,21 +36,7 @@ export default async function handleStarting({
       `${process.env.REACT_APP_API_ENDPOINT}/ranking`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
-    console.log({
-      step: 'creating promises',
-      gameRequest,
-      responseRanking,
-      responseRankingTopTen,
-    });
 
-    const gameResponse = await gameRequest;
-    console.log({gameResponse});
-    const rankingResponse = await responseRanking;
-    console.log({rankingResponse});
-    const rankingTopTenResponse = await responseRankingTopTen;
-    console.log({rankingTopTenResponse});
-
-    /*
     const [
       gameResponse,
       rankingTopTenResponse,
@@ -60,19 +46,8 @@ export default async function handleStarting({
       responseRankingTopTen,
       responseRanking,
     ]);
-    console.log({
-      step: 'resolving promises',
-      gameResponse,
-      rankingTopTenResponse,
-      rankingResponse,
-    });
-    */
 
-    if (
-      gameResponse.status !== 200
-      || rankingResponse.status !== 200
-      || rankingTopTenResponse.status !== 200
-    ) throw new Error('Serviço fora do ar no momento');
+    if (gameResponse.status !== 200 || rankingResponse.status !== 200 || rankingTopTenResponse.status !== 200) throw new Error('Serviço fora do ar no momento');
 
     const userInRanking = rankingResponse.data.find(user => user.name === gameResponse.data.user);
     setGameData({
