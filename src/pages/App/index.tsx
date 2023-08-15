@@ -100,7 +100,7 @@ export default function App() {
           `Boooooa, ${gameData.user}!! 😻`,
           `Só vejo esse nome subindo no ranking: ${gameData.user}! 😌`,
         ];
-        const somePhrase = phrases[Math.floor(Math.random() * phrases.length - 1)];
+        const somePhrase = phrases[Math.floor(Math.random() * phrases.length)];
         const finalPhrase = [
           `${somePhrase}`,
           `Encontrou: ${gameData.word.toUpperCase()}`,
@@ -121,7 +121,7 @@ export default function App() {
           '😿',
           'Essa eu também erraria! Não desanime! 😉',
         ];
-        const somePhrase = phrases[Math.floor(Math.random() * phrases.length - 1)];
+        const somePhrase = phrases[Math.floor(Math.random() * phrases.length)];
         setModalMessage(somePhrase);
         setOpenedModal(true);
         setRankingTopTenState(null);
