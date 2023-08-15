@@ -16,7 +16,9 @@ export const Key = styled.button<KeyProps>`
   border-radius: 0.3rem;
   display: inline-block;
   color: ${p => p.state === 'active' ? 'white' : 'var(--color-1)'};
-  cursor: pointer;
+  cursor: url(pencil.png), pointer;
+  font-family: 'Eraser', sans-serif;
+  font-size: 1.2rem;
   height: 3rem;
   text-transform: uppercase;
   transition: all 0.3s;

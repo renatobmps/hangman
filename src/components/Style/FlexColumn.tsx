@@ -9,6 +9,7 @@ const Style = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: ${(props: IFlexColumnStyle) => props.justifyContent || 'space-between'};
+  overflow: hidden;
 `;
 
 export default function FlexColumn(

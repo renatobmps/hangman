@@ -1,5 +1,5 @@
 import { IGameDataProps } from "../adapters/interfaces";
 
 export default function GameDataHint(props: IGameDataProps) {
-  return <p>Dica: {props.gameData.hint}</p>;
+  return <p>Dica: <strong>{props.gameData.hint}</strong></p>;
 }

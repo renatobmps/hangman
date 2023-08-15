@@ -1,31 +1,56 @@
+import { useContext } from "react";
 import { IGameDataRanking } from "../adapters/interfaces";
+import { UserContext } from "../stores/UserContext";
 
 function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
-  const sortedLines = props.gameRanking.sort(
+  const { user } = useContext(UserContext);
+  const { username } = user;
+
+  const allThatHasPoints = props.gameRanking.filter(g => (
+    !!g.performance.game.won.total
+  ));
+  const sortedByLetterPrecision = allThatHasPoints.sort(
     (a: IGameDataRanking, b: IGameDataRanking) => {
-      return a.performance.game.won.total < b.performance.game.won.total
-        ? 1
-        : b.performance.game.won.total < a.performance.game.won.total
-        ? -1
-        : 0;
+      return (
+        (b.performance.letterPrecision.won.percentage ?? 0) -
+        (a.performance.letterPrecision.won.percentage ?? 0)
+      );
     }
   );
-  const firstTen = sortedLines.slice(0, 10);
+  const sortedByWordPrecision = sortedByLetterPrecision.sort(
+    (a: IGameDataRanking, b: IGameDataRanking) => {
+      return (
+        (b.performance.game.won.percentage ?? 0) -
+        (a.performance.game.won.percentage ?? 0)
+      );
+    }
+  );
+  const sortedByPoints = sortedByWordPrecision.sort(
+    (a: IGameDataRanking, b: IGameDataRanking) => {
+      return (
+        (b.performance.game.won.total ?? 0) -
+        (a.performance.game.won.total ?? 0)
+      );
+    }
+  );
 
   return (
     <>
-      {firstTen.map((h: IGameDataRanking, i: number) => (
+      {sortedByPoints.map((h: IGameDataRanking, i: number) => (
         <tr
           key={`ranking-${h.name}`}
           onClick={(event: any) =>
             event.currentTarget.classList.toggle("active")
           }
+          className={h.name === username ? "highlight" : "normal"}
         >
-          <td>{(i || 0) + 1}</td>
+          <td className="chawp">{(i || 0) + 1}</td>
           <td>{h.name || "-"}</td>
-          <td>{h.performance.game.won.total || 0}</td>
-          <td>{(h.performance.game.won.percentage || 100).toFixed(2)}%</td>
-          <td>
+          <td className="chawp">{h.performance.game.won.total || 0}</td>
+          <td className="chawp">
+            {(h.performance.game.won.percentage || 100).toFixed(2)}%
+          </td>
+          <td className="chawp">
             {(h.performance.letterPrecision.won.percentage || 100).toFixed(2)}%
           </td>
         </tr>
@@ -34,12 +59,14 @@ function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
   );
 }
 
-export function GameRankingTableBody(props: {
+export function GameRankingTableBody({
+  gameRanking,
+}: {
   gameRanking: IGameDataRanking[];
 }) {
   return (
     <tbody>
-      <Lines gameRanking={props.gameRanking} />
+      <Lines gameRanking={gameRanking} />
     </tbody>
   );
 }

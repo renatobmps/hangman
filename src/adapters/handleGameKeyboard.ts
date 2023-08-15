@@ -16,11 +16,11 @@ export interface HandleGameKeyboard {
 interface TryResponse {
   description?: string;
   difficult: number;
-  hint: string,
+  hint: string;
   lives: number;
   points: number;
-  state: 'playing' | 'won' | 'lost';
-  triedLetters: string[],
+  state: "playing" | "won" | "lost";
+  triedLetters: string[];
   user: string;
   word: string;
 }
@@ -42,7 +42,7 @@ export async function handleGameKeyboard({
   }
 
   buttonDom.classList.add("loading");
-  setGameState('checking');
+  setGameState("checking");
 
   try {
     const response = await axios.post<TryResponse>(
@@ -56,26 +56,31 @@ export async function handleGameKeyboard({
       throw Error("Forbidden");
     }
 
-    setGameState('waiting');
+    setGameState("waiting");
     buttonDom.disabled = true;
     setGameData({
       ...gameDataState,
       ...response.data,
     });
 
-    if (response.data.state === "won") setGameState('won');
-    if (response.data.state === "lost") setGameState('lost');
+    if (response.data.state === "won") setGameState("won");
+    if (response.data.state === "lost") setGameState("lost");
   } catch (error: any & { response?: { data?: { error?: string } } }) {
     buttonDom.classList.remove("loading");
-    setGameState('waiting');
-    if (
-      !!error.response.data.error &&
-      !error.response.data.error.includes("already tried")
-    ) {
-      setModalMessage("Ocorreu um erro!");
+    setGameState("waiting");
+    if (error.response.data.error.includes("already tried")) {
+      setModalMessage(`Você já tentou ${letter.toUpperCase()}! 😅`);
       setOpenedModal(true);
+    } else {
+      if (
+        !!error.response.data.error &&
+        !error.response.data.error.includes("already tried")
+      ) {
+        setModalMessage("Ocorreu um erro!");
+        setOpenedModal(true);
+      }
+      console.error("Error:", error);
     }
-    console.error("Error:", error);
   } finally {
     buttonDom.classList.remove("loading");
   }

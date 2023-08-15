@@ -94,21 +94,37 @@ export default function App() {
       checking: () => {
       },
       won: () => {
+        const phrases = [
+          `Parabéns, ${gameData.user}! 👏👏👏`,
+          'Você aceta tudo, hein!',
+          `Boooooa, ${gameData.user}!! 😻`,
+          `Só vejo esse nome subindo no ranking: ${gameData.user}! 😌`,
+        ];
+        const somePhrase = phrases[Math.floor(Math.random() * phrases.length - 1)];
         const finalPhrase = [
-          `Parabéns, ${gameData.user}!`,
-          `Encontrou: ${gameData.word}`,
+          `${somePhrase}`,
+          `Encontrou: ${gameData.word.toUpperCase()}`,
           gameData.description,
           `Sua pontuação atual é: ${gameData.points + 1}`,
         ].filter(Boolean).join('\n');
 
         setModalMessage(finalPhrase);
         setOpenedModal(true);
+        setRankingTopTenState(null);
         setRankingState(null);
         setGameState('starting');
       },
       lost: () => {
-        setModalMessage('Oh não, você perdeu! Essa palavra poderá voltar novamente depois, então boa sorte na próxima!');
+        const phrases = [
+          'Oh não, você perdeu! 😥\nEssa palavra poderá voltar novamente depois, então boa sorte na próxima!',
+          'Essa foi difícil, mas não desista, na próxima você consegue! 😜',
+          '😿',
+          'Essa eu também erraria! Não desanime! 😉',
+        ];
+        const somePhrase = phrases[Math.floor(Math.random() * phrases.length - 1)];
+        setModalMessage(somePhrase);
         setOpenedModal(true);
+        setRankingTopTenState(null);
         setRankingState(null);
         setGameState('starting');
       },

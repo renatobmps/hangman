@@ -4,7 +4,7 @@ import Points from "./Style/Points";
 export default function GameDataPoints(props: IGameDataProps) {
   return (
     <p>
-      Pontos: <Points>{props.gameData.lives}</Points>
+      Tentativas: <Points>{props.gameData.lives}</Points>
     </p>
   );
 }
