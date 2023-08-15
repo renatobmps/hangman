@@ -96,7 +96,7 @@ export default function App() {
       won: () => {
         const phrases = [
           `Parabéns, ${gameData.user}! 👏👏👏`,
-          'Você aceta tudo, hein!',
+          'Você acerta tudo, hein!',
           `Boooooa, ${gameData.user}!! 😻`,
           `Só vejo esse nome subindo no ranking: ${gameData.user}! 😌`,
         ];
