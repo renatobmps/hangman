@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "predev": "npm run infra:up",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "postdev": "npm run infra:up",
+    "infra:down": "docker compose down",
+    "infra:up": "docker compose up -d",
     "build": "echo do not need build yet",
-    "start": "node index.js",
-    "test": "echo tests not implemented yet"
+    "start": "NODE_ENV=production node index.js",
+    "test": "NODE_ENV=test echo tests not implemented yet"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "hash-generator": "^0.1.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3",

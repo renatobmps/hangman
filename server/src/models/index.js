@@ -4,26 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const configs = require("../config/config.js");
+const env = process.env.NODE_ENV || "development";
 const db = {};
 
-const config = {
-  use_env_variable: process.env.DATABASE_URL ? 'DATABASE_URL' : null,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT,
-  port: process.env.DB_PORT,
-  storage: './database.sqlite',
-  dialectOptions: {
-    ssl: {
-      require: false,
-      rejectUnauthorized: false,
-    },
-  },
-  logging: false,
-};
+const config = configs[env];
 
 let sequelize;
 if (config.use_env_variable) {
