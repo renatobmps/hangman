@@ -24,7 +24,6 @@ export default async function handleStarting({
 }: HandleStarting) {
   try {
     checkLogin();
-    console.log({ env: process.env });
     const gameRequest = axios.get<IGameState>(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/games/start`,
       { headers: { authorization: localStorage.getItem("token") || "" } }

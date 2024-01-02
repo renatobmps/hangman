@@ -14,7 +14,6 @@ import handleStarting from "./App/handleStarting";
 export type GameState = "starting" | "waiting" | "checking" | "won" | "lost";
 
 export default function App() {
-  console.log({ env2: process.env });
   const userContext = useContext(UserContext);
   const initialGameData: IGameState = {
     description: "",
