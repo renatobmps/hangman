@@ -12,7 +12,7 @@ export default function MenuFloating(props: {
 
   return (
     <FloatingMenu className={props.openedMenu ? "active" : ""}>
-      <TitleMenu>{userContext.user.username}</TitleMenu>
+      <TitleMenu>{userContext?.user?.username ?? "noname"}</TitleMenu>
       <ListMenu>
         <li>
           <A href="/change_password">Alterar senha</A>

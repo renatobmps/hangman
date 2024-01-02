@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import PageDefault from "../../components/PageDefault";
-import Keyboard from "../../components/GameKeyboard";
-import GameData from "../../components/GameData";
-import GameWrap from "../../components/Style/GameWrap";
-import { Modal } from "../../components/Modal";
-import { IGameDataRanking, IGameState } from "../../adapters/interfaces";
-import { GameRanking } from "../../components/GameRanking";
-import MainTitle from "../../components/Style/MainTitle";
-import { handleGameKeyboard } from "../../adapters/handleGameKeyboard";
-import { UserContext } from "../../stores/UserContext";
-import handleStarting from "./handleStarting";
+import PageDefault from "../components/PageDefault";
+import Keyboard from "../components/GameKeyboard";
+import GameData from "../components/GameData";
+import GameWrap from "../components/Style/GameWrap";
+import { Modal } from "../components/Modal";
+import { IGameDataRanking, IGameState } from "../adapters/interfaces";
+import { GameRanking } from "../components/GameRanking";
+import MainTitle from "../components/Style/MainTitle";
+import { handleGameKeyboard } from "../adapters/handleGameKeyboard";
+import { UserContext } from "../stores/UserContext";
+import handleStarting from "./App/handleStarting";
 
-export type GameState = 'starting' | 'waiting' | 'checking' | 'won' | 'lost';
+export type GameState = "starting" | "waiting" | "checking" | "won" | "lost";
 
 export default function App() {
+  console.log({ env2: process.env });
   const userContext = useContext(UserContext);
   const initialGameData: IGameState = {
     description: "",
@@ -44,8 +45,12 @@ export default function App() {
   const [openedModal, setOpenedModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(null);
-  const [rankingTopTenState, setRankingTopTenState] = useState<IGameDataRanking[] | null>(null);
+  const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(
+    null
+  );
+  const [rankingTopTenState, setRankingTopTenState] = useState<
+    IGameDataRanking[] | null
+  >(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     const acceptLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -77,26 +82,28 @@ export default function App() {
     });
   };
 
-  const [gameState, setGameState] = useState<GameState>('starting');
+  const [gameState, setGameState] = useState<GameState>("starting");
   useEffect(() => {
     const stateHandlers: { [key in GameState]: () => void } = {
-      starting: () => handleStarting({
-        setModalMessage,
-        setModalOpen: setOpenedModal,
-        setGameData,
-        setGameState,
-        setRankingData: setRankingState,
-        setRankingTopTenData: setRankingTopTenState,
-        setUserName: (username: string) => userContext.setUser({ username }),
-      }),
-      waiting: () => {
-      },
-      checking: () => {
-      },
+      starting: () =>
+        handleStarting({
+          setModalMessage,
+          setModalOpen: setOpenedModal,
+          setGameData,
+          setGameState,
+          setRankingData: setRankingState,
+          setRankingTopTenData: setRankingTopTenState,
+          setUserName: (username: string) =>
+            userContext && userContext.setUser
+              ? userContext.setUser({ username })
+              : null,
+        }),
+      waiting: () => {},
+      checking: () => {},
       won: () => {
         const phrases = [
           `Parabéns, ${gameData.user}! 👏👏👏`,
-          'Você acerta tudo, hein!',
+          "Você acerta tudo, hein!",
           `Boooooa, ${gameData.user}!! 😻`,
           `Só vejo esse nome subindo no ranking: ${gameData.user}! 😌`,
         ];
@@ -106,27 +113,29 @@ export default function App() {
           `Encontrou: ${gameData.word.toUpperCase()}`,
           gameData.description,
           `Sua pontuação atual é: ${gameData.points + 1}`,
-        ].filter(Boolean).join('\n');
+        ]
+          .filter(Boolean)
+          .join("\n");
 
         setModalMessage(finalPhrase);
         setOpenedModal(true);
         setRankingTopTenState(null);
         setRankingState(null);
-        setGameState('starting');
+        setGameState("starting");
       },
       lost: () => {
         const phrases = [
-          'Oh não, você perdeu! 😥\nEssa palavra poderá voltar novamente depois, então boa sorte na próxima!',
-          'Essa foi difícil, mas não desista, na próxima você consegue! 😜',
-          '😿',
-          'Essa eu também erraria! Não desanime! 😉',
+          "Oh não, você perdeu! 😥\nEssa palavra poderá voltar novamente depois, então boa sorte na próxima!",
+          "Essa foi difícil, mas não desista, na próxima você consegue! 😜",
+          "😿",
+          "Essa eu também erraria! Não desanime! 😉",
         ];
         const somePhrase = phrases[Math.floor(Math.random() * phrases.length)];
         setModalMessage(somePhrase);
         setOpenedModal(true);
         setRankingTopTenState(null);
         setRankingState(null);
-        setGameState('starting');
+        setGameState("starting");
       },
     };
 
@@ -141,15 +150,18 @@ export default function App() {
     >
       <MainTitle>Jogo da forca</MainTitle>
       <GameWrap>
-        <GameData isLoading={gameState === 'starting'} gameData={gameData} />
+        <GameData isLoading={gameState === "starting"} gameData={gameData} />
         <hr />
         <Keyboard
           alreadyTried={gameData.triedLetters}
           handleKeyboardButton={handleKeyClick}
-          isBlocked={gameState !== 'waiting'}
+          isBlocked={gameState !== "waiting"}
         />
       </GameWrap>
-      <GameRanking tableLabel="Os melhores dos últimos 7 dias" rankingData={rankingTopTenState} />
+      <GameRanking
+        tableLabel="Os melhores dos últimos 7 dias"
+        rankingData={rankingTopTenState}
+      />
       <GameRanking tableLabel="Ranking geral" rankingData={rankingState} />
       <Modal
         isOpened={openedModal}

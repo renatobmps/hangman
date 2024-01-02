@@ -1,6 +1,6 @@
 import axios from "axios";
 import checkLogin from "../../helpers/checkLogin";
-import { GameState } from ".";
+import { GameState } from "..";
 import { IGameDataRanking, IGameState } from "../../adapters/interfaces";
 
 interface HandleStarting {
@@ -24,16 +24,17 @@ export default async function handleStarting({
 }: HandleStarting) {
   try {
     checkLogin();
+    console.log({ env: process.env });
     const gameRequest = axios.get<IGameState>(
-      `${process.env.REACT_APP_API_ENDPOINT}/games/start`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/games/start`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
     const responseRanking = axios.get<IGameDataRanking[]>(
-      `${process.env.REACT_APP_API_ENDPOINT}/users/`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/users/`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
     const responseRankingTopTen = axios.get<IGameDataRanking[]>(
-      `${process.env.REACT_APP_API_ENDPOINT}/ranking`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/ranking`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
 
