@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "homepage": "https://forca-renatobmps.vercel.app/",
   "scripts": {
+    "api:dev": "cd server && npm ci && npm run dev",
+    "prestart": "npm run api:dev &",
+    "poststart": "kill-port 8080 && kill-port 3000 && cd server && npm run infra:down",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "kill-port": "^2.0.1"
   }
 }
