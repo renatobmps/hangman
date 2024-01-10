@@ -20,16 +20,9 @@ class Game {
       const { id } = req.user;
       const hasGame = !!(await Game.userGame(id));
 
-      async function getWord() {
-        const dbResult = await Game.generateSecretWord(id);
-        console.log({ dbResult });
-
-        return dbResult;
-      }
-
       const game = new Game({
         ...req.user,
-        ...(hasGame ? hasGame : await getWord()),
+        ...(hasGame ? hasGame : await Game.generateSecretWord(id)),
       });
       await game.updateStatus();
       res.status(200).json(game.status);
