@@ -44,6 +44,22 @@ export default function App() {
   const [openedModal, setOpenedModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
+  useEffect(() => {
+    console.clear();
+    if (!gameData.difficult && !gameData.word && !gameData.hint) {
+      setGameData((current) => {
+        return {
+          ...current,
+          difficult: 100,
+          hint: "Quem zerou o jogo? 👏",
+          word: (current.user ?? "You") + " 😎",
+          triedLetters: "abcdefghijklmnopqrstuvwxyz".split(""),
+        };
+      });
+    }
+    console.log({ gameData });
+  }, [gameData]);
+
   const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(
     null
   );

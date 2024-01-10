@@ -25,15 +25,15 @@ export default async function handleStarting({
   try {
     checkLogin();
     const gameRequest = axios.get<IGameState>(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/games/start`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/games/start`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
     const responseRanking = axios.get<IGameDataRanking[]>(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/users/`,
-      { headers: { authorization: localStorage.getItem("token") || "" } }
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/users`,
+      { headers: { authorization: localStorage.getItem("token") || "", 'Content-Type': 'application/json' } }
     );
     const responseRankingTopTen = axios.get<IGameDataRanking[]>(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://0.0.0.0:8080'}/ranking`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/ranking`,
       { headers: { authorization: localStorage.getItem("token") || "" } }
     );
 
