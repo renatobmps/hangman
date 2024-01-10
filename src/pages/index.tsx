@@ -51,7 +51,7 @@ export default function App() {
           ...current,
           difficult: 100,
           hint: "Quem zerou o jogo? 👏",
-          word: (current.user ?? "You") + " 😎",
+          word: `${current.user ?? "You"} 😎`,
           triedLetters: "abcdefghijklmnopqrstuvwxyz".split(""),
         };
       });
