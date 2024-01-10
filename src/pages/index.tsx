@@ -45,7 +45,6 @@ export default function App() {
   const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
-    console.clear();
     if (!gameData.difficult && !gameData.word && !gameData.hint) {
       setGameData((current) => {
         return {
@@ -57,7 +56,6 @@ export default function App() {
         };
       });
     }
-    console.log({ gameData });
   }, [gameData]);
 
   const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(
