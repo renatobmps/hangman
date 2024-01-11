@@ -6,7 +6,9 @@ import GameWrap from "../components/Style/GameWrap";
 import { Modal } from "../components/Modal";
 import { GameRanking } from "../components/GameRanking";
 import MainTitle from "../components/Style/MainTitle";
-import useHome from "../hooks/useHome";
+import useHome, { GameState as TGameState } from "../hooks/useHome";
+
+export type GameState = TGameState;
 
 export default function App() {
   const {
