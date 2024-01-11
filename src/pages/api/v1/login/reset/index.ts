@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import login from "../../../../../../api/controllers/Login";
-import admLoginMiddleware from '../../../../../../api/middlewares/admLoginMiddleware'
+import login from "../../../../../../server/controllers/Login";
+import admLoginMiddleware from '../../../../../../server/middlewares/admLoginMiddleware'
 import ApiError from '../../../@types/ApiError';
 
 type Method = 'POST';

@@ -1,4 +1,3 @@
-require("dotenv").config();
 const config = {
   development: {
     username: process.env.POSTGRES_USER,

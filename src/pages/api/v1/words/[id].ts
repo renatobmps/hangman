@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import word from "../../../../../api/controllers/Words";
-import admLoginMiddleware from '../../../../../api/middlewares/admLoginMiddleware';
+import word from "../../../../../server/controllers/Words";
+import admLoginMiddleware from '../../../../../server/middlewares/admLoginMiddleware';
 import ApiError from '../../@types/ApiError';
 
 type Method = 'GET' | 'PUT' | 'DELETE';

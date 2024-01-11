@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import game from "../../../../../../api/controllers/Game";
-import loginMiddleware from '../../../../../../api/middlewares/loginMiddleware';
+import game from "../../../../../../server/controllers/Game";
+import loginMiddleware from '../../../../../../server/middlewares/loginMiddleware';
 import ApiError from '../../../@types/ApiError';
 
 type Method = 'POST';

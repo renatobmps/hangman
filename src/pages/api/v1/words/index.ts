@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import word from "../../../../../api/controllers/Words.js";
-import admLoginMiddleware from '../../../../../api/middlewares/admLoginMiddleware.js'
-import ApiError from '../../@types/ApiError.js';
+import word from "../../../../../server/controllers/Words.js";
+import admLoginMiddleware from '../../../../../server/middlewares/admLoginMiddleware'
+import ApiError from '../../@types/ApiError';
 
 type Method = 'POST' | 'GET';
 
