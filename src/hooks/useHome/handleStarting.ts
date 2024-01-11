@@ -1,6 +1,6 @@
 import axios from "axios";
 import checkLogin from "../../helpers/checkLogin";
-import { GameState } from "..";
+import { GameState } from "../../pages";
 import { IGameDataRanking, IGameState } from "../../adapters/interfaces";
 
 interface HandleStarting {
