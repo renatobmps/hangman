@@ -14,7 +14,7 @@ export async function submitCreateAccount(
       return alert("As senhas não conferem!");
 
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/users`,
+      '/api/v1/users',
       fields,
       { headers: { 'Content-Type': 'application/json' } },
     );

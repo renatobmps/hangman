@@ -46,7 +46,7 @@ export async function handleGameKeyboard({
 
   try {
     const response = await axios.post<TryResponse>(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/games/guess`,
+      '/api/v1/games/guess',
       { letter },
       { headers: { Authorization: localStorage.getItem("token") || "" } }
     );

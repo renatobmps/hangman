@@ -12,7 +12,7 @@ export async function submitLogin(
     event.preventDefault();
 
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/login`,
+      '/api/v1/login',
       fields
     );
     if (response.status !== 200) throw new Error(response.data);

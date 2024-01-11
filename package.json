@@ -6,7 +6,7 @@
     "build": "next build",
     "predev": "npm run services:up",
     "postdev": "npm run services:down",
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "services:down": "docker compose down -d",
     "services:stop": "docker compose stop -d",
     "services:up": "docker compose up -d"
