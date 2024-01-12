@@ -1,12 +1,16 @@
 import Sequelize, { DataTypes } from "sequelize";
-import configs from "../config/config";
 import TriedLetters from "./triedletters";
 import User from "./user";
 import UserWord from "./userword";
 import Word from "./word";
-const env = process.env.NODE_ENV || "development";
 
-const config = configs[env];
+const config = {
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
+  dialect: "postgres",
+  logging: false,
+};
 
 let sequelize;
 if (config.use_env_variable) {

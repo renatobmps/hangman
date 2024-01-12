@@ -1,8 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class TriedLetters extends Model {
     /**
      * Helper method for defining associations.
@@ -13,30 +10,33 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  TriedLetters.init({
-    letter: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[a-zA-Z]$/
+  TriedLetters.init(
+    {
+      letter: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          is: /^[a-zA-Z]$/,
+        },
+      },
+      idUserWords: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "UserWords",
+          key: "id",
+        },
+      },
+      correct: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
-    idUserWords: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'UserWords',
-        key: 'id',
-      },
-    },
-    correct: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-  }, {
-    sequelize,
-    modelName: 'TriedLetters',
-    raw: true,
-  });
+    {
+      sequelize,
+      modelName: "TriedLetters",
+      raw: true,
+    }
+  );
   return TriedLetters;
 };

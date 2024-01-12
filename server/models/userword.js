@@ -1,29 +1,29 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class UserWord extends Model {
     static associate(models) {
       UserWord.belongsTo(models.User, {
-        foreignKey: 'idUsers',
-        as: 'user'
+        foreignKey: "idUsers",
+        as: "user",
       });
       UserWord.belongsTo(models.Word, {
-        foreignKey: 'idWords',
-        as: 'word'
+        foreignKey: "idWords",
+        as: "word",
       });
     }
   }
-  UserWord.init({
-    idUsers: DataTypes.INTEGER,
-    idWords: DataTypes.INTEGER,
-    done: DataTypes.BOOLEAN,
-    initialLife: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'UserWord',
-    raw: true,
-  });
+  UserWord.init(
+    {
+      idUsers: DataTypes.INTEGER,
+      idWords: DataTypes.INTEGER,
+      done: DataTypes.BOOLEAN,
+      initialLife: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "UserWord",
+      raw: true,
+    }
+  );
   return UserWord;
 };

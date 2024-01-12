@@ -1,4 +1,4 @@
-import db from "../models/index.js";
+import db from "../models";
 // import { compare, hash } from "bcrypt";
 // import { sign } from "jsonwebtoken";
 // import createHash from "hash-generator";
