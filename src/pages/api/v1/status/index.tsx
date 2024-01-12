@@ -14,18 +14,7 @@ export default async function handler(
     Method,
     (req: NextApiRequest, res: NextApiResponse) => Promise<void>
   > = {
-    GET: () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(
-            res.json({
-              status: "ok",
-              time_stamp: Date.now(),
-              random: Math.floor(Math.random() * 1024),
-            })
-          );
-        }, 2000);
-      }),
+    GET: () => login.testFunc(req, res),
   };
 
   try {
