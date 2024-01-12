@@ -92,6 +92,7 @@ class Login {
                 time_stamp: Date.now(),
                 random: Math.floor(Math.random() * 1024),
                 counts: {},
+                message: error.message ?? error,
             });
         }
     }
