@@ -13,7 +13,7 @@ const Card = styled.main`
   padding: 1rem !important;
   width: 100%;
   max-width: 600px;
-  flex: none;
+  flex: none !important;
   line-height: 2rem;
 `;
 
