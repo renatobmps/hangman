@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes } from 'sequelize';
+import pg from 'pg';
 import TriedLetters from "./triedletters";
 
 export default {
@@ -9,7 +10,7 @@ export default {
                 process.env.POSTGRES_USER as string,
                 process.env.POSTGRES_PASSWORD as string,
                 {
-                    dialect: "postgres",
+                    dialectModule: pg,
                     logging: true,
                 }
             );
