@@ -1,4 +1,5 @@
 import Sequelize, { DataTypes } from "sequelize";
+import pg from "pg";
 import TriedLetters from "./triedletters";
 import User from "./user";
 import UserWord from "./userword";
