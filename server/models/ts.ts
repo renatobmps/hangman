@@ -12,8 +12,9 @@ export default {
                 {
                     dialect: 'postgres',
                     dialectModule: pg,
-                    logging: true,
                     host: 'abc',
+                    logging: true,
+                    ssl: true,
                 }
             );
 

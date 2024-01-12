@@ -13,7 +13,8 @@ let sequelize = new Sequelize(
     dialect: "postgres",
     dialectModule: pg,
     host: process.env.POSTGRES_HOST,
-    logging: true,
+    logging: process.env.NODE_ENV === "production",
+    ssl: process.env.NODE_ENV === "production",
   }
 );
 
