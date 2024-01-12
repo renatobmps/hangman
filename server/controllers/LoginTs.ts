@@ -1,4 +1,4 @@
-import db from "../models";
+import db from "../models/ts";
 // import { compare, hash } from "bcrypt";
 // import { sign } from "jsonwebtoken";
 // import createHash from "hash-generator";
@@ -69,9 +69,9 @@ class Login {
     public static async testFunc(req: NextApiRequest, res: NextApiResponse) {
         try {
         const triedLetters = await db.TriedLetters.findAndCountAll();
-        const user = await db.User.findAndCountAll();
-        const userWord = await db.UserWord.findAndCountAll();
-        const word = await db.Word.findAndCountAll();
+            // const user = await db.User.findAndCountAll();
+            // const userWord = await db.UserWord.findAndCountAll();
+            // const word = await db.Word.findAndCountAll();
 
         res.json({
             status: "ok",
@@ -79,9 +79,9 @@ class Login {
             random: Math.floor(Math.random() * 1024),
             counts: {
                 triedLetters: triedLetters.count,
-                user: user.count,
-                userWord: userWord.count,
-                word: word.count,
+                // user: user.count,
+                // userWord: userWord.count,
+                // word: word.count,
             },
         });
         } catch (e) {
@@ -91,8 +91,7 @@ class Login {
                 status: "ko",
                 time_stamp: Date.now(),
                 random: Math.floor(Math.random() * 1024),
-                counts: {
-                },
+                counts: {},
             });
         }
     }
