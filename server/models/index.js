@@ -4,25 +4,16 @@ import User from "./user";
 import UserWord from "./userword";
 import Word from "./word";
 
-const config = {
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
-  dialect: "postgres",
-  logging: false,
-};
-
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
+let sequelize = new Sequelize(
+  process.env.POSTGRES_DB,
+  process.env.POSTGRES_USER,
+  process.env.POSTGRES_PASSWORD,
+  {
+    dialect: "postgres",
+    dialectModule: pg,
+    logging: true,
+  }
+);
 
 const db = {
   TriedLetters: TriedLetters(sequelize, DataTypes),
