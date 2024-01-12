@@ -68,36 +68,36 @@ class Login {
 
     public static async testFunc(req: NextApiRequest, res: NextApiResponse) {
         const env = process.env;
+        const rest = {
+            time_stamp: Date.now(),
+            random: Math.floor(Math.random() * 1024),
+            env,
+            dbConfig,
+        }
         try {
-        const triedLetters = await db.TriedLetters.findAndCountAll();
+            const triedLetters = await db.TriedLetters.findAndCountAll();
             // const user = await db.User.findAndCountAll();
             // const userWord = await db.UserWord.findAndCountAll();
             // const word = await db.Word.findAndCountAll();
 
 
-        res.json({
-            status: "ok",
-            time_stamp: Date.now(),
-            random: Math.floor(Math.random() * 1024),
-            counts: {
-                triedLetters: triedLetters.count,
-                // user: user.count,
-                // userWord: userWord.count,
-                // word: word.count,
-            },
-            env,
-        });
+            res.json({
+                status: "ok",
+                counts: {
+                    triedLetters: triedLetters.count,
+                    // user: user.count,
+                    // userWord: userWord.count,
+                    // word: word.count,
+                },
+                ...rest,
+            });
         } catch (e) {
             const error: Error = e as Error;
 
             res.json({
                 status: "ko",
-                time_stamp: Date.now(),
-                random: Math.floor(Math.random() * 1024),
-                counts: {},
                 message: error.message ?? error,
-                env,
-                dbConfig,
+                ...rest,
             });
         }
     }
