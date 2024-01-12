@@ -65,16 +65,10 @@ class Login {
   }
 
   static async testFunc(req, res) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(
-          res.json({
-            status: "ok",
-            time_stamp: Date.now(),
-            random: Math.floor(Math.random() * 1024),
-          })
-        );
-      }, 2000);
+    res.json({
+      status: "ok",
+      time_stamp: Date.now(),
+      random: Math.floor(Math.random() * 1024),
     });
   }
 }
