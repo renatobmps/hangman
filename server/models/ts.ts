@@ -1,8 +1,22 @@
-import Sequelize, { DataTypes } from "sequelize";
+import { Sequelize, DataTypes } from 'sequelize';
 import TriedLetters from "./triedletters";
 
 export default {
     TriedLetters: {
-        findAndCountAll: async () => ({ count: 15 })
+        findAndCountAll: async () => {
+            const sequelize = new Sequelize(
+                process.env.POSTGRES_DB as string,
+                process.env.POSTGRES_USER as string,
+                process.env.POSTGRES_PASSWORD as string,
+                {
+                    dialect: "postgres",
+                    logging: true,
+                }
+            );
+
+            // TriedLetters()
+
+            return { count: 15 }
+        }
     }
 }
