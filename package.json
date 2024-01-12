@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/node": "20.10.8",
+    "@types/pg": "^8.10.9",
     "@types/react": "18.2.47",
     "@types/styled-components": "^5.1.26",
     "typescript": "5.3.3"
