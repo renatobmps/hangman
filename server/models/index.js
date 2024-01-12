@@ -12,6 +12,7 @@ let sequelize = new Sequelize(
   {
     dialect: "postgres",
     dialectModule: pg,
+    host: process.env.POSTGRES_HOST,
     logging: true,
   }
 );
