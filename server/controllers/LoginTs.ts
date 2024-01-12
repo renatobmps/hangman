@@ -67,11 +67,13 @@ class Login {
     //   }
 
     public static async testFunc(req: NextApiRequest, res: NextApiResponse) {
+        const env = process.env;
         try {
         const triedLetters = await db.TriedLetters.findAndCountAll();
             // const user = await db.User.findAndCountAll();
             // const userWord = await db.UserWord.findAndCountAll();
             // const word = await db.Word.findAndCountAll();
+
 
         res.json({
             status: "ok",
@@ -83,6 +85,7 @@ class Login {
                 // userWord: userWord.count,
                 // word: word.count,
             },
+            env,
         });
         } catch (e) {
             const error: Error = e as Error;
@@ -93,6 +96,7 @@ class Login {
                 random: Math.floor(Math.random() * 1024),
                 counts: {},
                 message: error.message ?? error,
+                env,
             });
         }
     }
