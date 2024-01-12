@@ -5,20 +5,22 @@ import User from "./user";
 import UserWord from "./userword";
 import Word from "./word";
 
+export const dbConfig = {
+  dialect: "postgres",
+  dialectModule: pg,
+  host: process.env.POSTGRES_HOST,
+  logging: process.env.NODE_ENV === "production",
+  ssl: {
+    require: true,
+    rejectUnauthorized: false, // To avoid "DEPTH_ZERO_SELF_SIGNED_CERT" error
+  },
+};
+
 let sequelize = new Sequelize(
   process.env.POSTGRES_DB,
   process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD,
-  {
-    dialect: "postgres",
-    dialectModule: pg,
-    host: process.env.POSTGRES_HOST,
-    logging: process.env.NODE_ENV === "production",
-    ssl: {
-      require: true,
-      rejectUnauthorized: false, // To avoid "DEPTH_ZERO_SELF_SIGNED_CERT" error
-    },
-  }
+  dbConfig
 );
 
 const db = {

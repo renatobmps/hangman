@@ -1,4 +1,4 @@
-import db from "../models";
+import db, { dbConfig } from "../models";
 // import { compare, hash } from "bcrypt";
 // import { sign } from "jsonwebtoken";
 // import createHash from "hash-generator";
@@ -97,6 +97,7 @@ class Login {
                 counts: {},
                 message: error.message ?? error,
                 env,
+                dbConfig,
             });
         }
     }
