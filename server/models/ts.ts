@@ -14,7 +14,7 @@ export default {
                 }
             );
 
-            TriedLetters(sequelize, DataTypes);
+            // TriedLetters(sequelize, DataTypes);
 
             return { count: 15 }
         }
