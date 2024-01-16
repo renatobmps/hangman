@@ -5,6 +5,10 @@ interface StatusState {
   status: "ok" | "ko";
   time_stamp: number;
   random: number;
+  triedLettersDB: number;
+  userDB: number;
+  userWordDB: number;
+  wordDB: number;
 }
 
 const Card = styled.main`
@@ -33,7 +37,14 @@ export default function Login() {
 
           setStatus(null);
         } else {
-          setStatus(data);
+          const adapter: StatusState = {
+            ...data,
+            triedLettersDB: data?.counts?.triedLetters ?? 0,
+            userDB: data?.counts?.user ?? 0,
+            userWordDB: data?.counts?.userWord ?? 0,
+            wordDB: data?.counts?.word ?? 0,
+          };
+          setStatus(adapter);
         }
       });
   }, []);
@@ -63,6 +74,10 @@ export default function Login() {
             {status.time_stamp ? formatDate(new Date(status.time_stamp)) : "-"}
           </p>
           <p>Random: {status.random}</p>
+          <p>Total of words: {status.wordDB}</p>
+          <p>Number of users: {status.userDB}</p>
+          <p>Number of games: {status.userWordDB}</p>
+          <p>Total letters used: {status.triedLettersDB}</p>
         </div>
       )}
     </Card>

@@ -77,17 +77,17 @@ class Login {
     try {
       await db.sequelize.sync();
       const triedLetters = await db.TriedLetters.findAndCountAll();
-      // const user = await db.User.findAndCountAll();
-      // const userWord = await db.UserWord.findAndCountAll();
-      // const word = await db.Word.findAndCountAll();
+      const user = await db.User.findAndCountAll();
+      const userWord = await db.UserWord.findAndCountAll();
+      const word = await db.Word.findAndCountAll();
 
       res.json({
         status: "ok",
         counts: {
           triedLetters: triedLetters.count,
-          // user: user.count,
-          // userWord: userWord.count,
-          // word: word.count,
+          user: user.count,
+          userWord: userWord.count,
+          word: word.count,
         },
         ...rest,
       });
