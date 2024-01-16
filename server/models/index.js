@@ -14,6 +14,9 @@ export const dbConfig = {
     require: true,
     rejectUnauthorized: false, // To avoid "DEPTH_ZERO_SELF_SIGNED_CERT" error
   },
+  dialectOptions: {
+    ssl: true,
+  },
 };
 
 let sequelize = new Sequelize(
