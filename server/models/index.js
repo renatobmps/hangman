@@ -11,7 +11,7 @@ export const dbConfig = {
   host: process.env.POSTGRES_HOST,
   logging: process.env.NODE_ENV === "production",
   dialectOptions: {
-    ssl: true,
+    ssl: process.env.NODE_ENV === "production",
   },
 };
 

@@ -4,13 +4,16 @@
   "homepage": "https://forca-renatobmps.vercel.app/",
   "scripts": {
     "build": "next build",
+    "debug:git": "clear && git add -A && git commit -am 'debugging server' && git push origin dev && npm run dev",
+    "debug:local": "clear && rm -fr .next/ && rm -fr node_modules/ && npm i && npm run build && npm start && rm -fr .next/ && rm -fr node_modules/ && npm i && npm run dev",
     "predev": "npm run services:up",
     "postdev": "npm run services:down",
-    "dev": "next dev",
+    "dev": "NODE_ENV=development next dev",
     "services:down": "docker compose down -d",
     "services:stop": "docker compose stop -d",
     "services:up": "docker compose up -d",
-    "start": "next start"
+    "start": "NODE_ENV=production next start",
+    "test": "NODE_ENV=test echo not implemented && exit 1"
   },
   "private": true,
   "dependencies": {

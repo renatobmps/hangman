@@ -1,4 +1,4 @@
-import db from "../models";
+import db, { dbConfig } from "../models";
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import createHash from "hash-generator";
@@ -64,12 +64,39 @@ class Login {
     }
   }
 
-  static async testFunc(req, res) {
-    res.json({
-      status: "ok",
+  static async testFunc(_, res) {
+    const env = process.env;
+    const rest = {
       time_stamp: Date.now(),
       random: Math.floor(Math.random() * 1024),
-    });
+      env,
+      dbConfig,
+    };
+    try {
+      const triedLetters = await db.TriedLetters.findAndCountAll();
+      // const user = await db.User.findAndCountAll();
+      // const userWord = await db.UserWord.findAndCountAll();
+      // const word = await db.Word.findAndCountAll();
+
+      res.json({
+        status: "ok",
+        counts: {
+          triedLetters: triedLetters.count,
+          // user: user.count,
+          // userWord: userWord.count,
+          // word: word.count,
+        },
+        ...rest,
+      });
+    } catch (e) {
+      const error = e;
+
+      res.json({
+        status: "ko",
+        message: error.message ?? error,
+        ...rest,
+      });
+    }
   }
 }
 
