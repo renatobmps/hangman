@@ -10,10 +10,6 @@ export const dbConfig = {
   dialectModule: pg,
   host: process.env.POSTGRES_HOST,
   logging: process.env.NODE_ENV === "production",
-  ssl: {
-    require: true,
-    rejectUnauthorized: false, // To avoid "DEPTH_ZERO_SELF_SIGNED_CERT" error
-  },
   dialectOptions: {
     ssl: true,
   },
