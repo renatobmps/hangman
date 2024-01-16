@@ -1,9 +1,9 @@
 import Sequelize, { DataTypes } from "sequelize";
 import pg from "pg";
-import TriedLetters from "./triedletters";
-import User from "./user";
-import UserWord from "./userword";
-import Word from "./word";
+import TriedLetters from "./triedletters.js";
+import User from "./user.js";
+import UserWord from "./userword.js";
+import Word from "./word.js";
 
 export const dbConfig = {
   dialect: "postgres",
@@ -14,6 +14,13 @@ export const dbConfig = {
     ssl: process.env.NODE_ENV === "production",
   },
 };
+
+console.log(
+  process.env.POSTGRES_DB,
+  process.env.POSTGRES_USER,
+  process.env.POSTGRES_PASSWORD,
+  dbConfig
+);
 
 let sequelize = new Sequelize(
   process.env.POSTGRES_DB,

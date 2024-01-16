@@ -96,6 +96,7 @@ class Game {
 
   static async userGame(userId) {
     try {
+      await db.sequelize.sync();
       const playedWords = await db.UserWord.findAll({
         raw: true,
         where: { idUsers: userId },
@@ -132,6 +133,7 @@ class Game {
 
   static async generateSecretWord(userId) {
     try {
+      await db.sequelize.sync();
       const playedWords = await db.UserWord.findAll({
         where: { idUsers: userId },
       });
@@ -199,6 +201,7 @@ class Game {
 
   async updateStatus() {
     try {
+      await db.sequelize.sync();
       let triedLetters = await db.TriedLetters.findAll({
         raw: true,
         where: { idUserWords: this._game_id },
@@ -213,6 +216,7 @@ class Game {
 
   async tryLetter(letter, idLetter = null) {
     try {
+      await db.sequelize.sync();
       if (this._state !== "playing") throw new Error("You are not playing");
       if (this._state === "finished") throw new Error("Game is finished");
       if (this._state === "lost") throw new Error("Game is lost");

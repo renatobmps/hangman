@@ -3,6 +3,7 @@ import database from "../models";
 class Word {
   static async getAllWords(req, res) {
     try {
+      await db.sequelize.sync();
       let words = await database.Word.findAll();
       res.status(200).json(words);
     } catch (error) {
@@ -13,6 +14,7 @@ class Word {
   static async getWordById(req, res) {
     const { id } = req.query;
     try {
+      await db.sequelize.sync();
       const word = await database.Word.findByPk(id);
       res.status(200).json(word);
     } catch (error) {
@@ -22,6 +24,7 @@ class Word {
 
   static async createWord(req, res) {
     try {
+      await db.sequelize.sync();
       let { word, hint, description } = req.body;
       word = word.toLowerCase();
       const response = await database.Word.create({ word, hint, description });
@@ -33,6 +36,7 @@ class Word {
 
   static async updateWord(req, res) {
     try {
+      await db.sequelize.sync();
       const { id } = req.query;
       let { word, hint, description } = req.body;
 
@@ -52,6 +56,7 @@ class Word {
 
   static async deleteWord(req, res) {
     try {
+      await db.sequelize.sync();
       const { id } = req.query;
 
       const word = await database.Word.findByPk(id);

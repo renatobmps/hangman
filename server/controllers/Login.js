@@ -12,6 +12,7 @@ class Login {
     const { user, password } = req.body;
 
     try {
+      await db.sequelize.sync();
       const userData = await db.User.findOne({
         where: {
           name: user,
@@ -46,6 +47,7 @@ class Login {
     const { username } = req.body;
 
     try {
+      await db.sequelize.sync();
       const userData = await db.User.findOne({
         where: { name: username },
       });
@@ -73,6 +75,7 @@ class Login {
       dbConfig,
     };
     try {
+      await db.sequelize.sync();
       const triedLetters = await db.TriedLetters.findAndCountAll();
       // const user = await db.User.findAndCountAll();
       // const userWord = await db.UserWord.findAndCountAll();
