@@ -4,7 +4,7 @@ import { Op } from "sequelize";
 class User {
   static async getTopTenUsers(req, res) {
     try {
-      await db.sequelize.sync();
+      await database.sequelize.sync();
       let users = await database.User.findAll();
       users = users.map((user) => {
         return {
@@ -41,7 +41,7 @@ class User {
 
   static async deleteUser(req, res) {
     try {
-      await db.sequelize.sync();
+      await database.sequelize.sync();
       const { id } = req.query;
       const user = await database.User.findByPk(id);
       await user.destroy();
@@ -55,7 +55,7 @@ class User {
 
   static async createUser(req, res) {
     try {
-      await db.sequelize.sync();
+      await database.sequelize.sync();
       req.body.password = await bcrypt.hash(req.body.password, 10);
       const user = await database.User.create(req.body);
       user.password = undefined;
@@ -68,7 +68,7 @@ class User {
   static async getUserPerformance(idUser, sinceAt = "1900-01-01") {
     return new Promise(async (resolve, reject) => {
       try {
-        await db.sequelize.sync();
+        await database.sequelize.sync();
         const userGames = await database.UserWord.findAll({
           raw: true,
           where: {
@@ -145,7 +145,11 @@ class User {
 
   static async getAllUsers(req, res) {
     try {
-      await db.sequelize.sync();
+      try {
+        await database.sequelize.sync();
+      } catch (e) {
+        throw new Error(e.message ?? e ?? "Problem to sync database");
+      }
       let users = await database.User.findAll();
       users = users.map((user) => {
         return {
@@ -166,7 +170,7 @@ class User {
 
   static async getUserById(req, res) {
     try {
-      await db.sequelize.sync();
+      await database.sequelize.sync();
       const { id } = req.query;
       const user = await database.User.findOne({
         raw: true,
@@ -184,7 +188,7 @@ class User {
 
   static async updateUser(req, res) {
     try {
-      await db.sequelize.sync();
+      await database.sequelize.sync();
       const { id } = req.user;
       if (req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password, 10);

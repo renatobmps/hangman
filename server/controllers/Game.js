@@ -18,11 +18,12 @@ class Game {
   static async startGame(req, res) {
     try {
       const { id } = req.user;
-      const hasGame = !!(await Game.userGame(id));
+      const gameData = await Game.userGame(id);
+      const hasGame = !!gameData;
 
       const game = new Game({
         ...req.user,
-        ...(hasGame ? hasGame : await Game.generateSecretWord(id)),
+        ...(hasGame ? gameData : await Game.generateSecretWord(id)),
       });
       await game.updateStatus();
       res.status(200).json(game.status);

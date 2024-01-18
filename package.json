@@ -9,7 +9,6 @@
     "predev": "npm run services:up",
     "postdev": "npm run services:down",
     "dev": "NODE_ENV=development next dev",
-    "prepare": "node ./prepare.js &",
     "services:down": "docker compose down -d",
     "services:stop": "docker compose stop -d",
     "services:up": "docker compose up -d",

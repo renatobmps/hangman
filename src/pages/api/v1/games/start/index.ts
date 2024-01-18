@@ -18,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!chosen) {
             throw new ApiError(`Method ${method} not allowed`, 405);
         }
+
         await methods[method as Method](req, res);
     } catch (err) {
         const error = err as ApiError;
