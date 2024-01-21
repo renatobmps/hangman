@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Style = styled(Link)`
   color: var(--color-1);
@@ -15,5 +15,5 @@ const Style = styled(Link)`
 
 export default function A(props: any) {
   const correctTo = props.href;
-  return <Style {...props} to={correctTo} />;
+  return <Style {...props} href={correctTo} />;
 }

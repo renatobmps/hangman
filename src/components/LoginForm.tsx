@@ -22,7 +22,7 @@ export default function LoginForm(props: ILoginFormProps) {
         stateHandle={props.handleFields}
         stateName="password"
         stateValue={props.fieldState.password}
-        minLength="5"
+        minLength="1"
         required
       />
       <A href="/register">Cadastrar-se</A>

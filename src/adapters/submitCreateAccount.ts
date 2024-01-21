@@ -14,15 +14,18 @@ export async function submitCreateAccount(
       return alert("As senhas não conferem!");
 
     const response = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/users`,
-      fields
+      '/api/v1/users',
+      fields,
+      { headers: { 'Content-Type': 'application/json' } },
     );
-    if (response.status !== 201) throw new Error(response.data);
+    if (response.status !== 201) throw new Error(response.data ?? response);
     window.location.href = "/login";
   } catch (error: any) {
     alert(
-      error.response.data.error ||
-      error.response.statusText ||
+      error?.response?.data?.error ??
+      error?.response?.statusText ??
+      error?.message ??
+      error ??
       "Ocorreu um erro!"
     );
   } finally {

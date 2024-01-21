@@ -14,7 +14,7 @@ export async function submitPassword(
       return alert("As senhas não conferem!");
 
     const response = await axios.put(
-      `${process.env.REACT_APP_API_ENDPOINT}/users/`,
+      '/api/v1/users',
       fields,
       {
         headers: { authorization: localStorage.getItem("token") || "" },

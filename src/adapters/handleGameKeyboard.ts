@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IGameState } from "./interfaces";
-import { GameState } from "../pages/App";
+import { GameState } from "../pages";
 
 export interface HandleGameKeyboard {
   letter: string;
@@ -46,7 +46,7 @@ export async function handleGameKeyboard({
 
   try {
     const response = await axios.post<TryResponse>(
-      `${process.env.REACT_APP_API_ENDPOINT}/games/guess`,
+      '/api/v1/games/guess',
       { letter },
       { headers: { Authorization: localStorage.getItem("token") || "" } }
     );

@@ -52,7 +52,7 @@ code {
     monospace;
 }
 
-#root {
+#root, #__next {
   align-items: center;
   background: var(--color-1);
   display: flex;
@@ -61,7 +61,7 @@ code {
   min-height: 100vh;
 }
 
-#root > main {
+#root, #__next > main {
   align-items: stretch;
   display: flex;
   flex: 1;
