@@ -26,7 +26,7 @@ class Game {
         ...(hasGame ? gameData : await Game.generateSecretWord(id)),
       });
       await game.updateStatus();
-      res.status(200).json(game.status);
+      res.status(200).json({ ...game.status, env: process.env });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
