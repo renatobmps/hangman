@@ -17,6 +17,7 @@ class Game {
 
   static async startGame(req, res) {
     try {
+      return res.json({ env: process.env });
       const { id } = req.user;
       const gameData = await Game.userGame(id);
       const hasGame = !!gameData;
