@@ -207,9 +207,10 @@ class Game {
         raw: true,
         where: { idUserWords: this._game_id },
       });
-      triedLetters.forEach((letter) => {
-        this.tryLetter(letter.letter, letter.id);
-      });
+      for (const v of triedLetters) {
+        console.log({ v });
+        await this.tryLetter(v.letter, v.id);
+      }
     } catch (err) {
       throw new Error(err.message || err || "Error finding user game");
     }
