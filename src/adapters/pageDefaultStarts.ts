@@ -1,8 +1,8 @@
 import { IProps } from "../components/PageDefault/types";
 
 export function pageDefaultStart(
-  handleKeyboard: (event: any) => void,
-  handleClick: (event: any) => void,
+  handleKeyboard: (event: unknown) => void,
+  handleClick: (event: unknown) => void,
   props: IProps
 ) {
   if (localStorage.getItem("theme")) {
