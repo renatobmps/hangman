@@ -208,7 +208,6 @@ class Game {
         where: { idUserWords: this._game_id },
       });
       for (const v of triedLetters) {
-        console.log({ v });
         await this.tryLetter(v.letter, v.id);
       }
     } catch (err) {
