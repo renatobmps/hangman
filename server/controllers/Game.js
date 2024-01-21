@@ -17,6 +17,7 @@ class Game {
 
   static async startGame(req, res) {
     try {
+      console.log("ENV:", process.env);
       const { id } = req.user;
       const gameData = await Game.userGame(id);
       const hasGame = !!gameData;
@@ -26,7 +27,7 @@ class Game {
         ...(hasGame ? gameData : await Game.generateSecretWord(id)),
       });
       await game.updateStatus();
-      res.status(200).json({ ...game.status, env: process.env });
+      res.status(200).json(game.status);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
