@@ -91,8 +91,12 @@ export default function useHome() {
   const [gameState, setGameState] = useState<GameState>("starting");
   useEffect(() => {
     const stateHandlers: { [key in GameState]: () => void } = {
-      starting: () =>
-        handleStarting({
+      starting: () => {
+        if (!gameData.word) {
+          window.location.reload();
+        }
+
+        return handleStarting({
           setModalMessage,
           setModalOpen: setOpenedModal,
           setGameData,
@@ -103,7 +107,8 @@ export default function useHome() {
             userContext && userContext.setUser
               ? userContext.setUser({ username })
               : null,
-        }),
+        });
+      },
       waiting: () => {},
       checking: () => {},
       won: () => {
