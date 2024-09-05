@@ -32,9 +32,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <DefaultSeo {...{
       title: 'Forca',
       description: 'Um jogo da forca simples e muito divertido. Venha desafiar os outros jogadores e mostre que você é o mestre das palavras',
-      canonical: 'https://forca-renatobmps.vercel.app/',
+      canonical: 'https://forca-wheat.vercel.app/',
       openGraph: {
-        url: 'https://forca-renatobmps.vercel.app/',
+        url: 'https://forca-wheat.vercel.app/',
         type: 'website',
         siteName: 'Forca',
         description: 'Um jogo da forca simples e muito divertido. Venha desafiar os outros jogadores e mostre que você é o mestre das palavras',
@@ -44,13 +44,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           height: 630,
           alt: 'Jogo da Forca',
           type: 'image',
-          secureUrl: 'https://forca-renatobmps.vercel.app/og_bg.jpg',
+          secureUrl: 'https://forca-wheat.vercel.app/og_bg.jpg',
         }],
         locale: 'pt_BR',
       },
       twitter: {
         cardType: 'summary_large_image',
-        site: 'https://forca-renatobmps.vercel.app/',
+        site: 'https://forca-wheat.vercel.app/',
         handle: '@forca-renatobmps',
       },
       themeColor: '#009688'

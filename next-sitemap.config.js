@@ -1,12 +1,12 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-  siteUrl: 'https://forca-renatobmps.vercel.app/',
+  siteUrl: 'https://forca-wheat.vercel.app/',
   priority: 0.7,
   generateRobotsTxt: true,
   exclude: ['/server-sitemap-index.xml'],
   robotsTxtOptions: {
     additionalSitemaps: [
-      'https://forca-renatobmps.vercel.app/server-sitemap-index.xml',
+      'https://forca-wheat.vercel.app/server-sitemap-index.xml',
     ],
   },
 }

@@ -1,7 +1,7 @@
 {
   "name": "hangman",
   "version": "0.1.0",
-  "homepage": "https://forca-renatobmps.vercel.app/",
+  "homepage": "https://forca-wheat.vercel.app/",
   "scripts": {
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
