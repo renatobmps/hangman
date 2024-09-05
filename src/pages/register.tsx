@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import LoginPanel from "../components/Style/LoginPanel";
 import CreateUserForm from "../components/CreateUserForm";
 import { handleFields } from "../adapters/handleFields";
@@ -14,7 +14,9 @@ export default function CreateLogin() {
 
   return (
     <>
-      <LoginPanel onSubmit={(event: any) => submitCreateAccount(event, fields)}>
+      <LoginPanel onSubmit={(event: FormEvent) => submitCreateAccount(event, fields)} seoConfig={{
+        title: 'Cadastro'
+      }}>
         <CreateUserForm
           fieldState={fields}
           handleFields={(event: any) => handleFields(event, setFields, fields)}

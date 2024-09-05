@@ -4,10 +4,12 @@ import Footer from "../Footer";
 import Menu from "../Menu";
 import { Modal } from "../Modal";
 import { IProps } from "./types";
+import SeoHead from "../seo_head";
 
 export default function PageDefault(props: IProps) {
   const [openedModal, setOpenedModal] = useState(true);
   const [shouldShowModal, setShowModal] = useState(false);
+  const [isPageMounted, setPageMounted] = useState<boolean>(false);
 
   useEffect(() => {
     pageDefaultStart(handleKeyboard, handleClick, props);
@@ -17,6 +19,7 @@ export default function PageDefault(props: IProps) {
         : false;
 
     setShowModal(modal);
+    setPageMounted(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,8 +36,9 @@ export default function PageDefault(props: IProps) {
     setOpenedModal(false);
   };
 
-  return (
+  return isPageMounted && (
     <>
+      {props.seoConfig && <SeoHead {...props.seoConfig} />}
       <Menu />
       <main>{props.children}</main>
       <Footer />

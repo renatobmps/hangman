@@ -1,4 +1,6 @@
+import { FormHTMLAttributes, PropsWithChildren } from "react";
 import styled from "styled-components";
+import SeoHeadComponent, { SeoHead } from "../seo_head";
 
 const Style = styled.form`
   align-items: flex-end;
@@ -14,6 +16,13 @@ const Style = styled.form`
   width: 100%;
 `;
 
-export default function LoginPanel(props: any) {
-  return <Style {...props} />;
+export interface LoginPanel extends PropsWithChildren, FormHTMLAttributes<HTMLFormElement> {
+  seoConfig?: SeoHead
+}
+
+export default function LoginPanel(props: LoginPanel) {
+  return <Style {...props}>
+    {props.seoConfig && <SeoHeadComponent {...props.seoConfig} />}
+    {props.children}
+  </Style>
 }
