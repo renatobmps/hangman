@@ -8,6 +8,7 @@ export default function NotFound() {
       userData={{
         name: "404",
       }}
+      seoConfig={{ title: 'Página não encontrada' }}
     >
       <h2>Não encontrei essa página</h2>
       <A href="/">Voltar ao início</A>

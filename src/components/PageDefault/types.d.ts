@@ -1,4 +1,5 @@
 import { JSXElementConstructor, ReactElement, ReactFragment } from "react";
+import { SeoHead } from "../seo_head";
 
 export interface IProps {
   userData: { name: string };
@@ -8,4 +9,5 @@ export interface IProps {
   callbackKeydown?: (event: any) => any;
   callbackClick?: (event: any) => any;
   pageTitle?: string;
+  seoConfig?: SeoHead;
 }

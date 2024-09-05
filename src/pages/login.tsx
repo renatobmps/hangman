@@ -13,7 +13,9 @@ export default function Login() {
 
   return (
     <>
-      <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)}>
+      <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)} seoConfig={{
+        title: 'Login'
+      }}>
         <LoginForm
           fieldState={fields}
           handleFields={(event: any) => handleFields(event, setFields, fields)}

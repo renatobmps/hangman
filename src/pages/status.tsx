@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import SeoHead from "../components/seo_head";
 
 interface StatusState {
   status: "ok" | "ko";
@@ -65,6 +66,7 @@ export default function Login() {
 
   return (
     <Card>
+      <SeoHead title='Status' />
       <h1>Status page</h1>
       {status && (
         <div>
