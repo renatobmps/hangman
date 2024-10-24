@@ -18,6 +18,6 @@
     "removeComments": true,
     "incremental": true
   },
-  "include": ["src", "api/controllers/Game.js"],
+  "include": ["src", "*.d.ts"],
   "exclude": ["node_modules"]
 }

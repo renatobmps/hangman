@@ -13,6 +13,7 @@ export default function Login() {
 
   return (
     <>
+      <h1>{process.env.NODE_ENV}</h1>
       <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)} seoConfig={{
         title: 'Login'
       }}>
