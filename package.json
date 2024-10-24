@@ -5,21 +5,22 @@
   "scripts": {
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "predev": "npm run services:up -d",
-    "dev": "NODE_ENV=development next dev",
-    "postdev": "npm run services:down",
+    "dev": "next dev",
+    "dev:docker": "npm run services:up app --build",
     "lint": "next lint",
     "lint:fix": "eslint src --fix --max-warnings=0",
+    "prepare": "npx husky",
+    "clear:docker": "npm run services:down && yes | docker system prune -a --volumes && yes | docker volume prune -f && yes | docker network prune -f && yes | docker builder prune -a -f && yes | docker image prune -a -f",
+    "clear:project": "rm -fr .next && rm -fr node_modules",
     "services:down": "docker compose down",
     "services:stop": "docker compose stop",
     "services:up": "docker compose up",
     "services:up:detach": "docker compose up -d",
-    "start": "NODE_ENV=production next start",
+    "start": "next start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest --setupFiles dotenv/config",
-    "test:watch": "jest --setupFiles dotenv/config --watch ./tests",
-    "prepare": "npx husky install"
+    "test:watch": "jest --setupFiles dotenv/config --watch ./tests"
   },
   "private": true,
   "dependencies": {
