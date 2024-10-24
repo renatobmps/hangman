@@ -1,4 +1,4 @@
-FROM node:21-slim AS builder 
+FROM node:20-slim AS builder 
 LABEL maintainer="Renato Brandão"
 
 WORKDIR /usr/app
@@ -8,14 +8,12 @@ RUN npm install
 
 COPY . ./
 
-FROM node:21-alpine
+FROM node:20-alpine
 
 ARG NODE_ENV=development
 
 WORKDIR /usr/app
 
 COPY --from=builder /usr/app/ ./
-
-EXPOSE 3000
 
 CMD ["npm", "run", "dev"]

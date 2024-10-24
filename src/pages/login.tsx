@@ -12,16 +12,13 @@ export default function Login() {
   const [fields, setFields] = useState(initialState);
 
   return (
-    <>
-      <h1>{process.env.NODE_ENV}</h1>
-      <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)} seoConfig={{
-        title: 'Login'
-      }}>
-        <LoginForm
-          fieldState={fields}
-          handleFields={(event: any) => handleFields(event, setFields, fields)}
-        />
-      </LoginPanel>
-    </>
+    <LoginPanel onSubmit={(event: FormEvent) => submitLogin(event, fields)} seoConfig={{
+      title: 'Login'
+    }}>
+      <LoginForm
+        fieldState={fields}
+        handleFields={(event: any) => handleFields(event, setFields, fields)}
+      />
+    </LoginPanel>
   );
 }

@@ -55,6 +55,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       },
       themeColor: '#009688'
     }} />
-    <Component {...pageProps} />;
+    <Component {...pageProps} />
   </>
 }
