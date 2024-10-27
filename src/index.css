@@ -52,7 +52,7 @@ code {
     monospace;
 }
 
-#root, #__next {
+#root, #__next, #storybook-root {
   align-items: center;
   background: var(--color-1);
   display: flex;
@@ -61,7 +61,7 @@ code {
   min-height: 100vh;
 }
 
-#root, #__next > main {
+#root > main, #__next > main, #storybook-root > main {
   align-items: stretch;
   display: flex;
   flex: 1;
