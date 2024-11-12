@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { IGameDataRanking, IGameState } from "../../adapters/interfaces";
 import { handleGameKeyboard } from "../../adapters/handleGameKeyboard";
 import { UserContext } from "../../stores/UserContext";
-import handleStarting from "../../hooks/useHome/handleStarting";
+import handleStarting from "./handleStarting";
 
 export type GameState = "starting" | "waiting" | "checking" | "won" | "lost";
 
