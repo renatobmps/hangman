@@ -5,3 +5,14 @@ services:
       - .env
     ports:
       - "5432:5432"
+  backend:
+    container_name: "hangman_backend"
+    depends_on:
+      - database
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-dev
+    volumes:
+      - ./backend:/app
+    ports:
+      - 4000:4000

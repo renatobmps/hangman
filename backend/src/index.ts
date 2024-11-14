@@ -30,7 +30,7 @@ const server = new ApolloServer({
     },
 
     Mutation: {
-      createUser: (_,args) => {
+      createUser: (_, args) => {
         const newUser = {
           id: randomUUID(),
           name: args.name

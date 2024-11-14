@@ -1,8 +1,6 @@
 {
   "scripts": {
+    "clearAll": "docker network prune && docker volume prune && docker system prune -a --volumes",
     "dev": "docker-compose up"
-  },
-  "devDependencies": {
-    "@types/node": "^22.9.0"
   }
 }

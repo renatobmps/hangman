@@ -4,11 +4,10 @@ LABEL maintainer="Renato Brandão"
 WORKDIR /app/
 
 COPY package*json ./
-RUN npm install --production
+RUN npm install
 
 COPY . ./
-RUN npm run build
 
-ARG NODE_ENV=production
+ARG NODE_ENV=development
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
