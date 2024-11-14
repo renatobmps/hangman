@@ -3,7 +3,7 @@ import Form from "./components/form";
 
 const Page = async () => {
   try {
-    const apiRequest = await fetch('http://localhost:4000/graphql', {
+    const apiRequest = await fetch(process.env.API_HOST, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -29,12 +29,13 @@ const Page = async () => {
 
     return (
 
-      <main style={{paddingInline:'1rem'}}>
-        <h1 style={{paddingBlock: '0.5rem 1rem'}}>First page</h1>
+      <main style={{ paddingInline: '1rem' }}>
+        <pre>{JSON.stringify(process.env, null, 2)}</pre>
+        <h1 style={{ paddingBlock: '0.5rem 1rem' }}>First page</h1>
         <Form />
         {
           list?.data?.getUsers?.map(user => (
-            <li style={{display: 'flex', alignContent:'center', paddingBlock: '1rem'}}>
+            <li style={{ display: 'flex', alignContent: 'center', paddingBlock: '1rem' }}>
               <strong>{user.id}</strong>: <p>{user.name}</p>
             </li>
           ))
@@ -43,9 +44,11 @@ const Page = async () => {
     )
   } catch (e) {
     const error = e as Error;
+    console.error(error);
 
     return (
       <main>
+        <pre>{JSON.stringify(process.env, null, 2)}</pre>
         <h1>Error</h1>
 
         <p>{error.message}</p>

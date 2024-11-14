@@ -1,0 +1,20 @@
+FROM node:22-slim AS builder 
+LABEL maintainer="Renato Brandão"
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . ./
+RUN npm run build
+
+FROM node:22-alpine3.20
+
+ARG NODE_ENV=production
+
+WORKDIR /app
+
+COPY --from=builder /app/ ./
+
+CMD [ "npm", "start"]
