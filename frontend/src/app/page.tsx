@@ -35,7 +35,7 @@ const Page = async () => {
         <Form />
         {
           list?.data?.getUsers?.map(user => (
-            <li style={{ display: 'flex', alignContent: 'center', paddingBlock: '1rem' }}>
+            <li key={`register-${user.id}`} style={{ display: 'flex', alignContent: 'center', paddingBlock: '1rem' }}>
               <strong>{user.id}</strong>: <p>{user.name}</p>
             </li>
           ))
