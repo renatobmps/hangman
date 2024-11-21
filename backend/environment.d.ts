@@ -9,6 +9,7 @@ declare global {
       readonly POSTGRES_HOST_AUTH_METHOD?: string;
       readonly PGDATA?: string;
       readonly API_PORT?: number;
+      readonly DATABASE_URL?: string;
     }
   }
 }

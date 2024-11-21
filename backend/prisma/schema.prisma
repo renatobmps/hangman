@@ -1,0 +1,86 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @unique @default(uuid())
+  isActivated Boolean   @default(true)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  isAdm       Boolean   @default(false)
+  username    String    @unique
+  email       String?
+  password    String
+  Game        Game[]
+  Guest       Guest[]
+}
+
+model Hint {
+  id             String      @id @unique @default(uuid())
+  isActivated    Boolean     @default(true)
+  created_at     DateTime    @default(now())
+  updated_at     DateTime?
+  text           String
+  HintsWords     HintsWords? @relation(fields: [hints_words_id], references: [id])
+  hints_words_id String?
+}
+
+model Word {
+  id             String      @id @unique @default(uuid())
+  isActivated    Boolean     @default(true)
+  created_at     DateTime    @default(now())
+  updated_at     DateTime?
+  HintsWords     HintsWords? @relation(fields: [hints_words_id], references: [id])
+  hints_words_id String?
+  Game           Game[]
+}
+
+model HintsWords {
+  id          String    @id @unique @default(uuid())
+  isActivated Boolean   @default(true)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  Word        Word[]
+  Hint        Hint[]
+}
+
+model Game {
+  id          String       @id @unique @default(uuid())
+  isActivated Boolean      @default(true)
+  created_at  DateTime     @default(now())
+  updated_at  DateTime?
+  attempts    Int
+  is_beat     Boolean?
+  user        User         @relation(fields: [user_id], references: [id])
+  user_id     String
+  word        Word         @relation(fields: [word_id], references: [id])
+  word_id     String
+  GameLetter  GameLetter[]
+}
+
+model GameLetter {
+  id          String    @id @unique @default(uuid())
+  isActivated Boolean   @default(true)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  letter      String
+  is_correct  Boolean   @default(false)
+  game        Game      @relation(fields: [game_id], references: [id])
+  game_id     String
+}
+
+model Guest {
+  id          String    @id @unique @default(uuid())
+  isActivated Boolean   @default(true)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  guest_name  String    @unique @default(cuid())
+  User        User?     @relation(fields: [user_id], references: [id])
+  user_id     String?
+}
