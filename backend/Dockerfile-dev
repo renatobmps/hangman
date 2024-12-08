@@ -4,6 +4,7 @@ LABEL maintainer="Renato Brandão"
 WORKDIR /app/
 
 COPY package*json ./
+COPY ./prisma ./
 RUN npm install
 
 COPY . ./

@@ -10,6 +10,9 @@ declare global {
       readonly PGDATA?: string;
       readonly API_PORT?: number;
       readonly DATABASE_URL?: string;
+      readonly NODE_ENV: 'development' | 'production';
     }
   }
 }
+
+export { }

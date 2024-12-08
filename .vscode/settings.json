@@ -3,6 +3,8 @@
     "fastify",
     "INITDB",
     "PGDATA",
+    "schemaname",
+    "tablename",
     "WALDIR"
   ]
 }

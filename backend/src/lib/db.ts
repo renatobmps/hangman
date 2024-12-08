@@ -1,11 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
-import { withOptimize } from "@prisma/extension-optimize";
+export const db = () => {
+  if (!global._prisma) {
+    global._prisma = new PrismaClient();
+  }
 
-const db = () => {
-  const prisma = new PrismaClient().$extends(withOptimize({ apiKey: '' }));
-
-  return prisma;
+  return global._prisma;
 }
-
-export default db;
