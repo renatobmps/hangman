@@ -18,6 +18,7 @@ services:
       - 4000:4000
     env_file:
       - ./backend/.env
+      - ./.env
   frontend:
     container_name: "hangman_frontend"
     depends_on:

@@ -3,7 +3,9 @@
     "build": "tsc",
     "db:generate": "dotenv -e ./.env -- npx prisma generate",
     "db:migrate:dev": "dotenv -e ./.env -- npx prisma migrate dev",
+    "db:migrate:dev:create": "dotenv -e ./.env -- npx prisma migrate dev --create-only",
     "db:studio": "dotenv -e ./.env -- npx prisma studio",
+    "db:migration": "node --watch --experimental-strip-types src/use_cases/database_migration.ts",
     "dev": "node --watch --experimental-strip-types src/index.ts",
     "prepare": "npm run db:generate",
     "start": "node build/index.js",
@@ -13,6 +15,7 @@
   "devDependencies": {
     "@prisma/extension-optimize": "^1.0.3",
     "@types/node": "^22.9.0",
+    "@types/pg": "^8.11.10",
     "ts-node": "^10.9.2"
   },
   "dependencies": {

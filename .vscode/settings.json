@@ -1,10 +1,17 @@
 {
   "cSpell.words": [
+    "cuid",
+    "datasource",
     "fastify",
-    "INITDB",
-    "PGDATA",
+    "initdb",
+    "openssl",
+    "pgdata",
+    "postgres",
+    "postgresql",
     "schemaname",
     "tablename",
-    "WALDIR"
+    "verceldb",
+    "vxko",
+    "waldir"
   ]
 }

@@ -16,10 +16,7 @@ const Form = () => {
         },
         body: JSON.stringify({
           query: `mutation {
-            createUser(name: "${inputRef.current.value}") {
-              id
-              name
-            }
+            createUser(username: "${inputRef.current.value}", password: "${inputRef.current.value}")
           }`
         })
       })

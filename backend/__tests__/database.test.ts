@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { sutName } from './tests.consts.ts';
+import { sutName } from './utils/tests.consts.ts';
 import { db } from '../src/lib/db.ts';
 
 describe('databaseConnection', () => {

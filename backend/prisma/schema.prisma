@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -21,32 +22,33 @@ model User {
 }
 
 model Hint {
-  id             String      @id @unique @default(uuid())
-  isActivated    Boolean     @default(true)
-  created_at     DateTime    @default(now())
-  updated_at     DateTime?
-  text           String
-  HintsWords     HintsWords? @relation(fields: [hints_words_id], references: [id])
-  hints_words_id String?
+  id           String       @id @unique @default(uuid())
+  is_activated Boolean      @default(true)
+  created_at   DateTime     @default(now())
+  updated_at   DateTime?
+  text         String
+  HintsWords   HintsWords[]
 }
 
 model Word {
-  id             String      @id @unique @default(uuid())
-  isActivated    Boolean     @default(true)
-  created_at     DateTime    @default(now())
-  updated_at     DateTime?
-  HintsWords     HintsWords? @relation(fields: [hints_words_id], references: [id])
-  hints_words_id String?
-  Game           Game[]
+  id           String       @id @unique @default(uuid())
+  text         String
+  description  String?
+  is_activated Boolean      @default(true)
+  created_at   DateTime     @default(now())
+  updated_at   DateTime?
+  Game         Game[]
+  HintsWords   HintsWords[]
 }
 
 model HintsWords {
-  id          String    @id @unique @default(uuid())
-  isActivated Boolean   @default(true)
-  created_at  DateTime  @default(now())
-  updated_at  DateTime?
-  Word        Word[]
-  Hint        Hint[]
+  id         String    @id @unique @default(uuid())
+  word_id    String
+  hint_id    String
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+  id_hint    Hint      @relation(fields: [hint_id], references: [id])
+  id_word    Word      @relation(fields: [word_id], references: [id])
 }
 
 model Game {

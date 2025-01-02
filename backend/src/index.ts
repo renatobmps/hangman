@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from 'apollo-server'
 import { randomUUID } from 'node:crypto';
-import { db } from './lib/db.ts';
+import { createUser } from './use_cases/create_user.ts';
+import type { ICreateUserController } from './interfaces/create_user.ts';
 
 type User = {
   id: string;
@@ -58,25 +59,7 @@ const server = new ApolloServer({
         return newUser
       },
 
-      createUser: async (_, args: CreateUser) => {
-        if (!args.username) {
-          throw new Error("Please enter a username")
-        }
-
-        if (!args.password) {
-          throw new Error("Please enter a password")
-        }
-
-        console.log({createUser: args});
-
-        const newUser = await db().user.create({
-          data: {
-            password: args.password, username: args.username, email: args.email
-          }
-        });
-
-        return newUser.id;
-      }
+      createUser: async (_, args: ICreateUserController) => createUser(args)
     }
   }
 });
