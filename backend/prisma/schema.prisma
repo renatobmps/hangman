@@ -53,16 +53,15 @@ model HintsWords {
 
 model Game {
   id          String       @id @unique @default(uuid())
-  isActivated Boolean      @default(true)
-  created_at  DateTime     @default(now())
-  updated_at  DateTime?
   attempts    Int
   is_beat     Boolean?
-  user        User         @relation(fields: [user_id], references: [id])
   user_id     String
-  word        Word         @relation(fields: [word_id], references: [id])
   word_id     String
+  created_at  DateTime     @default(now())
+  updated_at  DateTime?
   GameLetter  GameLetter[]
+  user        User         @relation(fields: [user_id], references: [id])
+  word        Word         @relation(fields: [word_id], references: [id])
 }
 
 model GameLetter {
