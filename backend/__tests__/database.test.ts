@@ -12,7 +12,7 @@ describe('databaseConnection', () => {
 
   it('should to do a create', async () => {
     assert.doesNotThrow(async () => await db().hint.create({
-      data: { text: sutName, isActivated: true }
+      data: { text: sutName, is_activated: true }
     }))
   })
 
@@ -21,7 +21,7 @@ describe('databaseConnection', () => {
   })
 
   it('should to update', async () => {
-    assert.doesNotThrow(async () => await db().hint.updateMany({ data: { isActivated: false, updated_at: new Date() }, where: { text: sutName } }))
+    assert.doesNotThrow(async () => await db().hint.updateMany({ data: { is_activated: false, updated_at: new Date() }, where: { text: sutName } }))
   });
 
   it('should to delete', async () => {

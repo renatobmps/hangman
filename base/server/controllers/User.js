@@ -59,6 +59,7 @@ class User {
       req.body.password = await bcrypt.hash(req.body.password, 10);
       const user = await database.User.create(req.body);
       user.password = undefined;
+      delete user.password;
       return res.status(201).json(user);
     } catch (error) {
       return res.status(500).json({ error });

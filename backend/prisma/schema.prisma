@@ -9,36 +9,40 @@ datasource db {
 }
 
 model User {
-  id          String    @id @unique @default(uuid())
-  isActivated Boolean   @default(true)
-  created_at  DateTime  @default(now())
-  updated_at  DateTime?
-  isAdm       Boolean   @default(false)
-  username    String    @unique
-  email       String?
-  password    String
-  Game        Game[]
-  Guest       Guest[]
+  id                   String    @id @unique @default(uuid())
+  is_activated         Boolean   @default(true)
+  is_adm               Boolean   @default(false)
+  username             String    @unique @default(cuid())
+  email                String?
+  password             String
+  need_update_password Boolean   @default(false)
+  is_guest             Boolean   @default(false)
+  created_at           DateTime  @default(now())
+  updated_at           DateTime?
+
+  Game Game[]
 }
 
 model Hint {
-  id           String       @id @unique @default(uuid())
-  is_activated Boolean      @default(true)
-  created_at   DateTime     @default(now())
-  updated_at   DateTime?
+  id           String    @id @unique @default(uuid())
+  is_activated Boolean   @default(true)
   text         String
-  HintsWords   HintsWords[]
+  created_at   DateTime  @default(now())
+  updated_at   DateTime?
+
+  HintsWords HintsWords[]
 }
 
 model Word {
-  id           String       @id @unique @default(uuid())
+  id           String    @id @unique @default(uuid())
+  is_activated Boolean   @default(true)
   text         String
   description  String?
-  is_activated Boolean      @default(true)
-  created_at   DateTime     @default(now())
+  created_at   DateTime  @default(now())
   updated_at   DateTime?
-  Game         Game[]
-  HintsWords   HintsWords[]
+
+  Game       Game[]
+  HintsWords HintsWords[]
 }
 
 model HintsWords {
@@ -47,40 +51,32 @@ model HintsWords {
   hint_id    String
   created_at DateTime  @default(now())
   updated_at DateTime?
-  id_hint    Hint      @relation(fields: [hint_id], references: [id])
-  id_word    Word      @relation(fields: [word_id], references: [id])
+
+  id_hint Hint @relation(fields: [hint_id], references: [id])
+  id_word Word @relation(fields: [word_id], references: [id])
 }
 
 model Game {
-  id          String       @id @unique @default(uuid())
-  attempts    Int
-  is_beat     Boolean?
-  user_id     String
-  word_id     String
-  created_at  DateTime     @default(now())
-  updated_at  DateTime?
-  GameLetter  GameLetter[]
-  user        User         @relation(fields: [user_id], references: [id])
-  word        Word         @relation(fields: [word_id], references: [id])
+  id         String    @id @unique @default(uuid())
+  attempts   Int
+  is_beat    Boolean?
+  user_id    String
+  word_id    String
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  GameLetter GameLetter[]
+  user       User         @relation(fields: [user_id], references: [id])
+  word       Word         @relation(fields: [word_id], references: [id])
 }
 
 model GameLetter {
-  id          String    @id @unique @default(uuid())
-  isActivated Boolean   @default(true)
-  created_at  DateTime  @default(now())
-  updated_at  DateTime?
-  letter      String
-  is_correct  Boolean   @default(false)
-  game        Game      @relation(fields: [game_id], references: [id])
-  game_id     String
-}
+  id         String    @id @unique @default(uuid())
+  letter     String
+  is_correct Boolean   @default(false)
+  game_id    String
+  created_at DateTime  @default(now())
+  updated_at DateTime?
 
-model Guest {
-  id          String    @id @unique @default(uuid())
-  isActivated Boolean   @default(true)
-  created_at  DateTime  @default(now())
-  updated_at  DateTime?
-  guest_name  String    @unique @default(cuid())
-  User        User?     @relation(fields: [user_id], references: [id])
-  user_id     String?
+  game Game @relation(fields: [game_id], references: [id])
 }
