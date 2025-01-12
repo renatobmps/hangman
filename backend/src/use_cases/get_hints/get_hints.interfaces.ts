@@ -2,6 +2,7 @@ export interface IGetAllHintsRes {
   id?: string,
   text?: string,
   is_activated?: boolean,
+  total_words?: number,
   words?: Array<{
     id?: string,
     text?: string,
@@ -33,3 +34,4 @@ export interface IDatabase {
     }>>;
   }
 }
+

@@ -16,6 +16,7 @@ export default class GetHintsRepository implements IGetHintsRepository {
       id: hint.id,
       text: hint.text,
       is_activated: hint.is_activated,
+      total_words: hint.HintsWords?.length,
       words: hint.HintsWords?.map(word => ({
         id: word.word_id,
         text: word.id_word?.text,

@@ -15,6 +15,7 @@ const typeDefs = gql`
     id: String,
     text: String,
     is_activated: Boolean,
+    total_words: Int,
     words: [Word]
   }
 
