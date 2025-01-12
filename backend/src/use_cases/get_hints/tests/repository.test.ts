@@ -18,7 +18,8 @@ describe('GetHintsRepository', () => {
 
       assert.ok(hints);
       assert.equal(Array.isArray(hints), true);
-      assert.equal(hints.every(({ id }) => typeof id === 'string'), true);
+      assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
+      assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
     })
   });
 
@@ -35,7 +36,8 @@ describe('GetHintsRepository', () => {
 
       assert.ok(hints);
       assert.equal(Array.isArray(hints), true);
-      assert.equal(hints.every(({ id }) => typeof id === 'string'), true);
+      assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
+      assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
     })
   })
 })

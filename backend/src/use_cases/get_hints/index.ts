@@ -4,6 +4,21 @@ import GetHintsController from "./get_hints.controller.ts";
 import type { IGetAllHintsRes } from "./get_hints.interfaces.ts";
 
 const getHints = async (): Promise<Array<IGetAllHintsRes>> => {
+  // await db().word.create({
+  //   data: {
+  //     text: 'palavra sem dica'
+  //   }
+  // })
+  // const wordsWithoutHints = await db().word.findMany({
+  //   where: {
+  //     HintsWords: {
+  //       none: {}
+  //     }
+  //   }
+  // });
+  // console.log({ wordsWithoutHints });
+
+
   const controller = new GetHintsController(
     new GetHintsRepository(
       db()

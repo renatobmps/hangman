@@ -8,11 +8,20 @@ export default class GetHintsRepository implements IGetHintsRepository {
   }
 
   async getAllHints(): Promise<Array<IGetAllHintsRes>> {
-    const hints = await this.database.hint.findMany({
-      include: { HintsWords: { include: { id_word: true } } }
-    });
+    const [hints, wordsWithoutHint] = await Promise.all([
+      this.database.hint.findMany({
+        include: { HintsWords: { include: { id_word: true } } }
+      }),
+      this.database.word.findMany({
+        where: {
+          HintsWords: {
+            none: {}
+          }
+        }
+      })
+    ]);
 
-    return hints.map(hint => ({
+    let allHints: Array<IGetAllHintsRes> = hints.map(hint => ({
       id: hint.id,
       text: hint.text,
       is_activated: hint.is_activated,
@@ -23,6 +32,24 @@ export default class GetHintsRepository implements IGetHintsRepository {
         description: word.id_word?.description,
         is_activated: word.id_word?.is_activated,
       }))
-    }))
+    }));
+
+    if (wordsWithoutHint.length) {
+      allHints = [
+        {
+          is_activated: true,
+          total_words: wordsWithoutHint.length,
+          words: wordsWithoutHint.map(word => ({
+            id: word.id,
+            text: word.text,
+            description: word.description,
+            is_activated: word.is_activated,
+          }))
+        },
+        ...allHints,
+      ];
+    }
+
+    return allHints;
   }
 }
