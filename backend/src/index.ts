@@ -1,65 +1,44 @@
 import { ApolloServer, gql } from 'apollo-server'
-import { randomUUID } from 'node:crypto';
 import { createUser } from './use_cases/create_user.ts';
 import type { ICreateUserController } from './interfaces/create_user.ts';
-
-type User = {
-  id: string;
-  name: string;
-}
-
-export interface CreateUser {
-  username?: string;
-  password?: string;
-  email?: string;
-}
-
-const usersDB: Array<User> = []
+import getHints from './use_cases/get_hints/index.ts';
 
 const typeDefs = gql`
-  type MockUser {
-    id: String!,
-    name: String!,
+  type Word {
+    id: String,
+    text: String,
+    description: String
+    is_activated: Boolean,
+  }
+
+  type Hint {
+    id: String,
+    text: String,
+    is_activated: Boolean,
+    words: [Word]
   }
 
   type Query {
-    getUsers: [MockUser!]!
+    getHints: [Hint]!
+  }
+
+  type CreateUserRes {
+    id: String,
   }
 
   type Mutation {
-    mockCreateUser(name: String!): MockUser!
-  }
-
-  type User {
-    username: String!,
-    password: String!,
-    email: String,
-  }
-
-  type Mutation {
-    createUser(username: String!, password: String!, email: String): String!
+    createUser(username: String!, password: String!, email: String): CreateUserRes
   }
 `
 
 const server = new ApolloServer({
   typeDefs, resolvers: {
     Query: {
-      getUsers: () => { return usersDB }
+      getHints: async () => getHints(),
     },
 
     Mutation: {
-      mockCreateUser: (_, args) => {
-        const newUser = {
-          id: randomUUID(),
-          name: args.name
-        }
-
-        usersDB.push(newUser)
-
-        return newUser
-      },
-
-      createUser: async (_, args: ICreateUserController) => createUser(args)
+      createUser: async (_, args: ICreateUserController) => createUser(args),
     }
   }
 });

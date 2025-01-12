@@ -9,8 +9,8 @@
     "dev": "node --watch --experimental-strip-types src/index.ts",
     "prepare": "npm run db:generate",
     "start": "node build/index.js",
-    "test": "node --experimental-strip-types --test",
-    "test:watch": "node --watch --experimental-strip-types --test"
+    "test": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env",
+    "test:watch": "node --watch --experimental-strip-types --test --env-file=.env"
   },
   "prisma": {
     "seed": "node --experimental-strip-types prisma/seed/index.ts"

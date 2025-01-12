@@ -15,5 +15,5 @@ export interface ICreateUserValidation {
 }
 
 export interface ICreateUserEncryptService {
-  encryptPassword(password: string): string;
+  encryptPassword(password: string): Promise<string>;
 }

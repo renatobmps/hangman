@@ -1,6 +1,6 @@
 import type { ICreateUserRepository, ICreateUserController, ICreateUserValidation, ICreateUserEncryptService } from "src/interfaces/create_user";
 
-export class CreateUserController {
+export default class CreateUserController {
   private repository: ICreateUserRepository;
   private validation: ICreateUserValidation;
   private encryptService: ICreateUserEncryptService;
@@ -30,9 +30,11 @@ export class CreateUserController {
       throw new Error('User already exists');
     }
 
+    const hashPwd = await this.encryptService.encryptPassword(user.password);
+
     const { id } = await this.repository.createUser(
       user.username,
-      this.encryptService.encryptPassword(user.password),
+      hashPwd,
       user.email
     );
 

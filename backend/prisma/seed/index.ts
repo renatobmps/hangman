@@ -9,22 +9,46 @@ import letters from './data/letters.ts';
 import type { Letter } from './data/letters.ts';
 
 const prisma = new PrismaClient();
+const oldDatabase = new PrismaClient({
+  datasourceUrl: 'postgres://default:PWLyNgVXKO14@ep-weathered-scene-84460545-pooler.us-east-1.postgres.vercel-storage.com/verceldb',
+})
 
 async function migrate() {
   async function getUsers(): Promise<{ rows: Array<User>; }> {
-    return { rows: users };
+
+    try {
+      const users = await oldDatabase.$queryRaw<Array<User>>`SELECT x.* FROM public."Users" AS x`
+      return { rows: users };
+    } catch {
+      return { rows: users };
+    }
   }
 
   async function getWords(): Promise<{ rows: Array<Word> }> {
-    return { rows: words };
+    try {
+      const words = await oldDatabase.$queryRaw<Array<Word>>`SELECT x.* FROM public.Words AS x`
+      return { rows: words };
+    } catch {
+      return { rows: words };
+    }
   }
 
   async function getGames(): Promise<{ rows: Array<Game> }> {
-    return { rows: games };
+    try {
+      const games = await oldDatabase.$queryRaw<Array<Game>>`SELECT x.* FROM public.UserWords AS x`
+      return { rows: games };
+    } catch {
+      return { rows: games };
+    }
   }
 
   async function getUsedLetters(): Promise<{ rows: Array<Letter> }> {
-    return { rows: letters };
+    try {
+      const letters = await oldDatabase.$queryRaw<Array<Letter>>`SELECT x.* FROM public.TriedLetters As x`;
+      return { rows: letters };
+    } catch {
+      return { rows: letters };
+    }
   }
 
   const [
@@ -291,6 +315,7 @@ migrate()
   })
   .finally(async () => {
     await prisma.$disconnect()
+    await oldDatabase.$disconnect();
   });
 
 export default migrate;

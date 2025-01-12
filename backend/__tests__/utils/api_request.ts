@@ -3,21 +3,19 @@ export const apiRequest = async <T = unknown>(query: string) => {
   let data: T = {} as T;
 
   try {
-    const request = await fetch('http://localhost:4000', {
-      headers: {
-        "Content-Type": "application/json"
-      },
+    const request = await fetch(process.env.API_URL!, {
+      headers: { "Content-Type": "application/json" },
       method: 'POST',
       body: JSON.stringify({ query }),
     });
 
     statusCode = request.status;
 
-    const response: T = await request.json();
+    const response: { data: T } = await request.json();
 
-    data = response;
+    data = response.data;
   } catch (error) {
-    console.error(error)
+    console.error('apiRequest error:', error)
   } finally {
     return {
       statusCode,
