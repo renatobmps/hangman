@@ -1,6 +1,8 @@
 import Hints from "./components";
 
-const Page = async () => {
+const Page = async ({ searchParams }) => {
+  const { search }: { search: string | undefined } = await searchParams;
+
   const request = await fetch(process.env.API_HOST, {
     headers: { "Content-Type": "application/json" },
     method: 'POST',
@@ -27,6 +29,20 @@ const Page = async () => {
     }
   };
 
+  const filteredData = !search ? data : (() => {
+    const copyData = data;
+
+    copyData.data.getHints = copyData.data.getHints.filter(hint => {
+      return hint.text === null || (
+        hint.text.toLocaleLowerCase().includes(
+          search?.toLocaleLowerCase()
+        )
+      )
+    });
+
+    return copyData;
+  })()
+
   return (
     <Hints.Root>
       <Hints.HeaderActions>
@@ -35,7 +51,7 @@ const Page = async () => {
       </Hints.HeaderActions>
       <Hints.HintList>
         {
-          data.data.getHints.toSorted((a, b) => {
+          filteredData.data.getHints.toSorted((a, b) => {
             if (a.text < b.text) return -1;
             return 0;
           }).map(hint => (
