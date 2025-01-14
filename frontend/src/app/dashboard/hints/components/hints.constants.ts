@@ -1,0 +1,1 @@
+export const DEFAULT_LOADING_DELAY: number = 150;
