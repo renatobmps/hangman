@@ -144,16 +144,50 @@
   justify-content: space-between;
   width: 100%;
 
-  button {
+  details {
     align-items: center;
     background: transparent;
     border: 0;
     display: flex;
+    position: relative;
 
     &:hover,
     &:focus {
       outline: none;
       cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      inset: 100% 0 auto auto;
+      position: absolute;
+
+      ul {
+        background-color: #ffffff;
+        box-shadow: 0px 3px 5px -1px #444444;
+
+        li {
+          list-style: none;
+
+          a {
+            box-sizing: border-box;
+            color: #000000;
+            display: block;
+            font: 500 16px sans-serif;
+            text-decoration: none;
+            transition: background-color 300ms;
+            padding: 4px 16px;
+            white-space: nowrap;
+            width: 100%;
+
+            &:hover {
+              background-color: #444444;
+              color: #d8d8d8;
+            }
+          }
+        }
+      }
     }
   }
 }
