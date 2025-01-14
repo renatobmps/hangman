@@ -7,7 +7,7 @@ import Caret from '../media/caret-down.svg';
 const Top = () => (
   <header className='hints__top'>
     <Link href='/'>
-      <Image alt='Hangman logo' height={LogoMenu.height} src={LogoMenu.src} width={LogoMenu.width} />
+      <Image alt='Hangman logo' height={LogoMenu.height} priority src={LogoMenu.src} width={LogoMenu.width} />
     </Link>
     <button>
       <span>Menu</span>{` `}

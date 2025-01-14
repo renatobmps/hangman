@@ -28,29 +28,26 @@ const Page = async () => {
   };
 
   return (
-    <Hints.Page>
-      <Hints.Top />
-      <Hints.Root>
-        <Hints.HeaderActions>
-          <Hints.Navigation />
-          <Hints.Cta />
-        </Hints.HeaderActions>
-        <Hints.HintList>
-          {
-            data.data.getHints.toSorted((a, b) => {
-              if (a.text < b.text) return -1;
-              return 0;
-            }).map(hint => (
-              <Hints.Hint
-                title={hint.text}
-                isActive={hint.is_activated}
-                total_words={hint.total_words}
-              />
-            ))
-          }
-        </Hints.HintList>
-      </Hints.Root>
-    </Hints.Page>
+    <Hints.Root>
+      <Hints.HeaderActions>
+        <Hints.Navigation />
+        <Hints.Cta>Add hint</Hints.Cta>
+      </Hints.HeaderActions>
+      <Hints.HintList>
+        {
+          data.data.getHints.toSorted((a, b) => {
+            if (a.text < b.text) return -1;
+            return 0;
+          }).map(hint => (
+            <Hints.Hint
+              title={hint.text}
+              isActive={hint.is_activated}
+              total_words={hint.total_words}
+            />
+          ))
+        }
+      </Hints.HintList>
+    </Hints.Root>
   )
 }
 

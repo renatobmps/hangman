@@ -1,3 +1,24 @@
+.hints__error {
+  background: #ffffff;
+  flex: 1;
+  display: grid;
+  gap: 24px;
+  place-items: center;
+
+  .hints__error-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    p {
+      box-shadow: inset 0 0 0 1px #9d9c9c;
+      border-radius: 8px;
+      padding: 16px;
+    }
+  }
+}
+
 .hints__root {
   display: flex;
   flex-direction: column;
@@ -63,16 +84,22 @@
   border: none;
   border-radius: 4px;
   color: #fff;
-  display: flex;
+  display: inline-block;
   font: 700 16px sans-serif;
-  gap: 10px;
+  max-width: 100%;
+  overflow: hidden;
   padding: 4px 8px;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
+
+  &.click {
+    cursor: pointer;
+  }
 
   &:hover,
   &:focus {
     box-shadow: 0 0 10px -3px var(--main-color, "green");
-    cursor: pointer;
     outline: none;
   }
 }

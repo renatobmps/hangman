@@ -7,6 +7,7 @@ import Navigation from "./sub_components/navigation";
 import Root from "./sub_components/root";
 import Top from "./sub_components/top";
 import Page from "./sub_components/page";
+import Error from "./sub_components/error";
 
 const Hints = {
   Page: Page,
@@ -18,6 +19,7 @@ const Hints = {
   Navigation: Navigation,
   HeaderActions: HeaderActions,
   Top: Top,
+  Error: Error,
 }
 
 export default Hints;

@@ -1,3 +1,5 @@
+import { HTMLAttributes } from "react";
+
 export interface IHint {
   isLoading?: boolean,
   title?: string,
@@ -8,3 +10,10 @@ export interface IHint {
 export interface ILoading {
   delay_ms?: number
 }
+
+export interface IError {
+  message?: string;
+  reset(): void;
+}
+
+export interface ICta extends HTMLAttributes<HTMLButtonElement> { }

@@ -11,4 +11,13 @@ export default {
   }
 } as Meta<typeof Hints.Cta>;
 
-export const Default: StoryObj<typeof Hints.Cta> = {};
+export const Default: StoryObj<typeof Hints.Cta> = {
+  args: { children: 'Add hint' }
+};
+
+export const TryAgain: StoryObj<typeof Hints.Cta> = {
+  args: {
+    children: "Try again",
+    onClick: () => alert('Restart page fn'),
+  }
+};
