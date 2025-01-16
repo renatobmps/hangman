@@ -1,0 +1,6 @@
+.form__radio-input {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+}

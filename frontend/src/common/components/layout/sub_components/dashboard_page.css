@@ -1,0 +1,7 @@
+.layout__dashboard-page {
+  background-color: var(--color-gray-1, gray);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+}

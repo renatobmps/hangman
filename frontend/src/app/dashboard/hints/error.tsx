@@ -1,23 +1,9 @@
 'use client'
-import Hints from '@/app/dashboard/hints/components'
-import { useEffect } from 'react'
+import IPageError from '@/common/interfaces/page_error'
+import ListHintsError from '@/modules/list_hints_error'
 
-interface IError {
-  error: Error & { digest?: string }
-  reset: () => void
-}
-
-const Error = ({
-  error,
-  reset,
-}: IError) => {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
-  return (
-    <Hints.Error reset={reset} message={error.message} />
-  )
-}
+const Error = (props: IPageError) => (
+  <ListHintsError {...props} />
+)
 
 export default Error;

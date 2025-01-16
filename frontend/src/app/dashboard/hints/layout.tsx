@@ -1,23 +1,15 @@
 import { PropsWithChildren } from "react";
 import { Metadata } from "next";
-import './components/style.css';
-import Hints from "@/app/dashboard/hints/components";
-import Logo from './components/media/logo_menu.svg';
+import Logo from '@/common/media/logo_menu.svg';
+import Layout from "@/common/components/layout";
 
 export const metadata: Metadata = {
   title: 'Dashboard | Hints',
   icons: Logo.src,
 }
 
-const Layout = ({ children }: PropsWithChildren) => (
-  <html lang="en">
-    <body>
-      <Hints.Page>
-        <Hints.Top />
-        {children}
-      </Hints.Page>
-    </body>
-  </html>
+const PageLayout = ({ children }: PropsWithChildren) => (
+  <Layout.DashboardLayout>{children}</Layout.DashboardLayout>
 )
 
-export default Layout;
+export default PageLayout;

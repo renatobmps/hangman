@@ -1,0 +1,32 @@
+.button__primary {
+  background: var(--main-color, "green");
+  border: none;
+  border-radius: 4px;
+  color: var(--color-gray-1, gray);
+  cursor: var(--button__primary_cursor, "initial");
+  display: inline-block;
+  font-family: var(--button__primary_font-family, sans-serif);
+  font-size: var(--button__primary_font-size, 16px);
+  font-weight: var(--button__primary_font-weight, 500);
+  max-width: 100%;
+  overflow: hidden;
+  padding: 4px 8px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  text-transform: var(--button__primary_text-transform, "unset");
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 10px -3px var(--main-color, "green");
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+a.button__primary {
+  cursor: pointer;
+}

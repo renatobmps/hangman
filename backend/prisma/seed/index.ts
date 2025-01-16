@@ -18,35 +18,43 @@ async function migrate() {
 
     try {
       const users = await oldDatabase.$queryRaw<Array<User>>`SELECT x.* FROM public."Users" AS x`
+      console.info(`got ${users.length} users from DB`);
       return { rows: users };
     } catch {
+      console.info(`got ${users.length} users from Cache`);
       return { rows: users };
     }
   }
 
   async function getWords(): Promise<{ rows: Array<Word> }> {
     try {
-      const words = await oldDatabase.$queryRaw<Array<Word>>`SELECT x.* FROM public.Words AS x`
+      const words = await oldDatabase.$queryRaw<Array<Word>>`SELECT x.* FROM public."Words" AS x`
+      console.info(`got ${words.length} words from DB`);
       return { rows: words };
     } catch {
+      console.info(`got ${words.length} words from Cache`);
       return { rows: words };
     }
   }
 
   async function getGames(): Promise<{ rows: Array<Game> }> {
     try {
-      const games = await oldDatabase.$queryRaw<Array<Game>>`SELECT x.* FROM public.UserWords AS x`
+      const games = await oldDatabase.$queryRaw<Array<Game>>`SELECT x.* FROM public."UserWords" AS x`
+      console.info(`got ${games.length} games from DB`);
       return { rows: games };
-    } catch {
+    } catch (err) {
+      console.info(`got ${games.length} games from Cache`);
       return { rows: games };
     }
   }
 
   async function getUsedLetters(): Promise<{ rows: Array<Letter> }> {
     try {
-      const letters = await oldDatabase.$queryRaw<Array<Letter>>`SELECT x.* FROM public.TriedLetters As x`;
+      const letters = await oldDatabase.$queryRaw<Array<Letter>>`SELECT x.* FROM public."TriedLetters" As x`;
+      console.info(`got ${letters.length} letters from DB`);
       return { rows: letters };
     } catch {
+      console.info(`got ${letters.length} letters from Cache`);
       return { rows: letters };
     }
   }

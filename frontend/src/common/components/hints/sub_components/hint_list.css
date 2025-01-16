@@ -1,0 +1,7 @@
+.hints__hint-list {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 16px;
+  width: 100%;
+}

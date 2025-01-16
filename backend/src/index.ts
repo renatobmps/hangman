@@ -2,6 +2,8 @@ import { ApolloServer, gql } from 'apollo-server'
 import { createUser } from './use_cases/create_user.ts';
 import type { ICreateUserController } from './interfaces/create_user.ts';
 import getHints from './use_cases/get_hints/index.ts';
+import type { IAddHintControllerExecute } from './use_cases/add_hint/add_hint.interfaces.ts';
+import addHint from './use_cases/add_hint/index.ts';
 
 const typeDefs = gql`
   type Word {
@@ -27,7 +29,12 @@ const typeDefs = gql`
     id: String,
   }
 
+  type CreateHintRes {
+    id: String,
+  }
+
   type Mutation {
+    createHint(text: String!, isActive: Boolean, words: String): CreateHintRes
     createUser(username: String!, password: String!, email: String): CreateUserRes
   }
 `
@@ -39,6 +46,7 @@ const server = new ApolloServer({
     },
 
     Mutation: {
+      createHint: async (_, args: IAddHintControllerExecute) => addHint(args),
       createUser: async (_, args: ICreateUserController) => createUser(args),
     }
   }

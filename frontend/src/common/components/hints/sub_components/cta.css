@@ -1,0 +1,8 @@
+.hints__cta {
+  --button__primary_font-weight: 700;
+  --button__primary_text-transform: uppercase;
+
+  &.click {
+    --button__primary_cursor: pointer;
+  }
+}
