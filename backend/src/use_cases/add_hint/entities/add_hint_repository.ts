@@ -1,10 +1,10 @@
-import type { IDatabaseGateway } from "src/lib/database_gateway.interfaces.ts";
+import type { IRepository } from "src/lib/repository.interfaces.ts";
 import type { IAddHintControllerExecute, IAddHintControllerRepository } from "../add_hint.interfaces.ts";
 
 export default class AddHintRepository implements IAddHintControllerRepository {
-  private database: IDatabaseGateway
+  private database: IRepository
 
-  constructor(database: IDatabaseGateway) {
+  constructor(database: IRepository) {
     this.database = database;
   }
 

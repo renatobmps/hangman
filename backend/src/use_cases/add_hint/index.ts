@@ -1,4 +1,4 @@
-import database from "../../lib/database_gateway.ts"
+import prismaRepository from "../../lib/prisma_repository.ts"
 import AddHintController from "./add_hint.controller.ts"
 import AddHintRepository from "./entities/add_hint_repository.ts"
 import AddHintValidator from "./entities/add_hint_validator.ts"
@@ -8,7 +8,7 @@ const addHint = (hint: IAddHintControllerExecute) => {
   let copyOfHints = { ...hint };
 
   const addHint = new AddHintController({
-    repository: new AddHintRepository(database()),
+    repository: new AddHintRepository(prismaRepository()),
     validator: new AddHintValidator(),
   })
 

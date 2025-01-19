@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 }
 
 const PageLayout = ({ children }: PropsWithChildren) => (
-  <Layout.ClientLayout>{children}</Layout.ClientLayout>
+  <html lang="en">
+    <body>
+      <Layout.ClientLayout>{children}</Layout.ClientLayout>
+    </body>
+  </html>
 )
 
 export default PageLayout

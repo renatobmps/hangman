@@ -1,0 +1,5 @@
+.form__submit {
+  --button__primary_cursor: pointer;
+  
+  display: flex;
+}

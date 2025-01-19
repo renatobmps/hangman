@@ -1,0 +1,6 @@
+.form__checker-input {
+  align-items: baseline;
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+}

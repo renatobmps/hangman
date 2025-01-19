@@ -90,7 +90,7 @@ async function migrate() {
 
     await Promise.all(remainingHints.map(hint => prisma.hint.create({
       data: {
-        text: hint,
+        text: hint.toLowerCase().trim(),
         is_activated: true
       }
     })));
@@ -114,7 +114,7 @@ async function migrate() {
 
     await Promise.all(remainingWords.map(word => prisma.word.create({
       data: {
-        text: word.word,
+        text: word.word.toLowerCase().trim(),
         description: word.description,
         created_at: word.createdAt,
         updated_at: word.updatedAt,
@@ -290,7 +290,7 @@ async function migrate() {
         data: {
           created_at: letter.createdAt,
           is_correct: letter.isCorrect,
-          letter: letter.letter,
+          letter: letter.letter.toLocaleLowerCase().trim(),
           updated_at: letter.updatedAt,
           game_id: letter.game!,
         }

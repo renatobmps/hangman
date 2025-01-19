@@ -1,10 +1,10 @@
 import { beforeEach, describe, it } from "node:test";
 import addHint from "../index.ts";
 import { MOCK_ADD_HINT_CONTROLLER_DATA } from "../add_hint.constants.ts";
-import database from "../../../lib/database_gateway.ts";
+import prismaRepository from "../../../lib/prisma_repository.ts";
 import assert from "node:assert";
 
-beforeEach(async () => await database().clearDatabase());
+beforeEach(async () => await prismaRepository().clearDatabase());
 
 describe('addHint', () => {
   it('should to add a hint without word', async () => {
@@ -21,7 +21,7 @@ describe('addHint', () => {
   it('should to add a hint with word', async () => {
     const words = await Promise.all(
       MOCK_ADD_HINT_CONTROLLER_DATA.words!.map(word => (
-        database().addWord(word)
+        prismaRepository().addWord(word)
       ))
     );
 

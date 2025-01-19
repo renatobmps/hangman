@@ -1,7 +1,5 @@
 import Playing from "@/modules/playing";
 
-const Page = () => (
-  <Playing />
-)
+const Page = () => <Playing />
 
 export default Page;

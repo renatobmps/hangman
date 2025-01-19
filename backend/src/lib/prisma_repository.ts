@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import type { IDatabaseGateway } from "./database_gateway.interfaces.ts";
+import type IRepository from "./repository.interfaces.ts";
 
-const database = (): IDatabaseGateway => {
+const prismaRepository = (): IRepository => {
   let prisma;
 
   if (!global._prisma) {
@@ -37,8 +37,19 @@ const database = (): IDatabaseGateway => {
         prisma.$disconnect();
       }
     },
-    getHintByName: (name: string) => prisma.hint.findFirst({ where: { text: name } }),
+    getHintByName: (name: string) => prisma.hint.findFirst({
+      where: { text: name },
+      orderBy: { text: 'asc' }
+    }),
+    getHintByWord: (word_id) => prisma.hintsWords.findMany({
+      where: { word_id },
+      include: { id_hint: true },
+      orderBy: { id_hint: { text: 'asc' } }
+    }),
+    getAllWords: () => prisma.word.findMany({
+      orderBy: { text: 'asc' }
+    }),
   }
 }
 
-export default database;
+export default prismaRepository;

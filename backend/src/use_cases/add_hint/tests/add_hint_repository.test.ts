@@ -1,15 +1,15 @@
 import { beforeEach, describe, it } from "node:test";
 import assert from "node:assert";
 import AddHintRepository from "../entities/add_hint_repository.ts";
-import database from "../../../lib/database_gateway.ts";
+import prismaRepository from "../../../lib/prisma_repository.ts";
 import { MOCK_ADD_HINT_REPOSITORY_DATA } from "../add_hint.constants.ts";
 
 beforeEach(async () => {
-  await database().clearDatabase();
+  await prismaRepository().clearDatabase();
 })
 
 describe('AddHintRepository', () => {
-  const repository = new AddHintRepository(database());
+  const repository = new AddHintRepository(prismaRepository());
 
   it('should to instance', () => {
     assert.ok(repository);
@@ -32,8 +32,8 @@ describe('AddHintRepository', () => {
 
   it('should to create hint with words', async () => {
     const [word1, word2] = await Promise.all([
-      database().addWord('new word 1'),
-      database().addWord('new word 2'),
+      prismaRepository().addWord('new word 1'),
+      prismaRepository().addWord('new word 2'),
     ]);
 
     const newHint = await repository.create({

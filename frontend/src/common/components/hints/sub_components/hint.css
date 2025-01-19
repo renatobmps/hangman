@@ -33,7 +33,7 @@
 
   small {
     font: 500 12px sans-serif;
-    color: var(--color-gray-4, gray);
+    color: var(--color-gray-5, gray);
     text-transform: lowercase;
   }
 }

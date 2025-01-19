@@ -4,15 +4,9 @@ import type { ICreateUserController } from './interfaces/create_user.ts';
 import getHints from './use_cases/get_hints/index.ts';
 import type { IAddHintControllerExecute } from './use_cases/add_hint/add_hint.interfaces.ts';
 import addHint from './use_cases/add_hint/index.ts';
+import getWords from './use_cases/get_words/index.ts';
 
 const typeDefs = gql`
-  type Word {
-    id: String,
-    text: String,
-    description: String
-    is_activated: Boolean,
-  }
-
   type Hint {
     id: String,
     text: String,
@@ -20,9 +14,21 @@ const typeDefs = gql`
     total_words: Int,
     words: [Word]
   }
+  
+  type Word {
+    id: String,
+    text: String,
+    description: String
+    is_activated: Boolean,
+    hints: [Hint]!
+  }
 
   type Query {
     getHints: [Hint]!
+  }
+
+  type Query {
+    getWords: [Word]!
   }
 
   type CreateUserRes {
@@ -43,6 +49,7 @@ const server = new ApolloServer({
   typeDefs, resolvers: {
     Query: {
       getHints: async () => getHints(),
+      getWords: async () => getWords(),
     },
 
     Mutation: {

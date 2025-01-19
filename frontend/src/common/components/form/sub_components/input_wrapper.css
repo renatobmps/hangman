@@ -1,0 +1,11 @@
+.form__input_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 50dvh;
+  overflow: hidden auto;
+
+  li {
+    list-style: none;
+  }
+}

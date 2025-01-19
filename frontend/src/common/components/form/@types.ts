@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, PropsWithChildren } from "react";
+import { InputHTMLAttributes, LegacyRef, PropsWithChildren, PropsWithRef, ReactElement } from "react";
 
 export interface IRadioInput extends InputHTMLAttributes<HTMLInputElement> {
   strongText?: boolean;
@@ -6,4 +6,15 @@ export interface IRadioInput extends InputHTMLAttributes<HTMLInputElement> {
   text: string;
 }
 
-export interface ISubmit extends PropsWithChildren {}
+export interface IInputWrapper {
+  children: Array<ReactElement>
+}
+
+export interface ICheckerInput extends InputHTMLAttributes<HTMLInputElement> {
+  checked: boolean;
+  ref?: LegacyRef<HTMLInputElement>
+}
+
+export interface ITextInput extends InputHTMLAttributes<HTMLInputElement> {
+  ref?: LegacyRef<HTMLInputElement>
+}

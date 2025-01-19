@@ -16,7 +16,7 @@ const Hint = ({ isLoading = false, title = '', isActive = false, total_words = 0
         )}
         {!isLoading && !!title && (
           <>
-            <strong>{title}</strong>
+            <strong lang='pt-br'>{title}</strong>
             {total_words > 0 && (
               <input type="checkbox" defaultChecked={isActive} />
             )}

@@ -1,9 +1,5 @@
-import { IClientLayout } from "../layout.interfaces";
+import { PropsWithChildren } from "react";
 
-const ClientLayout = ({ children }: IClientLayout) => (
-  <html lang="en">
-    <body>{children}</body>
-  </html>
-)
+const ClientLayout = ({ children }: PropsWithChildren) => children
 
 export default ClientLayout;

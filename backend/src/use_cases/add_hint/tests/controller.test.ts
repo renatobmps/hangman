@@ -4,10 +4,10 @@ import AddHintController from "../add_hint.controller.ts";
 import { MOCK_ADD_HINT_CONTROLLER_DATA, MOCK_ADD_HINT_CONTROLLER_REPOSITORY, MOCK_ADD_HINT_CONTROLLER_VALIDATOR } from "../add_hint.constants.ts";
 import AddHintValidator from "../entities/add_hint_validator.ts";
 import AddHintRepository from "../entities/add_hint_repository.ts";
-import database from "../../../lib/database_gateway.ts";
+import prismaRepository from "../../../lib/prisma_repository.ts";
 
 beforeEach(async () => {
-  await database().clearDatabase();
+  await prismaRepository().clearDatabase();
 })
 
 describe('AddHintController', () => {
@@ -71,7 +71,7 @@ describe('AddHintController', () => {
   describe('integration', () => {
     const controller = new AddHintController({
       validator: new AddHintValidator(),
-      repository: new AddHintRepository(database()),
+      repository: new AddHintRepository(prismaRepository()),
     })
 
     it('should to instance', () => {
@@ -83,7 +83,7 @@ describe('AddHintController', () => {
     it('should to create with words', async () => {
       const words = await Promise.all(
         MOCK_ADD_HINT_CONTROLLER_DATA.words!.map(word => (
-          database().addWord(word)
+          prismaRepository().addWord(word)
         ))
       );
 

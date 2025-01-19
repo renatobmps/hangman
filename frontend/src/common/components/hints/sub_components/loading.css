@@ -2,4 +2,8 @@
   aspect-ratio: 1;
   height: auto;
   width: var(--hints__loading-w, 101px);
+
+  .stick-secondary {
+    fill: var(--color-gray-4, gray);
+  }
 }

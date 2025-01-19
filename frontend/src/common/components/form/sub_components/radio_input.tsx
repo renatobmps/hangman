@@ -10,8 +10,8 @@ const RadioInput = ({
 }: IRadioInput) => (
   <label className="form__radio-input">
     <input {...props} name={inputName} type="radio" value={value ?? text} />
-    {!!strongText && <strong>{text}</strong>}
-    {!strongText && <p>{text}</p>}
+    {!!strongText && <strong lang='pt-br'>{text}</strong>}
+    {!strongText && <p lang='pt-br'>{text}</p>}
   </label>
 )
 

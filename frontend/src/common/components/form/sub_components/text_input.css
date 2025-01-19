@@ -1,0 +1,10 @@
+.form__text-input {
+  align-items: baseline;
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  
+  & input {
+    width: 100%;
+  }
+}

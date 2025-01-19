@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 }
 
 const PageLayout = ({ children }: PropsWithChildren) => (
-  <Layout.DashboardLayout>{children}</Layout.DashboardLayout>
+  <Layout.DashboardPage>
+    <Layout.DashboardTop />
+    {children}
+  </Layout.DashboardPage>
 )
 
 export default PageLayout;
