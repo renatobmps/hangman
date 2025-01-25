@@ -1,10 +1,10 @@
 import { ApolloServer, gql } from 'apollo-server'
 import { createUser } from './use_cases/create_user.ts';
-import type { ICreateUserController } from './interfaces/create_user.ts';
 import getHints from './use_cases/get_hints/index.ts';
 import type { IAddHintControllerExecute } from './use_cases/add_hint/add_hint.interfaces.ts';
 import addHint from './use_cases/add_hint/index.ts';
 import getWords from './use_cases/get_words/index.ts';
+import type ICreateUserInput from './controllers/@types/create_user_input.type.ts';
 
 const typeDefs = gql`
   type Hint {
@@ -25,9 +25,6 @@ const typeDefs = gql`
 
   type Query {
     getHints: [Hint]!
-  }
-
-  type Query {
     getWords: [Word]!
   }
 
@@ -46,7 +43,8 @@ const typeDefs = gql`
 `
 
 const server = new ApolloServer({
-  typeDefs, resolvers: {
+  typeDefs,
+  resolvers: {
     Query: {
       getHints: async () => getHints(),
       getWords: async () => getWords(),
@@ -54,7 +52,7 @@ const server = new ApolloServer({
 
     Mutation: {
       createHint: async (_, args: IAddHintControllerExecute) => addHint(args),
-      createUser: async (_, args: ICreateUserController) => createUser(args),
+      createUser: async (_, args: ICreateUserInput) => createUser(args),
     }
   }
 });

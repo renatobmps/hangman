@@ -5,6 +5,7 @@ declare global {
       readonly DATABASE_URL?: string;
       readonly HASH_SALT?: string;
       readonly NODE_ENV: 'development' | 'production';
+      readonly SEED_DATABASE_URL?: string;
     }
   }
 }

@@ -1,4 +1,4 @@
-import type { IRepository } from "src/lib/repository.interfaces.ts";
+import type IRepository from "../../../lib/repository.interfaces.ts";
 import type { IAddHintControllerExecute, IAddHintControllerRepository } from "../add_hint.interfaces.ts";
 
 export default class AddHintRepository implements IAddHintControllerRepository {

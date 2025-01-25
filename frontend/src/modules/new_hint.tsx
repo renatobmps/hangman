@@ -21,7 +21,8 @@ export default function NewHint({ wordList = [] }: INewHint) {
         body: JSON.stringify({
           query: `
             mutation {
-              createHint(text: "${nameRef.current.value}", isActive: ${activeRef.current.checked}, words: "${selectedWord}") {
+              createHint(text: "${nameRef.current.value}", isActive: ${activeRef.current.checked}${
+                typeof selectedWord === 'undefined' ? '' : `, words: "selectedWord"`}) {
                 id
               }
             }
@@ -46,8 +47,8 @@ export default function NewHint({ wordList = [] }: INewHint) {
     <Form.Root onSubmit={handleSubmit}>
       <Form.Title>Adding new hint</Form.Title>
       <Form.Line>
-        <Form.TextInput ref={nameRef} disabled={isLoading} onChange={() => console.log(nameRef.current.value)}>Name</Form.TextInput>
-        <Form.CheckerInput checked disabled={isLoading} ref={activeRef} onChange={() => console.log(activeRef.current.checked)}>
+        <Form.TextInput ref={nameRef} disabled={isLoading}>Name</Form.TextInput>
+        <Form.CheckerInput checked disabled={isLoading} ref={activeRef}>
           <strong>Activated?</strong>
         </Form.CheckerInput>
       </Form.Line>

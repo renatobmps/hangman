@@ -10,7 +10,7 @@ import type { Letter } from './data/letters.ts';
 
 const prisma = new PrismaClient();
 const oldDatabase = new PrismaClient({
-  datasourceUrl: 'postgres://default:PWLyNgVXKO14@ep-weathered-scene-84460545-pooler.us-east-1.postgres.vercel-storage.com/verceldb',
+  datasourceUrl: process.env.SEED_DATABASE_URL,
 })
 
 async function migrate() {
@@ -158,10 +158,12 @@ async function migrate() {
       }
     }
 
+    const withRelation = allWords.filter(w => typeof w.hintId !== 'undefined' && typeof w.wordId !== 'undefined')
+    
     const targetRelationships = await prisma.hintsWords.findMany({
       select: { hint_id: true, word_id: true }
     });
-    const remainingRelationships = allWords.filter(word => !targetRelationships.some(relationship => relationship.hint_id === word.hintId && relationship.word_id === word.wordId));
+    const remainingRelationships = withRelation.filter(word => !targetRelationships.some(relationship => relationship.hint_id === word.hintId && relationship.word_id === word.wordId));
 
     await Promise.all(remainingRelationships.map(relationship => prisma.hintsWords.create({
       data: {
@@ -222,7 +224,7 @@ async function migrate() {
 
       const [user, word] = await Promise.all([
         prisma.user.findFirst({ select: { id: true }, where: { username: data.user } }),
-        prisma.word.findFirst({ select: { id: true }, where: { text: data.word } }),
+        prisma.word.findFirst({ select: { id: true }, where: { text: data.word.toLowerCase().trim() } }),
       ])
 
       allGames[i].user = user?.id ? user.id : data.user;
@@ -271,7 +273,7 @@ async function migrate() {
 
       const [user, word] = await Promise.all([
         prisma.user.findFirst({ select: { id: true }, where: { username: data.user } }),
-        prisma.word.findFirst({ select: { id: true }, where: { text: data.word } }),
+        prisma.word.findFirst({ select: { id: true }, where: { text: data.word?.toLowerCase().trim() } }),
       ]);
 
       const game = await prisma.game.findFirst({ select: { id: true }, where: { user_id: user?.id, word_id: word?.id } })

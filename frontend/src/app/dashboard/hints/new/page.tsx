@@ -18,8 +18,6 @@ const Page = async () => {
     `})
   });
 
-  console.log(JSON.stringify(request, null, 2));
-
   const data = await request.json() as {
     data: {
       getWords: Array<{
@@ -29,7 +27,6 @@ const Page = async () => {
       }>
     }
   };
-  console.log(JSON.stringify(data, null, 2));
 
 
   return (

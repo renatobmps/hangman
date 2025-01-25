@@ -1,4 +1,4 @@
-import type { ICreateUserValidation } from "../interfaces/create_user.ts";
+import type ICreateUserValidation from "../@types/create_user_validation.type";
 
 export class CreateUserValidation implements ICreateUserValidation {
   validUsername(username: string): boolean {

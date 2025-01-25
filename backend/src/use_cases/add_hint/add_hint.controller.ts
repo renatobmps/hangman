@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import type { IAddHintController, IAddHintControllerExecute, IAddHintControllerRepository, IAddHintControllerValidator } from "./add_hint.interfaces.ts";
 
 export default class AddHintController {
@@ -16,6 +17,26 @@ export default class AddHintController {
       if (hint.words) {
         this.validator.checkWords(hint.words)
       }
+    }
+
+    {
+      const myPrisma = new PrismaClient();
+      const [
+        dbHints,
+        dbWords,
+        dbRelation,
+      ] = await Promise.all([
+        myPrisma.$executeRaw`SELECT h.* FROM public."Hint" AS h`,
+        myPrisma.$executeRaw`SELECT w.* FROM public."Word" AS w`,
+        myPrisma.$executeRaw`SELECT hw.* FROM public."HintsWords" AS hw`,
+      ])
+      console.log('\n\n\n\n\n\n')
+      console.log({
+        dbHints,
+        dbWords,
+        dbRelation,
+      })
+      console.log('\n\n\n\n\n\n')
     }
 
     const hasDuplicate = await this.repository.hasDuplicate(hint.text!);

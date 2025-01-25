@@ -27,8 +27,6 @@ const Form = () => {
 
       const newUser = await apiRequest.json();
 
-      console.log({ newUser });
-
       window.location.reload();
     }
   }

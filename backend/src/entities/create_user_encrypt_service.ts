@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import type { ICreateUserEncryptService } from "../interfaces/create_user.ts";
+import type ICreateUserEncryptService from '../@types/create_user_encrypt_service.type';
 
 export default class CreateUserEncryptService implements ICreateUserEncryptService {
   async encryptPassword(password: string): Promise<string> {

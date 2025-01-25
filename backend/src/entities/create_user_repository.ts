@@ -1,5 +1,5 @@
-import type { ICreateUserRepository } from "../interfaces/create_user.ts";
 import { db } from "../lib/db.ts";
+import type ICreateUserRepository from "../@types/create_user_repository.type.ts";
 
 export interface IDatabase {
   user: {

@@ -7,14 +7,13 @@
     "module": "Preserve",
     "moduleResolution": "node",
     "noEmit": true,
-    "outDir": "./build",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2016",
+    "target": "ES2024",
     "types": ["node"]
   },
-  "include": ["**/*.d.ts", "src/**/*", "__tests__/**/*", "prisma/**/*"],
+  "include": ["**/*.d.ts", "src/**/*", "__tests__/**/*"],
   "exclude": ["node_modules"]
 }

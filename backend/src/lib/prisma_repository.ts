@@ -5,7 +5,11 @@ const prismaRepository = (): IRepository => {
   let prisma;
 
   if (!global._prisma) {
-    prisma = new PrismaClient();
+    prisma = new PrismaClient({
+      ...(process.env.NODE_ENV === 'development' ? {
+        log: ['query']
+      } : {})
+    });
   } else {
     prisma = global._prisma;
   }

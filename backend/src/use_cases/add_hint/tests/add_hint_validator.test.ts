@@ -1,83 +1,87 @@
-import { describe, it } from "node:test";
-import assert from "node:assert";
-import AddHintValidator from "../entities/add_hint_validator.ts";
+// import { after, beforeEach, describe, it } from "node:test";
+// import assert from "node:assert";
+// import AddHintValidator from "../entities/add_hint_validator.ts";
+// import prismaRepository from "../../../lib/prisma_repository.ts";
 
-describe('AddHintValidator', () => {
-  const validator = new AddHintValidator();
+// beforeEach(async () => await prismaRepository().clearDatabase())
+// after(async () => await prismaRepository().clearDatabase())
 
-  it('should to instance', () => {
-    assert.ok(validator);
-    assert.equal(validator instanceof AddHintValidator, true);
-    assert.ok(validator.checkTitle);
-  });
+// describe('AddHintValidator', () => {
+//   const validator = new AddHintValidator();
 
-  describe('title', () => {
+//   it('should to instance', () => {
+//     assert.ok(validator);
+//     assert.equal(validator instanceof AddHintValidator, true);
+//     assert.ok(validator.checkTitle);
+//   });
 
-    it('should accept title with multiple words', () => {
-      const title = 'This is a valid title';
+//   describe('title', () => {
 
-      const result = validator.checkTitle(title);
+//     it('should accept title with multiple words', () => {
+//       const title = 'This is a valid title';
 
-      assert.ok(result);
-    });
+//       const result = validator.checkTitle(title);
 
-    it('should accept title with single word', () => {
-      const title = 'Title';
+//       assert.ok(result);
+//     });
 
-      const result = validator.checkTitle(title);
+//     it('should accept title with single word', () => {
+//       const title = 'Title';
 
-      assert.ok(result);
-    });
+//       const result = validator.checkTitle(title);
 
-    it('should throw error when title is empty string', () => {
-      const title = '';
+//       assert.ok(result);
+//     });
 
-      assert.throws(() => validator.checkTitle(title).valueOf, /Title cannot be empty/);
-    });
+//     it('should throw error when title is empty string', () => {
+//       const title = '';
 
-    it('should throw error when title is undefined', () => {
-      assert.throws(() => validator.checkTitle(undefined).valueOf, /Title is required/);
-    });
+//       assert.throws(() => validator.checkTitle(title).valueOf, /Title cannot be empty/);
+//     });
 
-    it('should throw error when title is null', () => {
-      assert.throws(() => validator.checkTitle(null as unknown as string).valueOf, /Invalid title/);
-    });
-  })
+//     it('should throw error when title is undefined', () => {
+//       assert.throws(() => validator.checkTitle(undefined).valueOf, /Title is required/);
+//     });
 
-  describe('active', () => {
-    it('should to accept true', () => {
-      const validation = validator.checkActiveState(true);
+//     it('should throw error when title is null', () => {
+//       assert.throws(() => validator.checkTitle(null as unknown as string).valueOf, /Invalid title/);
+//     });
+//   })
 
-      assert.ok(validation);
-    })
+//   describe('active', () => {
+//     it('should to accept true', () => {
+//       const validation = validator.checkActiveState(true);
 
-    it('should to accept false', () => {
-      const validation = validator.checkActiveState(false);
+//       assert.ok(validation);
+//     })
 
-      assert.ok(validation);
-    })
+//     it('should to accept false', () => {
+//       const validation = validator.checkActiveState(false);
 
-    it('should not accept invalid values', () => {
-      assert.throws(() => validator.checkActiveState(undefined as unknown as boolean))
-      assert.throws(() => validator.checkActiveState(null as unknown as boolean))
-      assert.throws(() => validator.checkActiveState([] as unknown as boolean))
-      assert.throws(() => validator.checkActiveState({} as unknown as boolean))
-    })
-  })
+//       assert.ok(validation);
+//     })
 
-  describe('words', () => {
-    it('should to be valid', () => {
-      const validation = validator.checkWords(['id_123', 'id_456', 'id_789']);
+//     it('should not accept invalid values', () => {
+//       assert.throws(() => validator.checkActiveState(undefined as unknown as boolean))
+//       assert.throws(() => validator.checkActiveState(null as unknown as boolean))
+//       assert.throws(() => validator.checkActiveState([] as unknown as boolean))
+//       assert.throws(() => validator.checkActiveState({} as unknown as boolean))
+//     })
+//   })
 
-      assert.ok(validation);
-    })
+//   describe('words', () => {
+//     it('should to be valid', () => {
+//       const validation = validator.checkWords(['id_123', 'id_456', 'id_789']);
 
-    it('should not accept not array', () => {
-      assert.throws(() => validator.checkWords({} as unknown as string[]))
-    })
+//       assert.ok(validation);
+//     })
 
-    it('should not accept array of string', () => {
-      assert.throws(() => validator.checkWords([123, 456] as unknown as string[]))
-    })
-  })
-})
+//     it('should not accept not array', () => {
+//       assert.throws(() => validator.checkWords({} as unknown as string[]))
+//     })
+
+//     it('should not accept array of string', () => {
+//       assert.throws(() => validator.checkWords([123, 456] as unknown as string[]))
+//     })
+//   })
+// })

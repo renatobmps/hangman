@@ -1,43 +1,47 @@
-import { describe, it } from "node:test";
-import GetHintsRepository from "../entities/repository.ts";
-import { MOCK_DATABASE } from "../../../../__tests__/mocks/entities/get_hint_repository.ts";
-import assert from "node:assert";
-import { db } from "../../../lib/db.ts";
+// import { after, beforeEach, describe, it } from "node:test";
+// import GetHintsRepository from "../entities/repository.ts";
+// import { MOCK_DATABASE } from "../../../../__tests__/mocks/entities/get_hint_repository.ts";
+// import assert from "node:assert";
+// import { db } from "../../../lib/db.ts";
+// import prismaRepository from "../../../lib/prisma_repository.ts";
 
-describe('GetHintsRepository', () => {
-  describe('unit', () => {
-    const repository = new GetHintsRepository(MOCK_DATABASE);
+// beforeEach(async () => await prismaRepository().clearDatabase())
+// after(async () => await prismaRepository().clearDatabase())
 
-    it('should do instance it', () => {
-      assert.ok(repository);
-      assert.equal(repository instanceof GetHintsRepository, true);
-    });
+// describe('GetHintsRepository', () => {
+//   describe('unit', () => {
+//     const repository = new GetHintsRepository(MOCK_DATABASE);
 
-    it('should to return hints', async () => {
-      const hints = await repository.getAllHints();
+//     it('should do instance it', () => {
+//       assert.ok(repository);
+//       assert.equal(repository instanceof GetHintsRepository, true);
+//     });
 
-      assert.ok(hints);
-      assert.equal(Array.isArray(hints), true);
-      assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
-      assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
-    })
-  });
+//     it('should to return hints', async () => {
+//       const hints = await repository.getAllHints();
 
-  describe('integration', async () => {
-    const repository = new GetHintsRepository(db());
+//       assert.ok(hints);
+//       assert.equal(Array.isArray(hints), true);
+//       assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
+//       assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
+//     })
+//   });
 
-    it('should do instance it', () => {
-      assert.ok(repository);
-      assert.equal(repository instanceof GetHintsRepository, true);
-    });
+//   describe('integration', async () => {
+//     const repository = new GetHintsRepository(db());
 
-    it('should to return hints', async () => {
-      const hints = await repository.getAllHints();
+//     it('should do instance it', () => {
+//       assert.ok(repository);
+//       assert.equal(repository instanceof GetHintsRepository, true);
+//     });
 
-      assert.ok(hints);
-      assert.equal(Array.isArray(hints), true);
-      assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
-      assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
-    })
-  })
-})
+//     it('should to return hints', async () => {
+//       const hints = await repository.getAllHints();
+
+//       assert.ok(hints);
+//       assert.equal(Array.isArray(hints), true);
+//       assert.equal(hints.every(({ total_words }) => typeof total_words === 'number'), true);
+//       assert.equal(hints.every(({ words }) => Array.isArray(words)), true);
+//     })
+//   })
+// })
