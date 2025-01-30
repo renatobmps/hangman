@@ -88,10 +88,15 @@ export default function useHome() {
     });
   };
 
+  const nextGame = () => {
+    setOpenedModal(false);
+    setGameState("starting");
+  }
+
   const [gameState, setGameState] = useState<GameState>("starting");
   useEffect(() => {
     const stateHandlers: { [key in GameState]: () => void } = {
-      starting: () =>
+      starting: () => {
         handleStarting({
           setModalMessage,
           setModalOpen: setOpenedModal,
@@ -103,13 +108,14 @@ export default function useHome() {
             userContext && userContext.setUser
               ? userContext.setUser({ username })
               : null,
-        }),
+        })
+      },
       waiting: () => {
         if (!gameData.word) {
           window.location.reload();
         }
       },
-      checking: () => {},
+      checking: () => { },
       won: () => {
         const phrases = [
           `Parabéns, ${gameData.user}! 👏👏👏`,
@@ -131,7 +137,6 @@ export default function useHome() {
         setOpenedModal(true);
         setRankingTopTenState(null);
         setRankingState(null);
-        setGameState("starting");
       },
       lost: () => {
         const phrases = [
@@ -145,7 +150,6 @@ export default function useHome() {
         setOpenedModal(true);
         setRankingTopTenState(null);
         setRankingState(null);
-        setGameState("starting");
       },
     };
 
@@ -161,7 +165,7 @@ export default function useHome() {
     rankingTopTenState,
     rankingState,
     openedModal,
-    setOpenedModal,
     modalMessage,
+    nextGame,
   };
 }

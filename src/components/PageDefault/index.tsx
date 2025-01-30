@@ -36,6 +36,18 @@ export default function PageDefault(props: IProps) {
     setOpenedModal(false);
   };
 
+  useEffect(() => {
+    const next = document.querySelector('#__next')
+
+    if (next && props.userData?.name) {
+      next.classList.forEach(name => {
+        next.classList.remove(name)
+      })
+
+      next.classList.add(`username_${props.userData.name}`)
+    }
+  }, [props.userData])
+
   return isPageMounted && (
     <>
       {props.seoConfig && <SeoHead {...props.seoConfig} />}

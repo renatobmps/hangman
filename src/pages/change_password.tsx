@@ -15,7 +15,7 @@ export default function ChangePassword() {
   const [fields, setFields] = useState(initialState);
 
   return (
-    <PageDefault userData={userContext?.user?.username ?? "NONAME"} seoConfig={{ title: 'Mudar senha' }}>
+    <PageDefault userData={{ name: userContext?.user?.username ?? "NO_NAME" }} seoConfig={{ title: 'Mudar senha' }}>
       <LoginPanel onSubmit={(event: any) => submitPassword(event, fields)}>
         <PasswordForm
           fieldState={fields}

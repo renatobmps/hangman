@@ -22,11 +22,17 @@ export async function submitCreateAccount(
     window.location.href = "/login";
   } catch (error: any) {
     alert(
-      error?.response?.data?.error ??
-      error?.response?.statusText ??
-      error?.message ??
-      error ??
-      "Ocorreu um erro!"
+      JSON.stringify(
+        (
+          error?.response?.data?.error ??
+          error?.response?.statusText ??
+          error?.message ??
+          error ??
+          "Ocorreu um erro!"
+        ),
+        null,
+        2
+      )
     );
   } finally {
     submitter?.classList.remove('loading');

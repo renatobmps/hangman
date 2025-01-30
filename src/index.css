@@ -59,6 +59,18 @@ code {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+
+  &.username_natalia {
+    --color-1: #6800ff;
+  }
+
+  &.username_nicolas {
+    --color-1: #007396
+  }
+
+  &.username_renatobmps {
+    --color-1: #fd852d
+  }
 }
 
 #root, #__next > main {

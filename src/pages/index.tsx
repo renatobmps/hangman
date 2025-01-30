@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PageDefault from "../components/PageDefault";
 import Keyboard from "../components/GameKeyboard";
 import GameData from "../components/GameData";
@@ -11,6 +11,8 @@ import useHome, { GameState as TGameState } from "../hooks/useHome";
 export type GameState = TGameState;
 
 export default function App() {
+  const [isMounted, setMounted] = useState(false);
+
   const {
     gameData,
     handleKeyDown,
@@ -19,11 +21,15 @@ export default function App() {
     rankingTopTenState,
     rankingState,
     openedModal,
-    setOpenedModal,
     modalMessage,
+    nextGame,
   } = useHome();
 
-  return (
+  useEffect(() => setMounted(true), []);
+
+  if (!isMounted) return <p>Carregando...</p>
+
+  return isMounted && (
     <PageDefault
       userData={{ name: gameData.user }}
       callbackKeydown={handleKeyDown}
@@ -46,7 +52,7 @@ export default function App() {
       <GameRanking tableLabel="Ranking geral" rankingData={rankingState} />
       <Modal
         isOpened={openedModal}
-        closeFunction={setOpenedModal}
+        closeFunction={nextGame}
         message={modalMessage}
       />
     </PageDefault>
