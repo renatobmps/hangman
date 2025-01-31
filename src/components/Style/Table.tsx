@@ -6,6 +6,7 @@ const Style = styled.table`
   width: 100%;
   tr.highlight {
     background: #f2f2f29e;
+    color: var(--color-1);
     font-weight: bold;
   }
 `;
