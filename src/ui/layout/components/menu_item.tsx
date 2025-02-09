@@ -1,10 +1,10 @@
-import { IMenuItem, IMenuItemAsButton, IMenuItemAsLink } from "../interfaces";
+import { IMenuItem, IMenuItemAsButton } from "../interfaces";
 import * as S from "../styles";
 
 const MenuItem = (props: IMenuItem) =>
   "href" in props ? (
     <S.NavigationMenuAsLink
-      {...(props as IMenuItemAsLink)}
+      {...props}
       href={props.href!}
     />
   ) : (

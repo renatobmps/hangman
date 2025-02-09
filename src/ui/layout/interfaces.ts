@@ -1,9 +1,8 @@
-import { HTMLAttributes, PropsWithChildren, ReactElement } from "react";
+import { AnchorHTMLAttributes, HTMLAttributes, PropsWithChildren, ReactElement } from "react";
 import { LinkProps } from "next/link";
 
 export interface IMenuItemAsLink
-  extends HTMLAttributes<HTMLAnchorElement>,
-  LinkProps { }
+  extends AnchorHTMLAttributes<HTMLAnchorElement> { }
 
 export interface IMenuItemAsButton extends HTMLAttributes<HTMLButtonElement> { }
 

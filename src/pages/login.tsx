@@ -5,7 +5,6 @@ import { handleFields } from "../adapters/handleFields";
 import { submitLogin } from "../adapters/submitLogin";
 
 export default function Login() {
-  debugger;
   const initialState = {
     user: "",
     password: "",
