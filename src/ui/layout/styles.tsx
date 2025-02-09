@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import styled, { css } from 'styled-components';
+import Link from "next/link";
+import Image from "next/image";
+import styled, { css } from "styled-components";
 
 export const Root = styled.div`
   box-sizing: border-box;
@@ -18,12 +18,24 @@ export const NavigationMenu = css`
   border-radius: 0.5rem;
   color: black;
   cursor: pointer;
-  font: 600 1em "Eraser", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font:
+    600 1em "Eraser",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   letter-spacing: 0.2rem;
   text-decoration: none;
   transition: 0.6s;
   padding: 0.25rem 1rem;
-  
+
   &:hover {
     background: #64646426;
   }
@@ -46,14 +58,14 @@ export const Header = styled.header`
   padding: 1rem;
 `;
 
-export const Logo = styled(Image)`
+export const LogoTop = styled(Image)`
   aspect-ratio: 1;
   display: block;
   height: calc(1rem * 4);
   width: auto;
 `;
 
-export const Navigation = styled.label`
+export const MenuNavigation = styled.label`
   align-items: center;
   background: inherit;
   cursor: pointer;
@@ -63,7 +75,7 @@ export const Navigation = styled.label`
   width: fit-content;
 `;
 
-export const NavigationButton = styled.input`
+export const MenuNavigationButton = styled.input`
   & ~ svg {
     font-size: 1.2rem;
 
@@ -78,12 +90,12 @@ export const NavigationButton = styled.input`
   }
 `;
 
-export const NavigationInner = styled.nav`
+export const MenuNavigationInner = styled.nav`
   background: inherit;
   display: inherit;
   gap: inherit;
   transition: 0.6s;
-  
+
   @media (max-width: 615px) {
     flex-direction: column;
     inset: 100% 0 auto auto;
@@ -97,3 +109,56 @@ export const NavigationInner = styled.nav`
   }
 `;
 
+export const DashboardPanel = styled.main`
+  box-shadow: inset 0 4px 4px -3px rgba(0, 0, 0, 0.1);
+  background: white;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 1rem;
+`;
+
+export const DashboardSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const DashboardSectionTitle = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
+
+export const Grid = styled.section`
+  align-items: stretch;
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--gap-v, 0.3rem) var(--gap-h, 0.3rem);
+  grid-template-columns: repeat(auto-fill, calc(100% / var(--grid-quantity, 3) - (var(--gap-h, 0.3rem) - (var(--gap-h, 0.3rem) / var(--grid-quantity, 3)))));
+  justify-items: stretch;
+  padding: var(--grid-padding, 0);
+  width: 100%;
+
+  & > * {
+    max-height: 100%;
+    max-width: 100%;
+
+    &:nth-child(1) {
+      ${() => {
+    const gridQuantity = getComputedStyle(document.documentElement).getPropertyValue('--grid-quantity') ?? '1';
+
+    const mediaQuery = Number(gridQuantity) > 1 && css`
+      @media (min-width: 1px) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+    `
+
+    return mediaQuery;
+  }}
+    }
+  }
+`;

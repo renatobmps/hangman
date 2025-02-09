@@ -14,9 +14,12 @@ export default function CreateLogin() {
 
   return (
     <>
-      <LoginPanel onSubmit={(event: FormEvent) => submitCreateAccount(event, fields)} seoConfig={{
-        title: 'Cadastro'
-      }}>
+      <LoginPanel
+        onSubmit={(event: FormEvent) => submitCreateAccount(event, fields)}
+        seoConfig={{
+          title: "Cadastro",
+        }}
+      >
         <CreateUserForm
           fieldState={fields}
           handleFields={(event: any) => handleFields(event, setFields, fields)}

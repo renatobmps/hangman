@@ -46,9 +46,9 @@ export async function handleGameKeyboard({
 
   try {
     const response = await axios.post<TryResponse>(
-      '/api/v1/games/guess',
+      "/api/v1/games/guess",
       { letter },
-      { headers: { Authorization: localStorage.getItem("token") || "" } }
+      { headers: { Authorization: localStorage.getItem("token") || "" } },
     );
     if (response.status === 403) {
       localStorage.removeItem("token");

@@ -5,11 +5,14 @@ import GameWrap from "./Style/GameWrap";
 import Table from "./Style/Table";
 
 interface GameRankingTableProps {
-  gameRanking: IGameDataRanking[],
-  tableLabel: string,
+  gameRanking: IGameDataRanking[];
+  tableLabel: string;
 }
 
-export function GameRankingTable({ gameRanking, tableLabel }: GameRankingTableProps) {
+export function GameRankingTable({
+  gameRanking,
+  tableLabel,
+}: GameRankingTableProps) {
   return (
     <GameWrap flexDirection="column">
       <h2>{tableLabel}</h2>

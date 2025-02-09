@@ -1,17 +1,20 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { LayoutComponents } from '..';
+import { Meta, StoryObj } from "@storybook/react";
+import * as Mocks from '../mocks'
+import Layout from "..";
 
-const Component = {
-  Component: {
-    Root: () => <LayoutComponents.Root>Implementar</LayoutComponents.Root>
+export const Default: StoryObj<typeof Layout.Dashboard> = {
+  args: {
+    children: (
+      <>
+        <Mocks.Main />
+        <Mocks.Footer />
+      </>
+    )
   }
-}
+};
 
-export const Default: StoryObj<typeof Component.Component.Root> = {
-}
-
-const meta: Meta<typeof Component.Component.Root> = {
-  component: Component.Component.Root
-}
+const meta: Meta<typeof Layout.Dashboard> = {
+  component: Layout.Dashboard
+};
 
 export default meta;

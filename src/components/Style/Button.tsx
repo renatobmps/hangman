@@ -28,7 +28,7 @@ const Style = styled.button`
     position: relative;
     &:before {
       animation: ${spinner} 1s linear infinite;
-      content: '';
+      content: "";
       display: block;
       width: 1rem;
       height: 1rem;

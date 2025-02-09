@@ -27,7 +27,7 @@ export default function App() {
     <PageDefault
       userData={{ name: gameData.user }}
       callbackKeydown={handleKeyDown}
-      seoConfig={{ title: 'Jogo' }}
+      seoConfig={{ title: "Jogo" }}
     >
       <MainTitle>Jogo da forca</MainTitle>
       <GameWrap>

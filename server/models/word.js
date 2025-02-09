@@ -35,7 +35,7 @@ export default (sequelize, DataTypes) => {
       sequelize,
       modelName: "Word",
       raw: true,
-    }
+    },
   );
   return Word;
 };

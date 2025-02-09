@@ -16,13 +16,17 @@ const Style = styled.form`
   width: 100%;
 `;
 
-export interface LoginPanel extends PropsWithChildren, FormHTMLAttributes<HTMLFormElement> {
-  seoConfig?: SeoHead
+export interface LoginPanel
+  extends PropsWithChildren,
+    FormHTMLAttributes<HTMLFormElement> {
+  seoConfig?: SeoHead;
 }
 
 export default function LoginPanel(props: LoginPanel) {
-  return <Style {...props}>
-    {props.seoConfig && <SeoHeadComponent {...props.seoConfig} />}
-    {props.children}
-  </Style>
+  return (
+    <Style {...props}>
+      {props.seoConfig && <SeoHeadComponent {...props.seoConfig} />}
+      {props.children}
+    </Style>
+  );
 }

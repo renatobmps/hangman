@@ -23,7 +23,7 @@ export default (sequelize, DataTypes) => {
       sequelize,
       modelName: "UserWord",
       raw: true,
-    }
+    },
   );
   return UserWord;
 };

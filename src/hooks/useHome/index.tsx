@@ -52,7 +52,7 @@ export default function useHome() {
   }, [gameData]);
 
   const [rankingState, setRankingState] = useState<IGameDataRanking[] | null>(
-    null
+    null,
   );
   const [rankingTopTenState, setRankingTopTenState] = useState<
     IGameDataRanking[] | null
@@ -65,7 +65,7 @@ export default function useHome() {
       letter: event.key,
       triedLettersList: gameData.triedLetters,
       buttonDom: document.querySelector(
-        `[data-keyboard=${event.key}]`
+        `[data-keyboard=${event.key}]`,
       ) as HTMLButtonElement,
       gameDataState: gameData,
       setModalMessage,

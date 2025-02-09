@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
-import * as Mock from '../mocks';
-import { LayoutComponents } from '..';
+import { Meta, StoryObj } from "@storybook/react";
+import * as Mock from "../mocks";
+import { LayoutComponents } from "..";
 
 export const Default: StoryObj<typeof LayoutComponents.Root> = {
   args: {
@@ -10,12 +10,12 @@ export const Default: StoryObj<typeof LayoutComponents.Root> = {
         <Mock.Main />
         <Mock.Footer />
       </>
-    )
+    ),
   },
-}
+};
 
 const meta: Meta<typeof LayoutComponents.Root> = {
-  component: LayoutComponents.Root
-}
+  component: LayoutComponents.Root,
+};
 
 export default meta;

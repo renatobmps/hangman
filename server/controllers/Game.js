@@ -283,7 +283,7 @@ class Game {
       if (idLetter) {
         await db.TriedLetters.update(
           { correct: data.hasWord },
-          { where: { id: idLetter } }
+          { where: { id: idLetter } },
         );
       } else {
         await db.TriedLetters.create({
@@ -294,7 +294,7 @@ class Game {
       }
     } catch (err) {
       throw new Error(
-        err.message || err || "Error while trying to guess letter"
+        err.message || err || "Error while trying to guess letter",
       );
     }
   }

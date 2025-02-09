@@ -11,7 +11,7 @@ const Style = styled.div`
 `;
 
 export default function FlexLine(
-  props: any & { alignItems?: string; justifyContent?: string }
+  props: any & { alignItems?: string; justifyContent?: string },
 ) {
   return (
     <Style

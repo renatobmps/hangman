@@ -1,6 +1,4 @@
 {
-  "cSpell.words": [
-    "consts",
-    "nextjs"
-  ]
+  "editor.formatOnSave": true,
+  "cSpell.words": ["Chawp", "consts", "nextjs", "Xmark"]
 }
