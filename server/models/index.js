@@ -10,9 +10,15 @@ export const dbConfig = {
   dialectModule: pg,
   host: process.env.POSTGRES_HOST,
   logging: process.env.NODE_ENV === "production",
+  ...(process.env.NODE_ENV === "production" ? {} : {
+    ssl: true,
+  }),
   dialectOptions: {
-    ssl: process.env.NODE_ENV === "production",
-  },
+    ssl: process.env.NODE_ENV === "production" ? true : {
+      require: true,
+      rejectUnauthorized: false,
+    }
+  }
 };
 
 let sequelize = new Sequelize(

@@ -4,7 +4,7 @@ import { UserContext } from "../stores/UserContext";
 
 function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
   const { user } = useContext(UserContext);
-  const { username = "noname" } = user ?? {};
+  const { username = "no_name" } = user ?? {};
 
   const allThatHasPoints = props.gameRanking.filter(
     (g) => !!g.performance.game.won.total,
