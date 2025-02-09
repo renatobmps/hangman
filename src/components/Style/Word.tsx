@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 const Style = styled.p`
-  font: 1.7rem "Chawp", "Ubuntu Mono", monospace;
+  font:
+    1.7rem "Chawp",
+    "Ubuntu Mono",
+    monospace;
   letter-spacing: 0.5rem;
   line-height: 3rem;
   max-width: 100%;

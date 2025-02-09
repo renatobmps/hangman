@@ -3,12 +3,12 @@ import { IProps } from "../components/PageDefault/types";
 export function pageDefaultStart(
   handleKeyboard: (event: unknown) => void,
   handleClick: (event: unknown) => void,
-  props: IProps
+  props: IProps,
 ) {
   if (localStorage.getItem("theme")) {
     document.documentElement.style.setProperty(
       "--color-1",
-      localStorage.getItem("theme")
+      localStorage.getItem("theme"),
     );
   }
   const pageTitle = props.pageTitle ? props.pageTitle : "Forca";

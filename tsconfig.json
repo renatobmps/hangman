@@ -16,7 +16,12 @@
     "noEmit": true,
     "jsx": "preserve",
     "removeComments": true,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@public/*": ["./public/*"],
+      "@server/*": ["./server/*"]
+    }
   },
   "include": ["src", "*.d.ts"],
   "exclude": ["node_modules"]

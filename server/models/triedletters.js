@@ -36,7 +36,7 @@ export default (sequelize, DataTypes) => {
       sequelize,
       modelName: "TriedLetters",
       raw: true,
-    }
+    },
   );
   return TriedLetters;
 };

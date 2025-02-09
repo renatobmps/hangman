@@ -3,34 +3,30 @@ import { FormEvent } from "react";
 
 export async function submitPassword(
   event: FormEvent,
-  fields: { password: string; confirmPassword: string }
+  fields: { password: string; confirmPassword: string },
 ) {
   const submitter = event.currentTarget.querySelector('[type="submit"]');
-  submitter?.classList.add('loading');
+  submitter?.classList.add("loading");
   try {
     event.preventDefault();
 
     if (fields.password !== fields.confirmPassword)
       return alert("As senhas não conferem!");
 
-    const response = await axios.put(
-      '/api/v1/users',
-      fields,
-      {
-        headers: { authorization: localStorage.getItem("token") || "" },
-        data: fields,
-      }
-    );
+    const response = await axios.put("/api/v1/users", fields, {
+      headers: { authorization: localStorage.getItem("token") || "" },
+      data: fields,
+    });
     if (response.status !== 200) throw new Error(response.data);
 
     window.location.href = "/";
   } catch (error: any) {
     alert(
       error.response.data.error ||
-      error.response.statusText ||
-      "Ocorreu um erro!"
+        error.response.statusText ||
+        "Ocorreu um erro!",
     );
   } finally {
-    submitter?.classList.remove('loading');
+    submitter?.classList.remove("loading");
   }
 }

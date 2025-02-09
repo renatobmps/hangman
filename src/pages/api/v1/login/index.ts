@@ -1,30 +1,36 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 import login from "../../../../../server/controllers/Login";
-import ApiError from '../../@types/ApiError';
+import ApiError from "../../@types/ApiError";
 
-type Method = 'POST';
+type Method = "POST";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { method } = req;
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const { method } = req;
 
-    const methods: Record<Method, (req: NextApiRequest, res: NextApiResponse) => Promise<void>> = {
-        POST: () => login.login(req, res),
+  const methods: Record<
+    Method,
+    (req: NextApiRequest, res: NextApiResponse) => Promise<void>
+  > = {
+    POST: () => login.login(req, res),
+  };
+
+  try {
+    const chosen = methods[method as Method];
+
+    if (!chosen) {
+      throw new ApiError(`Method ${method} not allowed`, 405);
     }
 
-    try {
-        const chosen = methods[method as Method];
+    await methods[method as Method](req, res);
+  } catch (err) {
+    const error = err as ApiError;
+    const cause = error.message ?? error.status ?? error ?? "Unexpected error";
 
-        if (!chosen) {
-            throw new ApiError(`Method ${method} not allowed`, 405);
-        }
+    res.status(error.status).json({ status: "ko", message: cause });
 
-        await methods[method as Method](req, res);
-    } catch (err) {
-        const error = err as ApiError;
-        const cause = error.message ?? error.status ?? error ?? 'Unexpected error';
-
-        res.status(error.status).json({ status: 'ko', message: cause });
-
-        throw new ApiError(cause);
-    }
+    throw new ApiError(cause);
+  }
 }

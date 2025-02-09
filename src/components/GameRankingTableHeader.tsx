@@ -2,7 +2,9 @@ export function GameRankingTableHeader() {
   return (
     <thead>
       <tr>
-        <th className="chawp" rowSpan={2}>#</th>
+        <th className="chawp" rowSpan={2}>
+          #
+        </th>
         <th rowSpan={2}>Usuário</th>
         <th rowSpan={2}>Pontos</th>
         <th colSpan={2}>Precisão</th>

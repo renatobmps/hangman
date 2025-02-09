@@ -8,7 +8,7 @@ export default function GameKeyboard({
   isBlocked = false,
 }: IGameKeyboardProps) {
   const allKeys = Array.from(
-    new Set("qwertyuiopasdfghjklzxcvbnm".toLowerCase().split(""))
+    new Set("qwertyuiopasdfghjklzxcvbnm".toLowerCase().split("")),
   ).sort();
 
   return (
@@ -19,7 +19,7 @@ export default function GameKeyboard({
           data-keyboard={`${k}`}
           onClick={handleKeyboardButton}
           disabled={!!alreadyTried.includes(k) || isBlocked}
-          state={alreadyTried.includes(k) ? 'used' : 'active'}
+          state={alreadyTried.includes(k) ? "used" : "active"}
         >
           {k}
         </S.Key>

@@ -6,16 +6,16 @@ function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
   const { user } = useContext(UserContext);
   const { username = "no_name" } = user ?? {};
 
-  const allThatHasPoints = props.gameRanking.filter(g => (
-    !!g.performance.game.won.total
-  ));
+  const allThatHasPoints = props.gameRanking.filter(
+    (g) => !!g.performance.game.won.total,
+  );
   const sortedByLetterPrecision = allThatHasPoints.sort(
     (a: IGameDataRanking, b: IGameDataRanking) => {
       return (
         (b.performance.letterPrecision.won.percentage ?? 0) -
         (a.performance.letterPrecision.won.percentage ?? 0)
       );
-    }
+    },
   );
   const sortedByWordPrecision = sortedByLetterPrecision.sort(
     (a: IGameDataRanking, b: IGameDataRanking) => {
@@ -23,7 +23,7 @@ function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
         (b.performance.game.won.percentage ?? 0) -
         (a.performance.game.won.percentage ?? 0)
       );
-    }
+    },
   );
   const sortedByPoints = sortedByWordPrecision.sort(
     (a: IGameDataRanking, b: IGameDataRanking) => {
@@ -31,7 +31,7 @@ function Lines(props: { gameRanking: IGameDataRanking[] }): JSX.Element {
         (b.performance.game.won.total ?? 0) -
         (a.performance.game.won.total ?? 0)
       );
-    }
+    },
   );
 
   return (

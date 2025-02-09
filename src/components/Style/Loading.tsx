@@ -26,7 +26,7 @@ const Style = styled.div`
 `;
 
 export default function Loading(
-  props: any & { height?: string; width?: string }
+  props: any & { height?: string; width?: string },
 ) {
   return (
     <Style

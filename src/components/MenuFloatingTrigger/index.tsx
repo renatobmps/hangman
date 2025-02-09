@@ -18,4 +18,4 @@ export default function MenuFloatingTrigger(props: IProps) {
       {!props.currentState ? <AiFillCaretDown /> : <AiFillCaretUp />}
     </TriggerMenu>
   );
-};
+}

@@ -9,7 +9,7 @@ export default function GameDataWrongs(props: IGameDataProps) {
         .sort()
         .filter(
           (letter: string) =>
-            !removeAccents(props.gameData.word).includes(letter)
+            !removeAccents(props.gameData.word).includes(letter),
         )
         .map((letter: string) => letter)
         .join(" - ")}

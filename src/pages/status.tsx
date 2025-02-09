@@ -66,7 +66,7 @@ export default function Login() {
 
   return (
     <Card>
-      <SeoHead title='Status' />
+      <SeoHead title="Status" />
       <h1>Status page</h1>
       {status && (
         <div>

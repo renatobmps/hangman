@@ -4,7 +4,8 @@ const Style = styled.div`
   background-color: white;
   border-radius: 0.8rem;
   display: flex;
-  flex-direction: ${(props: { flexDirection: string }) => props.flexDirection || 'row'};
+  flex-direction: ${(props: { flexDirection: string }) =>
+    props.flexDirection || "row"};
   gap: 2rem 1rem;
   margin: auto;
   max-width: 1000px;

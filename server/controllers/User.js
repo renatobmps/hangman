@@ -15,7 +15,7 @@ class User {
       });
 
       const sevenDaysAgo = new Date(
-        new Date().setDate(new Date().getDate() - 7)
+        new Date().setDate(new Date().getDate() - 7),
       );
       sevenDaysAgo.setHours(0);
       sevenDaysAgo.setMinutes(0);
@@ -26,11 +26,11 @@ class User {
       }
 
       const activeUsers = users.filter(
-        (user) => user.performance.game.total > 0
+        (user) => user.performance.game.total > 0,
       );
 
       const orderByResult = activeUsers.sort(
-        (a, b) => b.performance.game.won.total - a.performance.game.won.total
+        (a, b) => b.performance.game.won.total - a.performance.game.won.total,
       );
 
       res.status(200).json(orderByResult.filter((_user, index) => index < 10));
@@ -99,7 +99,7 @@ class User {
                   (userGames.filter((game) => !!game.done).length /
                     userGames.length) *
                   100
-                ).toFixed(2)
+                ).toFixed(2),
               ),
             },
             lost: {
@@ -109,7 +109,7 @@ class User {
                   (userGames.filter((game) => game.done == 0).length /
                     userGames.length) *
                   100
-                ).toFixed(2)
+                ).toFixed(2),
               ),
             },
           },
@@ -122,7 +122,7 @@ class User {
                   (gameLetters.filter((letter) => !!letter.correct).length /
                     gameLetters.length) *
                   100
-                ).toFixed(2)
+                ).toFixed(2),
               ),
             },
             lost: {
@@ -132,7 +132,7 @@ class User {
                   (gameLetters.filter((letter) => letter.correct == 0).length /
                     gameLetters.length) *
                   100
-                ).toFixed(2)
+                ).toFixed(2),
               ),
             },
           },

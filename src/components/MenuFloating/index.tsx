@@ -5,9 +5,7 @@ import ListMenu from "../Style/ListMenu";
 import TitleMenu from "../Style/TitleMenu";
 import { UserContext } from "../../stores/UserContext";
 
-export default function MenuFloating(props: {
-  openedMenu: boolean;
-}) {
+export default function MenuFloating(props: { openedMenu: boolean }) {
   const userContext = useContext(UserContext);
 
   return (

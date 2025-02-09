@@ -24,32 +24,33 @@ export default async function handleStarting({
 }: HandleStarting) {
   try {
     checkLogin();
-    const gameRequest = axios.get<IGameState>(
-      '/api/v1/games/start',
-      { headers: { authorization: localStorage.getItem("token") || "" } }
-    );
-    const responseRanking = axios.get<IGameDataRanking[]>(
-      '/api/v1/users',
-      { headers: { authorization: localStorage.getItem("token") || "", 'Content-Type': 'application/json' } }
-    );
+    const gameRequest = axios.get<IGameState>("/api/v1/games/start", {
+      headers: { authorization: localStorage.getItem("token") || "" },
+    });
+    const responseRanking = axios.get<IGameDataRanking[]>("/api/v1/users", {
+      headers: {
+        authorization: localStorage.getItem("token") || "",
+        "Content-Type": "application/json",
+      },
+    });
     const responseRankingTopTen = axios.get<IGameDataRanking[]>(
-      '/api/v1/ranking',
-      { headers: { authorization: localStorage.getItem("token") || "" } }
+      "/api/v1/ranking",
+      { headers: { authorization: localStorage.getItem("token") || "" } },
     );
 
-    const [
-      gameResponse,
-      rankingTopTenResponse,
-      rankingResponse,
-    ] = await Promise.all([
-      gameRequest,
-      responseRankingTopTen,
-      responseRanking,
-    ]);
+    const [gameResponse, rankingTopTenResponse, rankingResponse] =
+      await Promise.all([gameRequest, responseRankingTopTen, responseRanking]);
 
-    if (gameResponse.status !== 200 || rankingResponse.status !== 200 || rankingTopTenResponse.status !== 200) throw new Error('Serviço fora do ar no momento');
+    if (
+      gameResponse.status !== 200 ||
+      rankingResponse.status !== 200 ||
+      rankingTopTenResponse.status !== 200
+    )
+      throw new Error("Serviço fora do ar no momento");
 
-    const userInRanking = rankingResponse.data.find(user => user.name === gameResponse.data.user);
+    const userInRanking = rankingResponse.data.find(
+      (user) => user.name === gameResponse.data.user,
+    );
     setGameData({
       ...gameResponse.data,
       ...userInRanking,
@@ -59,9 +60,11 @@ export default async function handleStarting({
     setRankingData(rankingResponse.data);
     setRankingTopTenData(rankingTopTenResponse.data);
 
-    setGameState('waiting');
+    setGameState("waiting");
   } catch (error: any) {
-    setModalMessage(error.message || 'Problema para iniciar a aplicação. Volte mais tarde!');
+    setModalMessage(
+      error.message || "Problema para iniciar a aplicação. Volte mais tarde!",
+    );
     setModalOpen(true);
   }
 }

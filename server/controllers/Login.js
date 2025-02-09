@@ -34,7 +34,7 @@ class Login {
         process.env.JWT_SECRET,
         {
           expiresIn: "365d",
-        }
+        },
       );
 
       res.status(200).json({ token });
