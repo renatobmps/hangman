@@ -9,7 +9,7 @@
     "dev:docker": "npm run services:up app --build",
     "lint": "next lint",
     "lint:fix": "eslint src --fix --max-warnings=0",
-    "prepare": "npx husky && npx prettier . --check",
+    "prepare": "npx husky",
     "clear:docker": "npm run services:down && yes | docker system prune -a --volumes && yes | docker volume prune -f && yes | docker network prune -f && yes | docker builder prune -a -f && yes | docker image prune -a -f",
     "clear:project": "rm -fr .next && rm -fr node_modules",
     "services:down": "docker compose down",
