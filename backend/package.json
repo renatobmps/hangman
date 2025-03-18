@@ -9,7 +9,8 @@
     "dev": "node --watch --experimental-strip-types src/index.ts",
     "prepare": "npm run db:generate",
     "start": "node --no-warnings --watch --experimental-strip-types src/index.ts",
-    "test": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
+    "test": "node --experimental-strip-types --test --env-file=.env --no-warnings",
+    "test:coverage": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
     "test:name": "node --test-name-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
     "test:skip": "node --test-skip-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
     "test:watch": "node --watch --experimental-strip-types --test --env-file=.env --no-warnings"
