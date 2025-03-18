@@ -1,6 +1,6 @@
 import type IDatabase from "src/interfaces/database.type";
-import type IAddWordRepository from "./@types/add_words_repository.type";
-import type { IAddWordRepositoryExecute } from "./@types/add_words_repository.type";
+import type IAddWordRepository from "../interfaces/add_words.type";
+import type { IAddWordRepositoryExecute } from "../interfaces/add_words.type";
 import type IWord from "src/lib/@types/word.type";
 
 class AddWordsRepository implements IAddWordRepository {
