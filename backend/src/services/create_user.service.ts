@@ -1,18 +1,21 @@
-import type { ICreateUserEncryptService, ICreateUserRepository, ICreateUserValidation, ICreateUserService, ICreateUserInput } from "src/interfaces/create_user.type";
+import type {
+  IEncryptPasswordService,
+  ICreateUserRepository,
+  ICreateUserValidation,
+  ICreateUserService,
+  ICreateUserInput,
+} from "src/interfaces/create_user.type";
 import InvalidPasswordException from "../exceptions/invalid_password_exception.ts";
 import InvalidUsernameException from "../exceptions/invalid_username_exception.ts";
 import UserAlreadyExistsException from "../exceptions/user_already_exists_exception.ts";
+import User from "../models/user.ts";
 
 export default class CreateUserService {
   private repository: ICreateUserRepository;
   private validation: ICreateUserValidation;
-  private encryptService: ICreateUserEncryptService;
+  private encryptService: IEncryptPasswordService;
 
-  constructor({
-    repository,
-    validation,
-    encryptService,
-  }: ICreateUserService) {
+  constructor({ repository, validation, encryptService }: ICreateUserService) {
     this.repository = repository;
     this.validation = validation;
     this.encryptService = encryptService;
@@ -20,27 +23,25 @@ export default class CreateUserService {
 
   public async execute(user: ICreateUserInput) {
     if (!this.validation.validUsername(user.username)) {
-      throw new InvalidUsernameException('Invalid username');
+      throw new InvalidUsernameException("Invalid username");
     }
 
     if (!this.validation.validPassword(user.password)) {
-      throw new InvalidPasswordException('Invalid password');
+      throw new InvalidPasswordException("Invalid password");
     }
 
-    const hasDuplicate = await this.repository.hasDuplicate(user.username, user.email);
+    const userModel = new User(user);
 
-    if (!!hasDuplicate) {
-      throw new UserAlreadyExistsException('User already exists');
+    const hasDuplicate = await this.repository.hasDuplicate(userModel);
+
+    if (hasDuplicate) {
+      throw new UserAlreadyExistsException("User already exists");
     }
 
-    const hashPwd = await this.encryptService.encryptPassword(user.password);
+    userModel.password = await this.encryptService.exec(userModel.password);
 
-    const { id } = await this.repository.createUser(
-      user.username,
-      hashPwd,
-      user.email
-    );
+    const { id } = await this.repository.exec(userModel);
 
-    return { id }
+    return { id };
   }
 }
