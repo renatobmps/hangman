@@ -1,5 +1,5 @@
 import type IDatabase from "../../src/interfaces/database.type.ts";
-import { ok, strictEqual, deepEqual, doesNotReject, rejects, throws } from "assert";
+import { ok, strictEqual, deepEqual, doesNotReject, rejects, throws, doesNotThrow } from "assert";
 import { beforeEach, describe, it } from "node:test";
 import CreateUser from "../../src/controllers/create_user.ts";
 import UserAlreadyExistsException from "../../src/exceptions/user_already_exists_exception.ts";
@@ -17,7 +17,6 @@ import {
 } from "./__mock__.ts";
 
 import { UserValidationService } from "../../src/services/user_validation.service.ts";
-import { MOCK_CREATE_VALIDATION_DATA } from "../__mocks__/create_user_validation.ts";
 
 beforeEach(async () => {
   createUserService.encryptPasswordService.exec.mock.resetCalls();
@@ -33,26 +32,6 @@ describe.only("CreateUser unit", async () => {
 
   describe("User", () => {
     describe("username", () => {
-      it('should to throw "There is no username"', () => {
-        const errorMessage = new RegExp("There is no username", 'i');
-        const invalidValues = [
-          undefined,
-          null,
-          [],
-          {},
-          '',
-        ];
-
-        invalidValues.forEach(value => {
-          const arrange = (
-            { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: value }
-          ) as unknown as User;
-
-
-          throws(() => new User(arrange), errorMessage)
-        })
-      })
-
       it('should username to be slug', () => {
         const user = new User(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
         user.username = user.username.toUpperCase();
@@ -63,35 +42,6 @@ describe.only("CreateUser unit", async () => {
     })
 
     describe("password", () => {
-      it('should to throw "There is no password" error', () => {
-        const errorMessage = new RegExp("There is no password", "i");
-
-        throws(() => new User({
-          ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-          password: undefined,
-        } as unknown as User), errorMessage);
-
-        throws(() => new User({
-          ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-          password: null,
-        } as unknown as User), errorMessage);
-
-        throws(() => new User({
-          ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-          password: {},
-        } as unknown as User), errorMessage);
-
-        throws(() => new User({
-          ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-          password: [],
-        } as unknown as User), errorMessage);
-
-        throws(() => new User({
-          ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-          password: 0,
-        } as unknown as User), errorMessage);
-      })
-
       it('should to accept password', () => {
         const user = new User(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
         user.password = "aA1!bB";
@@ -174,95 +124,109 @@ describe.only("CreateUser unit", async () => {
   describe("UserValidationService", () => {
     const validation = new UserValidationService();
 
-    it.only('should to throw "There is no username"', () => {
-      throws(() => validation.validUsername(({ username: undefined }) as unknown as User), /There is no username/i)
-      throws(() => validation.validUsername({ username: null } as unknown as User), /There is no username/i)
-      // assert.throws(() => validation.validUsername([] as unknown as User), /There is no username/i)
-      // assert.throws(() => validation.validUsername({} as unknown as User), /There is no username/i)
-      // assert.throws(() => validation.validUsername('' as unknown as User), /There is no username/i)
-    });
+    describe("username", () => {
+      it('should to throw "There is no username"', () => {
+        const errorMessage = new RegExp("There is no username", "i");
+        throws(() => validation.validUsername(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: undefined }) as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: null } as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: [] } as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: {} } as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: '' } as unknown as User), errorMessage)
+      });
 
-    // it('should to throw "Invalid username format"', () => {
-    //   const errorMessage = new RegExp("Invalid username format", 'i');
+      it('should to throw "Username is too short"', () => {
+        const errorMessage = new RegExp("Username is too short", 'i');
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "User name" }
-    //   ) as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: MOCK_CREATE_USER_REPOSITORY_USER_DATA.username.substring(0, 1), } as unknown as User), errorMessage)
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "User  name" }
-    //   ) as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "A", } as unknown as User), errorMessage)
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: " username" }
-    //   ) as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "use", } as unknown as User), errorMessage)
+      })
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "username " }
-    //   ) as unknown as User), errorMessage)
+      it('should to throw "Invalid username format"', () => {
+        const errorMessage = new RegExp("Invalid username format", 'i');
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: " username " }
-    //   ) as unknown as User), errorMessage)
-    // })
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: MOCK_CREATE_USER_REPOSITORY_USER_DATA.username + ' ' + MOCK_CREATE_USER_REPOSITORY_USER_DATA.username, } as unknown as User), errorMessage)
 
-    // it('should to throw "Username is too short"', () => {
-    //   const errorMessage = new RegExp("Username is too short", 'i');
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "User name", } as unknown as User), errorMessage)
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "A" }
-    //   ) as unknown as User), errorMessage)
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "User  name", } as unknown as User), errorMessage)
 
-    //   throws(() => new User((
-    //     { ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "use" }
-    //   ) as unknown as User), errorMessage)
-    // })
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: " username", } as unknown as User), errorMessage)
 
-    // it('should to throw "Password must contain at least one uppercase letter" error', () => {
-    //   const errorMessage = new RegExp("Password must contain at least one uppercase letter", "i");
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: "username ", } as unknown as User), errorMessage)
 
-    //   throws(() => new User({
-    //     ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-    //     password: "a",
-    //   } as unknown as User), errorMessage);
-    // })
+        throws(() => validation.validUsername({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, username: " username ", } as unknown as User), errorMessage)
+      })
 
-    // it('should to throw "Password must contain at least one lowercase letter" error', () => {
-    //   const errorMessage = new RegExp("Password must contain at least one lowercase letter", "i");
+      it('should to accept valid username', () => {
+        const act = validation.validUsername(MOCK_CREATE_USER_REPOSITORY_USER_DATA as unknown as User);
 
-    //   throws(() => new User({
-    //     ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-    //     password: "A",
-    //   } as unknown as User), errorMessage);
-    // })
+        strictEqual(act, true);
+        doesNotThrow(() => validation.validUsername(MOCK_CREATE_USER_REPOSITORY_USER_DATA as unknown as User))
+      })
+    })
 
-    // it('should to throw "Password must contain at least one number" error', () => {
-    //   const errorMessage = new RegExp("Password must contain at least one number", "i");
+    describe("password", () => {
+      it('should to throw "There is no password" error', () => {
+        const errorMessage = new RegExp("There is no password", "i");
 
-    //   throws(() => new User({
-    //     ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-    //     password: "aA",
-    //   } as unknown as User), errorMessage);
-    // })
+        throws(() => validation.validPassword({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: undefined, } as unknown as User), errorMessage);
+        throws(() => validation.validPassword({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: null, } as unknown as User), errorMessage);
+        throws(() => validation.validPassword({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: {}, } as unknown as User), errorMessage);
+        throws(() => validation.validPassword({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: [], } as unknown as User), errorMessage);
+        throws(() => validation.validPassword({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: 0, } as unknown as User), errorMessage);
+      })
 
-    // it('should to throw "Password must contain at least one special character" error', () => {
-    //   const errorMessage = new RegExp("Password must contain at least one special character", "i");
+      it('should to throw "Password must be at least 6 characters" error', () => {
+        const errorMessage = new RegExp("Password must be at least 6 characters", "i");
 
-    //   throws(() => new User({
-    //     ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-    //     password: "aA1",
-    //   } as unknown as User), errorMessage);
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: MOCK_CREATE_USER_REPOSITORY_USER_DATA.password.substring(0, 5) } as unknown as User)), errorMessage);
 
-    // })
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: "aA1!", } as unknown as User)), errorMessage);
+      })
 
-    // it('should to throw "Password must be at least 6 characters" error', () => {
-    //   const errorMessage = new RegExp("Password must be at least 6 characters", "i");
+      it('should to throw "Password must contain at least one uppercase letter" error', () => {
+        const errorMessage = new RegExp("Password must contain at least one uppercase letter", "i");
 
-    //   throws(() => new User({
-    //     ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-    //     password: "aA1!",
-    //   } as unknown as User), errorMessage);
-    // })
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: MOCK_CREATE_USER_REPOSITORY_USER_DATA.password.toLocaleLowerCase(), } as unknown as User)), errorMessage);
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: "a".repeat(6), } as unknown as User)), errorMessage);
+      })
+
+      it('should to throw "Password must contain at least one lowercase letter" error', () => {
+        const errorMessage = new RegExp("Password must contain at least one lowercase letter", "i");
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: MOCK_CREATE_USER_REPOSITORY_USER_DATA.password.toUpperCase(), } as unknown as User)), errorMessage);
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: "A".repeat(6), } as unknown as User)), errorMessage);
+      })
+
+      it('should to throw "Password must contain at least one number" error', () => {
+        const errorMessage = new RegExp("Password must contain at least one number", "i");
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: MOCK_CREATE_USER_REPOSITORY_USER_DATA.password.replace(/\d/g, ''), } as unknown as User)), errorMessage);
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: "aA".repeat(3), } as unknown as User)), errorMessage);
+      })
+
+      it('should to throw "Password must contain at least one special character" error', () => {
+        const errorMessage = new RegExp("Password must contain at least one special character", "i");
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: MOCK_CREATE_USER_REPOSITORY_USER_DATA.password.replace(/[^A-Za-z0-9]/g, ''), } as unknown as User)), errorMessage);
+
+        throws(() => validation.validPassword(({ ...MOCK_CREATE_USER_REPOSITORY_USER_DATA, password: "aA1".repeat(2), } as unknown as User)), errorMessage);
+
+      })
+
+      it('should to accept valid password', () => {
+        const act = validation.validPassword(MOCK_CREATE_USER_REPOSITORY_USER_DATA as unknown as User);
+
+        strictEqual(act, true);
+        doesNotThrow(() => validation.validPassword(MOCK_CREATE_USER_REPOSITORY_USER_DATA as unknown as User))
+      })
+    })
   })
 
   describe.skip('Service', () => {

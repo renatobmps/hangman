@@ -1,6 +1,7 @@
 import type {
   IEncryptPasswordService,
   ICreateUserRepository,
+  IUserValidationService,
 } from "src/interfaces/create_user.type";
 import { mock } from "node:test";
 
@@ -13,11 +14,29 @@ export const createUserService = {
       Promise.resolve(false),
     ),
   },
+  userValidationService: {
+    validPassword: mock.fn<IUserValidationService["validPassword"]>(() => true),
+    validUsername: mock.fn<IUserValidationService["validUsername"]>(() => true),
+  },
   encryptPasswordService: {
     exec: mock.fn<IEncryptPasswordService["exec"]>(() =>
       Promise.resolve("encryptedPassword"),
     ),
   },
+};
+
+export const validationUsernameError = {
+  ...createUserService.userValidationService,
+  validUsername: mock.fn<IUserValidationService["validUsername"]>(() => {
+    return false;
+  }),
+};
+
+export const validationPwdError = {
+  ...createUserService.userValidationService,
+  validPassword: mock.fn<IUserValidationService["validPassword"]>(() => {
+    return false;
+  }),
 };
 
 export const repositoryWithDuplicate = {
