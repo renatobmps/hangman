@@ -1,5 +1,6 @@
 import type IDatabase from "src/interfaces/database.type";
 import type { ICreateUserRepository } from "src/interfaces/create_user.type";
+import User from "../models/user.ts";
 
 export default class CreateUserRepository implements ICreateUserRepository {
   private database: IDatabase;
@@ -8,7 +9,7 @@ export default class CreateUserRepository implements ICreateUserRepository {
     this.database = database;
   }
 
-  async hasDuplicate(username: string, email?: string): Promise<boolean> {
+  async hasDuplicate({ username, email }: User): Promise<boolean> {
     const registers = await this.database.user.findFirst({
       where: {
         OR: [{ username }, { email }],
@@ -18,11 +19,7 @@ export default class CreateUserRepository implements ICreateUserRepository {
     return !!registers;
   }
 
-  async exec(
-    username: string,
-    password: string,
-    email?: string,
-  ): Promise<{ id: string }> {
+  async exec({ username, email, password }: User): Promise<{ id: string }> {
     const { id = "no_id" } = await this.database.user.create({
       data: { password, username, email },
     }).finally(() => this.database.$disconnect());

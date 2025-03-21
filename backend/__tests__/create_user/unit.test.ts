@@ -24,7 +24,7 @@ beforeEach(async () => {
   databaseWithoutDuplicate.user.findFirst.mock.resetCalls();
 });
 
-describe("CreateUserService unit", async () => {
+describe("CreateUser unit", async () => {
 
   describe("User", () => {
     it('should to be possible to create an user with mock data', () => {
