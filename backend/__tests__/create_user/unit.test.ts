@@ -8,15 +8,10 @@ import User from "../../src/models/user.ts";
 import CreateUserRepository from "../../src/repositories/create_user.repository.ts";
 import CreateUserService from "../../src/services/create_user.service.ts";
 import { MOCK_CREATE_USER_REPOSITORY_USER_DATA } from "./__dto__.ts";
-import {
-  createUserService,
-  databaseMock,
-  databaseWithDuplicate,
-  databaseWithoutDuplicate,
-  repositoryWithDuplicate,
-} from "./__mock__.ts";
-
-import { UserValidationService } from "../../src/services/user_validation.service.ts";
+import { createUserService, databaseMock, databaseWithDuplicate, databaseWithoutDuplicate, repositoryWithDuplicate, validationPwdError, validationUsernameError, } from "./__mock__.ts";
+import UserValidationService from "../../src/services/user_validation.service.ts";
+import InvalidUsernameException from "../../src/exceptions/invalid_username_exception.ts";
+import InvalidPasswordException from "../../src/exceptions/invalid_password_exception.ts";
 
 beforeEach(async () => {
   createUserService.encryptPasswordService.exec.mock.resetCalls();
@@ -229,7 +224,43 @@ describe.only("CreateUser unit", async () => {
     })
   })
 
-  describe.skip('Service', () => {
+  describe('Service', () => {
+    const mockService = new CreateUserService({
+      ...createUserService,
+    });
+
+    it("should to be invalid username", async () => {
+      const arrange = new CreateUserService({
+        ...createUserService,
+        userValidationService: validationUsernameError,
+      });
+
+      const act = arrange.execute(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
+
+      rejects(async () => await act, new RegExp("Invalid username", "i"));
+      act.catch((error) => {
+        deepEqual(error instanceof InvalidUsernameException, true);
+      });
+      deepEqual(validationUsernameError.validUsername.mock.callCount(), 1);
+      deepEqual(validationUsernameError.validPassword.mock.callCount(), 0);
+    });
+
+    it("should to be invalid password", async () => {
+      const arrange = new CreateUserService({
+        ...createUserService,
+        userValidationService: validationPwdError,
+      });
+
+      const act = arrange.execute(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
+
+      rejects(async () => await act, new RegExp("Invalid password", "i"));
+      act.catch((error) => {
+        deepEqual(error instanceof InvalidPasswordException, true);
+      });
+      deepEqual(validationPwdError.validPassword.mock.callCount(), 1);
+      deepEqual(validationPwdError.validUsername.mock.callCount(), 1);
+    });
+
     it("should to have duplicate", async () => {
       const arrange = new CreateUserService({
         ...createUserService,
@@ -247,30 +278,18 @@ describe.only("CreateUser unit", async () => {
     });
 
     it("should to run password encryption", async () => {
-      const mockService = new CreateUserService({
-        ...createUserService,
-      });
+      await mockService.execute(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
 
-      console.log("\nDEBUGGER", new User(MOCK_CREATE_USER_REPOSITORY_USER_DATA));
-
-      await mockService.execute({
-        ...MOCK_CREATE_USER_REPOSITORY_USER_DATA,
-        password: "membros"
-      });
-
-      deepEqual(
-        createUserService.encryptPasswordService.exec.mock.callCount(),
-        1,
-      );
+      deepEqual(createUserService.encryptPasswordService.exec.mock.callCount(), 1);
     });
 
-    it.skip("should to run repository's create method", async () => {
+    it("should to run repository's create method", async () => {
       await mockService.execute(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
 
       deepEqual(createUserService.repository.exec.mock.callCount(), 1);
     });
 
-    it.skip("should to create a new user", async () => {
+    it("should to create a new user", async () => {
       const newUser = await mockService.execute(
         MOCK_CREATE_USER_REPOSITORY_USER_DATA,
       );

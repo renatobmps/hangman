@@ -1,7 +1,7 @@
 import type {
   IEncryptPasswordService,
   ICreateUserRepository,
-  ICreateUserValidation,
+  IUserValidationService,
   ICreateUserService,
   ICreateUserInput,
 } from "src/interfaces/create_user.type";
@@ -12,25 +12,25 @@ import User from "../models/user.ts";
 
 export default class CreateUserService {
   private repository: ICreateUserRepository;
-  private validation: ICreateUserValidation;
+  private validation: IUserValidationService;
   private encryptService: IEncryptPasswordService;
 
-  constructor({ repository, validation, encryptService }: ICreateUserService) {
+  constructor({ repository, userValidationService, encryptPasswordService }: ICreateUserService) {
     this.repository = repository;
-    this.validation = validation;
-    this.encryptService = encryptService;
+    this.validation = userValidationService;
+    this.encryptService = encryptPasswordService;
   }
 
   public async execute(user: ICreateUserInput) {
-    if (!this.validation.validUsername(user.username)) {
+    const userModel = new User(user);
+
+    if (!this.validation.validUsername(userModel)) {
       throw new InvalidUsernameException("Invalid username");
     }
 
-    if (!this.validation.validPassword(user.password)) {
+    if (!this.validation.validPassword(userModel)) {
       throw new InvalidPasswordException("Invalid password");
     }
-
-    const userModel = new User(user);
 
     const hasDuplicate = await this.repository.hasDuplicate(userModel);
 

@@ -3,8 +3,7 @@ import { describe, it } from "node:test";
 import { createUserService } from "./__mock__.ts";
 import { CreateUserRepositoryIM, MOCK_CREATE_USER_REPOSITORY_USER_DATA } from "./__dto__.ts";
 import CreateUserService from "../../src/services/create_user.service.ts";
-
-import { UserValidationService } from "../../src/services/user_validation.service.ts";
+import UserValidationService from "../../src/services/user_validation.service.ts";
 import EncryptPasswordService from "../../src/services/encrypt_password.service.ts";
 
 describe("CreateUser integration", () => {
@@ -49,5 +48,18 @@ describe("CreateUser integration", () => {
 
       ok(act.id);
     });
+
+    it('should to work with full integration', () => {
+      const arrange = new CreateUserService({
+        encryptPasswordService: new EncryptPasswordService(),
+        repository: new CreateUserRepositoryIM(),
+        userValidationService: new UserValidationService(),
+      });
+
+      const act = arrange.execute(MOCK_CREATE_USER_REPOSITORY_USER_DATA);
+
+      ok(async () => await act);
+      ok(async () => (await act).id);
+    })
   })
 });
