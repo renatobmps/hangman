@@ -4,22 +4,10 @@ import type {
 } from "src/interfaces/create_user.type";
 import type User from "src/models/user";
 
-export const MOCK_CREATE_USER_SERVICE_USER_DATA: ICreateUserInput = {
-  password: "P@ssw0rd",
-  username: "username",
-  email: "email",
-};
-
 export const MOCK_CREATE_USER_REPOSITORY_USER_DATA = {
   username: "new_user",
-  password: "password",
-  email: "email@test.com",
-};
-
-export const MOCK_CREATE_USER_USE_CASE_USER: ICreateUserInput = {
   password: "P@ssw0rd",
-  username: "username",
-  email: "email",
+  email: "email@test.com",
 };
 
 export class CreateUserRepositoryIM implements ICreateUserRepository {
