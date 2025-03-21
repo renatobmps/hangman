@@ -3,7 +3,7 @@ import InvalidUsernameException from "../exceptions/invalid_username_exception.t
 import type { IUserValidationService } from "src/interfaces/create_user.type";
 import type User from "src/models/user";
 
-export class UserValidationService implements IUserValidationService {
+export default class UserValidationService implements IUserValidationService {
   validUsername({ username }: User): boolean {
 
     if (!username || typeof username !== "string") {

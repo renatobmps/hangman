@@ -1,4 +1,3 @@
-import InvalidUsernameException from "../exceptions/invalid_username_exception.ts";
 import UsernameHelper from "../helpers/username.helper.ts";
 
 interface IUserProps {
@@ -21,18 +20,6 @@ export default class User {
   }
 
   set username(value: string) {
-    if (!value || typeof value !== "string") {
-      throw new InvalidUsernameException("There is no username");
-    }
-
-    // if (value.includes(" ")) {
-    //   throw new InvalidUsernameException("Invalid username format");
-    // }
-
-    // if (value.length <= 3) {
-    //   throw new InvalidUsernameException("Username is too short");
-    // }
-
     this._props.username = new UsernameHelper(value).convert();
   }
 
@@ -41,31 +28,6 @@ export default class User {
   }
 
   set password(value: string) {
-    if (!value || typeof value !== "string") {
-      throw new Error("There is no password");
-    }
-
-    // if (/[A-Z]/.test(value) === false) {
-    //   console.error("VALOR", value);
-    //   throw new InvalidPasswordException("Password must contain at least one uppercase letter");
-    // }
-
-    // if (/[a-z]/.test(value) === false) {
-    //   throw new InvalidPasswordException("Password must contain at least one lowercase letter");
-    // }
-
-    // if (/[0-9]/.test(value) === false) {
-    //   throw new InvalidPasswordException("Password must contain at least one number");
-    // }
-
-    // if (/[^A-Za-z0-9\s]/.test(value) === false) {
-    //   throw new InvalidPasswordException("Password must contain at least one special character");
-    // }
-
-    // if (value.length < 6) {
-    //   throw new InvalidPasswordException("Password must be at least 6 characters");
-    // }
-
     this._props.password = value;
   }
 
