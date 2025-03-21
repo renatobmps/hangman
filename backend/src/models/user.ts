@@ -13,7 +13,7 @@ export default class User {
     password: '',
   }
 
-  constructor(props: Omit<IUserProps, 'hash'>) {
+  constructor(props: IUserProps) {
 
     this.username = props.username;
     this.password = props.password;
