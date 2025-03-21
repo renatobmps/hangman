@@ -6,14 +6,22 @@ export default class UsernameHelper {
   }
 
   public check(): boolean {
-    return !!this._username.match(/^[a-z0-9_]+$/);
+    return !!this._username.match(/^[a-z0-9_@]+$/);
   }
 
   public convert(): string {
-    return this._username
-      .trim()
-      .toLowerCase()
-      .replace(/\s{2,}/g, ' ')
-      .replace(/\s/g, '_')
+    return this.removeAccents(
+      this._username
+        .toLowerCase()
+        .replace(/\s{1,}/g, ' ')
+        .trim()
+        .replace(/\s/g, '_')
+    )
+  }
+
+  private removeAccents(word: string = "") {
+    return word
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
   }
 }
