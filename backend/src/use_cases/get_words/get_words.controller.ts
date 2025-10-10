@@ -1,4 +1,8 @@
-import type { IGetWordsController, IGetWordsControllerRepository, IWord } from "./@types.ts";
+import type {
+  IGetWordsController,
+  IGetWordsControllerRepository,
+  IWord,
+} from "./@types.ts";
 
 export default class GetWordsController {
   private repository: IGetWordsControllerRepository;

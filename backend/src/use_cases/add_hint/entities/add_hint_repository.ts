@@ -1,8 +1,11 @@
-import type IRepository from "../../../lib/repository.interfaces.ts";
-import type { IAddHintControllerExecute, IAddHintControllerRepository } from "../add_hint.interfaces.ts";
+import type IRepository from "../../../lib/@types/repository.type.ts";
+import type {
+  IAddHintControllerExecute,
+  IAddHintControllerRepository,
+} from "../add_hint.interfaces.ts";
 
 export default class AddHintRepository implements IAddHintControllerRepository {
-  private database: IRepository
+  private database: IRepository;
 
   constructor(database: IRepository) {
     this.database = database;
@@ -13,13 +16,13 @@ export default class AddHintRepository implements IAddHintControllerRepository {
 
     return !!registry;
   }
-  async create(hint: IAddHintControllerExecute): Promise<{ id: string; }> {
+  async create(hint: IAddHintControllerExecute): Promise<{ id: string }> {
     const newHint = await this.database.addHint(hint.text!, hint.isActive!);
 
     if (hint.words) {
-      await Promise.all(hint.words.map(word => (
-        this.database.addWordInHint(newHint.id, word)
-      )));
+      await Promise.all(
+        hint.words.map((word) => this.database.addWordAtHint(newHint.id, word)),
+      );
     }
 
     return { id: newHint.id };

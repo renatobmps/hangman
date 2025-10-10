@@ -11,12 +11,12 @@ class AddWordsRepository implements IAddWordRepository {
   }
 
   async execute(args: IAddWordRepositoryExecute): Promise<Partial<IWord>> {
-    return this.database.word.create({
-      data: args,
-    }).finally(() => (
-      this.database.$disconnect()
-    ))
+    return this.database.word
+      .create({
+        data: args,
+      })
+      .finally(() => this.database.$disconnect());
   }
 }
 
-export default AddWordsRepository
+export default AddWordsRepository;

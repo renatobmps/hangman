@@ -72,19 +72,19 @@
 //     assert.equal(mock_words.every(word => typeof word.hints !== 'undefined'), true);
 //     assert.equal(words.every(word => typeof word.hints !== 'undefined'), true);
 //   })
-  
+
 //   it('hints should to be arrays', async () => {
 //     const mock_words = await mocked_controller.execute();
 //     const words = await controller.execute();
-    
+
 //     assert.equal(mock_words.every(word => Array.isArray(word.hints)), true);
 //     assert.equal(words.every(word => Array.isArray(word.hints)), true);
 //   })
-  
+
 //   it('hints should to have an title', async () => {
 //     const mock_words = await mocked_controller.execute();
 //     const words = await controller.execute();
-    
+
 //     assert.equal(mock_words.every(word => word.hints?.every(hint => typeof hint.text === 'string')), true);
 //     assert.equal(words.every(word => word.hints?.every(hint => typeof hint.text === 'string')), true);
 //   })

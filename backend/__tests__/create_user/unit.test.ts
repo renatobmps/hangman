@@ -1,7 +1,7 @@
 import type IDatabase from "../../src/interfaces/database.type.ts";
 import { ok, strictEqual, deepEqual, doesNotReject, rejects, throws, doesNotThrow } from "assert";
 import { beforeEach, describe, it } from "node:test";
-import CreateUser from "../../src/controllers/create_user.ts";
+import CreateUser from "../../src/controllers/create_user.controller.ts";
 import UserAlreadyExistsException from "../../src/exceptions/user_already_exists_exception.ts";
 import UsernameHelper from "../../src/helpers/username.helper.ts";
 import User from "../../src/models/user.ts";

@@ -5,7 +5,7 @@ export const apiRequest = async <T = unknown>(query: string) => {
   try {
     const request = await fetch(process.env.API_URL!, {
       headers: { "Content-Type": "application/json" },
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({ query }),
     });
 
@@ -15,11 +15,11 @@ export const apiRequest = async <T = unknown>(query: string) => {
 
     data = response.data;
   } catch (error) {
-    console.error('apiRequest error:', error)
+    console.error("apiRequest error:", error);
   } finally {
     return {
       statusCode,
-      data
-    }
+      data,
+    };
   }
-}
+};

@@ -1,59 +1,37 @@
 import { PrismaClient } from "@prisma/client";
-import type IRepository from "./repository.interfaces.ts";
+import type IRepository from "./@types/repository.type.ts";
+import addHint from "./prisma_repository/op/add_hint.ts";
+import addWordAtHint from "./prisma_repository/op/add_word_at_hint.ts";
+import clearDatabase from "./prisma_repository/op/clear_database.ts";
+import getAllWords from "./prisma_repository/op/get_all_words.ts";
+import getHintByName from "./prisma_repository/op/get_hint_by_name.ts";
+import getHintByWord from "./prisma_repository/op/get_hints_by_word.ts";
 
+/** @deprecated will return only prisma */
 const prismaRepository = (): IRepository => {
   let prisma;
 
   if (!global._prisma) {
     prisma = new PrismaClient({
-      ...(process.env.NODE_ENV === 'development' ? {
-        log: ['query']
-      } : {})
+      ...(process.env.NODE_ENV === "development"
+        ? {
+            log: ["query"],
+          }
+        : {}),
     });
   } else {
     prisma = global._prisma;
   }
 
   return {
-    addHint: (hint_text, hint_active) => prisma.hint.create({
-      data: { text: hint_text, is_activated: hint_active }
-    }),
-    addWord: (word, description, is_activated) => prisma.word.create({
-      data: { text: word, description, is_activated }
-    }),
-    addWordInHint: (hind_id, word_id) => prisma.hintsWords.create({
-      data: { hint_id: hind_id, word_id: word_id }
-    }),
-    clearDatabase: async () => {
-      try {
-        const tables = await prisma.$queryRaw<Array<{ table_name: string }>>`
-          SELECT table_name 
-          FROM information_schema.tables 
-          WHERE table_schema = 'public'
-            AND table_name !~ '^_'
-            AND table_type != 'SYSTEM TYPE';
-        `;
+    database: prisma,
+    addHint: addHint(prisma),
+    addWordAtHint: addWordAtHint(prisma),
+    clearDatabase: clearDatabase(prisma),
+    getAllWords: getAllWords(prisma),
+    getHintByName: getHintByName(prisma),
+    getHintByWord: getHintByWord(prisma),
+  };
+};
 
-        for (const table of tables) {
-          await prisma.$queryRawUnsafe(`TRUNCATE TABLE "${table.table_name}" RESTART IDENTITY CASCADE`);
-        }
-      } finally {
-        prisma.$disconnect();
-      }
-    },
-    getHintByName: (name: string) => prisma.hint.findFirst({
-      where: { text: name },
-      orderBy: { text: 'asc' }
-    }),
-    getHintByWord: (word_id) => prisma.hintsWords.findMany({
-      where: { word_id },
-      include: { id_hint: true },
-      orderBy: { id_hint: { text: 'asc' } }
-    }),
-    getAllWords: () => prisma.word.findMany({
-      orderBy: { text: 'asc' }
-    }),
-  }
-}
-
-export default prismaRepository;
+export default prismaRepository();

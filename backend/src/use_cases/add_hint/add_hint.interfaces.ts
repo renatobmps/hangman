@@ -12,10 +12,10 @@ export interface IAddHintControllerValidator {
 
 export interface IAddHintControllerRepository {
   hasDuplicate(title: string): Promise<boolean>;
-  create(hint: IAddHintControllerExecute): Promise<{ id: string }>
+  create(hint: IAddHintControllerExecute): Promise<{ id: string }>;
 }
 
 export interface IAddHintController {
-  validator: IAddHintControllerValidator,
-  repository: IAddHintControllerRepository,
+  validator: IAddHintControllerValidator;
+  repository: IAddHintControllerRepository;
 }

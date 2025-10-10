@@ -1,4 +1,4 @@
-import type { IGetHintsRepository } from "./get_hints.interfaces.ts"
+import type { IGetHintsRepository } from "./get_hints.interfaces.ts";
 
 export default class GetHintsController {
   private repository: IGetHintsRepository;

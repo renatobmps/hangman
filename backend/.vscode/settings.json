@@ -1,0 +1,25 @@
+{
+  "cSpell.words": [
+    "docusaurus",
+    "dotenv",
+    "eslintcache",
+    "github",
+    "jscoverage",
+    "jspm",
+    "microbundle",
+    "nuxt",
+    "postgres",
+    "postgresql",
+    "qodo",
+    "sgdb",
+    "stylelintcache",
+    "vercel",
+    "verceldb",
+    "vitepress",
+    "vuepress",
+    "vxko",
+    "wscript"
+  ],
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnSave": true
+}

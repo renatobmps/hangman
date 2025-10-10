@@ -7,32 +7,41 @@
     "db:studio": "dotenv -e ./.env -- npx prisma studio",
     "db:seed": "prisma db seed",
     "dev": "node --watch --experimental-strip-types src/index.ts",
+    "lint:check": "prettier --check . && eslint",
+    "lint:fix": "prettier --write . && eslint --fix",
     "prepare": "npm run db:generate",
     "start": "node --no-warnings --watch --experimental-strip-types src/index.ts",
-    "test": "node --experimental-strip-types --test --env-file=.env --no-warnings",
-    "test:coverage": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
-    "test:name": "node --test-name-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
-    "test:skip": "node --test-skip-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings",
-    "test:watch": "node --watch --experimental-strip-types --test --env-file=.env --no-warnings"
+    "test": "node --experimental-strip-types --test --env-file=.env --no-warnings ./__tests__/**/*.test.ts",
+    "test:e2e": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings ./__e2e__/**/*.test.ts",
+    "test:coverage": "node --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings ./__tests__/**/*.test.ts",
+    "test:name": "node --test-name-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings ./__tests__/**/*.test.ts",
+    "test:skip": "node --test-skip-pattern=$NAME --experimental-strip-types --test --experimental-test-coverage --env-file=.env --no-warnings ./__tests__/**/*.test.ts",
+    "test:watch": "node --watch --experimental-strip-types --test --env-file=.env --no-warnings ./__tests__/**/*.test.ts"
   },
   "prisma": {
     "seed": "node --experimental-strip-types prisma/seed/index.ts"
   },
   "devDependencies": {
+    "@eslint/js": "^9.22.0",
     "@prisma/extension-optimize": "^1.0.3",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.9.0",
     "@types/pg": "^8.11.10",
-    "ts-node": "^10.9.2"
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.26.1"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.10.1",
     "apollo-server": "^3.13.0",
     "bcrypt": "^5.1.1",
     "dotenv-cli": "^7.4.3",
     "graphql": "^16.9.0",
     "pg": "^8.13.1",
-    "prisma": "^5.22.0",
     "typescript": "^5.6.3"
   },
   "type": "module"

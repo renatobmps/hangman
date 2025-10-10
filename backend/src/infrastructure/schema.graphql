@@ -1,0 +1,37 @@
+type Hint {
+  id: String
+  text: String
+  is_activated: Boolean
+  total_words: Int
+  words: [Word]
+}
+
+type Word {
+  id: String
+  text: String
+  description: String
+  is_activated: Boolean
+  hints: [Hint]!
+}
+
+type Query {
+  getHints: [Hint]!
+  getWords: [Word]!
+}
+
+type CreateUserRes {
+  id: String
+}
+
+type CreateHintRes {
+  id: String
+}
+
+type Mutation {
+  createHint(text: String!, isActive: Boolean, words: String): CreateHintRes
+  createUser(
+    username: String!
+    password: String!
+    email: String
+  ): CreateUserRes
+}

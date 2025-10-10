@@ -1,11 +1,17 @@
+networks:
+  hangman-network:
+    driver: bridge
 services:
   database:
     image: "postgres:17.0-alpine3.20"
+    restart: always
     env_file:
       - .env
       - ./backend/.env
     ports:
       - "5432:5432"
+    networks:
+      - hangman-network
   backend:
     container_name: "hangman_backend"
     depends_on:
@@ -20,6 +26,8 @@ services:
     env_file:
       - ./backend/.env
       - ./.env
+    networks:
+      - hangman-network
   frontend:
     container_name: "hangman_frontend"
     depends_on:
@@ -33,3 +41,5 @@ services:
       - 3000:3000
     env_file:
       - ./frontend/.env
+    networks:
+      - hangman-network

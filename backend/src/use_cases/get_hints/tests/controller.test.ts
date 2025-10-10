@@ -1,8 +1,11 @@
-// import { after, beforeEach, describe, it } from "node:test";
-// import assert from "node:assert";
-// import GetHintsController from "../get_hints.controller.ts";
-// import { GetHintsRepositoryIM, MOCK_GET_HINTS_CONTROLLER_REPOSITORY } from "../../../../__tests__/mocks/controllers/get_hint_controller.ts";
-// import prismaRepository from "../../../lib/prisma_repository.ts";
+import { after, beforeEach, describe, it } from "node:test";
+import assert from "node:assert";
+import GetHintsController from "../get_hints.controller.ts";
+import {
+  GetHintsRepositoryIM,
+  MOCK_GET_HINTS_CONTROLLER_REPOSITORY,
+} from "../../../../__tests__/__mocks__/get_hint_controller.ts";
+import prismaRepository from "../../../lib/prisma_repository.ts";
 
 // beforeEach(async () => await prismaRepository().clearDatabase())
 // after(async () => await prismaRepository().clearDatabase())

@@ -13,7 +13,9 @@ export default async function clearDatabase() {
     `;
 
     for (const table of tables) {
-      await database.$queryRawUnsafe(`TRUNCATE TABLE "${table.table_name}" RESTART IDENTITY CASCADE`);
+      await database.$queryRawUnsafe(
+        `TRUNCATE TABLE "${table.table_name}" RESTART IDENTITY CASCADE`,
+      );
     }
   } finally {
     database.$disconnect();

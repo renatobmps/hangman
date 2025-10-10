@@ -36,7 +36,7 @@
 //   //       prismaRepository().addWord(word)
 //   //     ))
 //   //   );
-    
+
 //   //   const mockNewHint = await mockController.execute(
 //   //     MOCK_ADD_HINT_CONTROLLER_DATA
 //   //   );

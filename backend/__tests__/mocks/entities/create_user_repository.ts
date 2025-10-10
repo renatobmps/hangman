@@ -1,12 +1,12 @@
-import type { IDatabase } from "../../../src/entities/create_user_repository.ts"
+import type { IDatabase } from "../../../src/repositories/create_user.repository.ts";
 
 export const MOCK_CREATE_USER_REPOSITORY_USER_DATA = {
-  username: 'new_user',
-  email: 'email@test.com',
-  password: 'password'
-}
+  username: "new_user",
+  email: "email@test.com",
+  password: "password",
+};
 
-type DatabaseOperation = 'without_duplicate' | 'with_duplicate';
+type DatabaseOperation = "without_duplicate" | "with_duplicate";
 
 export const MOCK_DB: Record<DatabaseOperation, IDatabase> = {
   without_duplicate: {
@@ -15,9 +15,9 @@ export const MOCK_DB: Record<DatabaseOperation, IDatabase> = {
         return null;
       },
       create: async () => {
-        return { id: '1' }
-      }
-    }
+        return { id: "1" };
+      },
+    },
   },
   with_duplicate: {
     user: {
@@ -25,8 +25,8 @@ export const MOCK_DB: Record<DatabaseOperation, IDatabase> = {
         return true;
       },
       create: async () => {
-        throw new Error('duplicate user')
-      }
-    }
-  }
-}
+        throw new Error("duplicate user");
+      },
+    },
+  },
+};
