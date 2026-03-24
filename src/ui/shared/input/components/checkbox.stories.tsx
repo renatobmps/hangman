@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { InputComponents } from "..";
 
 export const Default: StoryObj<typeof InputComponents.Checkbox> = {

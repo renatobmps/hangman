@@ -1,5 +1,6 @@
 import database from "../models";
 import { Op } from "sequelize";
+import bcrypt from "bcrypt";
 
 class User {
   static async getTopTenUsers(req, res) {
@@ -61,7 +62,7 @@ class User {
       user.password = undefined;
       return res.status(201).json(user);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error:JSON.stringify(error) });
     }
   }
 

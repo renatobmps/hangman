@@ -6,18 +6,13 @@ import UserWord from "./userword.js";
 import Word from "./word.js";
 
 export const dbConfig = {
-  dialect: "postgres",
+  dialect: process.env.POSTGRES_DIALECT,
   dialectModule: pg,
   host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
   logging: process.env.NODE_ENV === "production",
-  ...(process.env.NODE_ENV === "production" ? {} : {
-    ssl: true,
-  }),
   dialectOptions: {
-    ssl: process.env.NODE_ENV === "production" ? true : {
-      require: true,
-      rejectUnauthorized: false,
-    }
+    ssl: process.env.NODE_ENV === "production" ? true : false,
   }
 };
 

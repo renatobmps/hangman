@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { JSX, useContext } from "react";
 import { IGameDataRanking } from "../adapters/interfaces";
 import { UserContext } from "../stores/UserContext";
 

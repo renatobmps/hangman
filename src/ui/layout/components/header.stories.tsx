@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { LayoutComponents } from "..";
 
 export const Default: StoryObj<typeof LayoutComponents.Header> = {};

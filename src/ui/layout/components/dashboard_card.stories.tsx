@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import Link from "next/link";
 import { FaCircleCheck, FaCircleXmark, FaGamepad } from "react-icons/fa6";
 import styled, { css } from "styled-components";

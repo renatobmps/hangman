@@ -1,4 +1,20 @@
 {
-  "editor.formatOnSave": true,
-  "cSpell.words": ["Chawp", "consts", "nextjs", "Xmark"]
+  "cSpell.words": [
+    "autodocs",
+    "chawp",
+    "consts",
+    "maxvalue",
+    "minvalue",
+    "nextjs",
+    "nextval",
+    "plpgsql",
+    "postgres",
+    "renatobmps",
+    "setval",
+    "triedletters",
+    "userword",
+    "userwords",
+    "xmark"
+  ],
+  "editor.formatOnSave": true
 }

@@ -1,13 +1,14 @@
 import type { AppProps } from "next/app";
-import "../index.css";
 import reportWebVitals from "../reportWebVitals";
-import * as serviceWorker from "../serviceWorker";
+import * as serviceWorker from "../serviceWorker.js";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
 import { ThemeProvider } from "styled-components";
 import theme from "@/ui/shared/theme";
 import UserProvider from "../stores/UserContext";
+import "../styles/globals.css";
+import "../styles/index.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

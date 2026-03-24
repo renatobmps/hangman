@@ -15,13 +15,13 @@ class Login {
       await db.sequelize.sync();
       const userData = await db.User.findOne({
         where: {
-          name: user,
+          name: user.trim(),
         },
       });
 
       if (!userData) return res.status(401).json({ error: "User not found" });
 
-      const isPasswordValid = await compare(password, userData.password);
+      const isPasswordValid = await compare(password.trim(), userData.password);
 
       if (!isPasswordValid)
         return res.status(401).json({ error: "Password is incorrect" });
