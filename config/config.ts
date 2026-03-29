@@ -33,6 +33,21 @@ module.exports = {
     "dialect": process.env.POSTGRES_DIALECT,
     "port": Number(process.env.POSTGRES_PORT),
     "logging": true,
+    "dialectOptions": {
+      "connectTimeout": 60000
+    },
+    "retry": {
+      "match": [
+        /SequelizeConnectionError/,
+        /SequelizeConnectionRefusedError/,
+        /SequelizeHostNotFoundError/,
+        /SequelizeHostNotReachableError/,
+        /SequelizeInvalidConnectionError/,
+        /SequelizeConnectionTimedOutError/,
+        /Connection terminated unexpectedly/
+      ],
+      "max": 5
+    }
   },
   "production": {
     "username": process.env.POSTGRES_USER,
@@ -42,5 +57,20 @@ module.exports = {
     "dialect": process.env.POSTGRES_DIALECT,
     "port": Number(process.env.POSTGRES_PORT),
     "logging": false,
+    "dialectOptions": {
+      "connectTimeout": 60000
+    },
+    "retry": {
+      "match": [
+        /SequelizeConnectionError/,
+        /SequelizeConnectionRefusedError/,
+        /SequelizeHostNotFoundError/,
+        /SequelizeHostNotReachableError/,
+        /SequelizeInvalidConnectionError/,
+        /SequelizeConnectionTimedOutError/,
+        /Connection terminated unexpectedly/
+      ],
+      "max": 5
+    }
   }
 }
