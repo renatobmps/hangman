@@ -38,7 +38,7 @@ COPY ./config/config.ts ./config/config.ts
 COPY ./migrations ./migrations
 COPY --from=builder ./app/package.json ./package.json
 COPY --from=builder ./app/node_modules ./node_modules
-RUN npm run db:migrate
+# RUN npm run db:migrate
 
 FROM node:24-slim as runner
 LABEL maintainer="Renato Brandão<renatobmps@gmail.com>"
