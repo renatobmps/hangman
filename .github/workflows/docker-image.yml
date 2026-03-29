@@ -15,8 +15,18 @@ jobs:
       - name: Build the Docker image
         env:
           DB_DIALECT_SECRET: ${{ secrets.DB_DIALECT }}
+          DB_HOST_SECRET: ${{ secrets.DB_HOST }}
+          DB_NAME_SECRET: ${{ secrets.DB_NAME }}
+          DB_PASSWORD_SECRET: ${{ secrets.DB_PASSWORD }}
+          DB_PORT_SECRET: ${{ secrets.DB_PORT }}
+          DB_USER_SECRET: ${{ secrets.DB_USER }}
         run: |
           docker build . \
             --build-arg DB_DIALECT="$DB_DIALECT_SECRET" \
+            --build-arg DB_HOST="$DB_HOST_SECRET" \
+            --build-arg DB_NAME="$DB_NAME_SECRET" \
+            --build-arg DB_PASSWORD="$DB_PASSWORD_SECRET" \
+            --build-arg DB_PORT="$DB_PORT_SECRET" \
+            --build-arg DB_USER="$DB_USER_SECRET" \
             --file Dockerfile \
             --tag hangman:$(date +%s)
