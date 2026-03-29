@@ -28,7 +28,7 @@ COPY ./migrations ./migrations
 COPY --from=builder ./app/package.json ./package.json
 COPY --from=builder ./app/node_modules ./node_modules
 # RUN npm run db:migrate
-RUN --mount=type=secret,id=POSTGRES_DIALECT,target=/run/secrets/DB_DIALECT \
+RUN --mount=type=secret,id=DB_DIALECT,target=/run/secrets/DB_DIALECT \
     --mount=type=secret,id=DB_NAME,target=/run/secrets/DB_NAME \
     --mount=type=secret,id=DB_HOST,target=/run/secrets/DB_HOST \
     --mount=type=secret,id=DB_USER,target=/run/secrets/DB_USER \
@@ -45,7 +45,7 @@ COPY --from=builder ./app/.next ./.next
 COPY --from=builder ./app/.next ./.next
 COPY --from=migration ./app/package.json ./
 COPY --from=migration ./app/node_modules ./node_modules
-RUN --mount=type=secret,id=POSTGRES_DIALECT,target=/run/secrets/DB_DIALECT \
+RUN --mount=type=secret,id=DB_DIALECT,target=/run/secrets/DB_DIALECT \
     --mount=type=secret,id=DB_NAME,target=/run/secrets/DB_NAME \
     --mount=type=secret,id=DB_HOST,target=/run/secrets/DB_HOST \
     --mount=type=secret,id=DB_USER,target=/run/secrets/DB_USER \

@@ -6,7 +6,7 @@ import UserWord from "./userword.js";
 import Word from "./word.js";
 
 export const dbConfig = {
-  dialect: process.env.POSTGRES_DIALECT,
+  dialect: process.env.DB_DIALECT,
   dialectModule: pg,
   host: process.env.POSTGRES_HOST,
   port: process.env.POSTGRES_PORT,

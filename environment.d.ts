@@ -3,7 +3,7 @@ namespace NodeJS {
     readonly JWT_SECRET: string;
     readonly NODE_ENV: "development" | "production";
     readonly POSTGRES_DB: string;
-    readonly POSTGRES_DIALECT: string;
+    readonly DB_DIALECT: string;
     readonly POSTGRES_HOST: string;
     readonly POSTGRES_PASSWORD: string;
     readonly POSTGRES_PORT: number;
