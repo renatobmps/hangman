@@ -2,14 +2,21 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --build-arg DB_DIALECT={{ secrets.DB_DIALECT }} --file Dockerfile --tag hangman:$(date +%s)
+      - uses: actions/checkout@v4
+
+      - name: Build the Docker image
+        env:
+          DB_DIALECT_SECRET: ${{ secrets.DB_DIALECT }}
+        run: |
+          docker build . \
+            --build-arg DB_DIALECT="$DB_DIALECT_SECRET" \
+            --file Dockerfile \
+            --tag hangman:$(date +%s)
