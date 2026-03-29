@@ -21,7 +21,7 @@ jobs:
           DB_PORT_SECRET: ${{ secrets.DB_PORT }}
           DB_USER_SECRET: ${{ secrets.DB_USER }}
         run: |
-          docker build . \
+          docker --debug build . \
             --build-arg DB_DIALECT="$DB_DIALECT_SECRET" \
             --build-arg DB_HOST="$DB_HOST_SECRET" \
             --build-arg DB_NAME="$DB_NAME_SECRET" \
