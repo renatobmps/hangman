@@ -15,6 +15,7 @@ COPY ./server ./server
 COPY ./next-sitemap.config.js ./next-sitemap.config.js
 COPY --from=installer ./app/node_modules ./node_modules
 COPY --from=installer ./app/package.json ./package.json
+RUN npx next telemetry disable
 RUN npm run build
 
 FROM node:24-alpine3.23 AS migration
