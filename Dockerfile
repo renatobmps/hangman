@@ -27,7 +27,12 @@ COPY ./config/config.ts ./config/config.ts
 COPY ./migrations ./migrations
 COPY --from=builder ./app/package.json ./package.json
 COPY --from=builder ./app/node_modules ./node_modules
-# RUN npm run db:migrate
+RUN echo -n $DB_DIALECT | wc -m
+RUN echo -n $DB_NAME | wc -m
+RUN echo -n $DB_HOST | wc -m
+RUN echo -n $DB_USER | wc -m
+RUN echo -n $DB_PASSWORD | wc -m
+RUN echo -n $DB_PORT | wc -m
 RUN --mount=type=secret,id=DB_DIALECT,target=/run/secrets/DB_DIALECT \
     --mount=type=secret,id=DB_NAME,target=/run/secrets/DB_NAME \
     --mount=type=secret,id=DB_HOST,target=/run/secrets/DB_HOST \
