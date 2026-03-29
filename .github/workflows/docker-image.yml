@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hangman:$(date +%s)
+      run: docker build . --file Dockerfile --tag hangman:$(date +%s) --build-arg DB_DIALECT={{ secrets.DB_DIALECT }}
