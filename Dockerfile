@@ -38,6 +38,11 @@ COPY ./config/config.ts ./config/config.ts
 COPY ./migrations ./migrations
 COPY --from=builder ./app/package.json ./package.json
 COPY --from=builder ./app/node_modules ./node_modules
+RUN echo "Running database migrations..."
+RUN echo $DB_DIALECT
+RUN echo ${DB_USER}
+RUN echo $DB_HOST
+RUN echo ${DB_PORT}
 # RUN npm run db:migrate
 
 FROM node:24-slim as runner
