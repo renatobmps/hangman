@@ -15,13 +15,13 @@ class Login {
       await db.sequelize.sync();
       const userData = await db.User.findOne({
         where: {
-          name: user,
+          name: user.trim(),
         },
       });
 
       if (!userData) return res.status(401).json({ error: "User not found" });
 
-      const isPasswordValid = await compare(password, userData.password);
+      const isPasswordValid = await compare(password.trim(), userData.password);
 
       if (!isPasswordValid)
         return res.status(401).json({ error: "Password is incorrect" });
@@ -72,10 +72,16 @@ class Login {
       time_stamp: Date.now(),
       random: Math.floor(Math.random() * 1024),
       env,
-      dbConfig,
+      controllerDb: {
+        ssl: db.sequelize.options.dialectOptions?.ssl,
+        host: db.sequelize.options.host,
+        database: db.sequelize.config?.database,
+        username: db.sequelize.config?.username,
+      },
+      // dbConfig,
     };
     try {
-      await db.sequelize.sync();
+      // await db.sequelize.sync();
       const triedLetters = await db.TriedLetters.findAndCountAll();
       const user = await db.User.findAndCountAll();
       const userWord = await db.UserWord.findAndCountAll();
@@ -93,10 +99,13 @@ class Login {
       });
     } catch (e) {
       const error = e;
+      const parent = error.parent ? { code: error.parent.code, message: error.parent.message } : undefined;
 
       res.json({
         status: "ko",
         message: error.message ?? error,
+        name: error.name,
+        parent,
         ...rest,
       });
     }

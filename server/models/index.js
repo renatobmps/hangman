@@ -5,26 +5,41 @@ import User from "./user.js";
 import UserWord from "./userword.js";
 import Word from "./word.js";
 
+const sslEnabled =
+  process.env.PGSSLMODE !== "disable" &&
+  process.env.NODE_ENV === "production";
+
 export const dbConfig = {
-  dialect: "postgres",
   dialectModule: pg,
-  host: process.env.POSTGRES_HOST,
+  dialect: process.env.POSTGRES_DIALECT || "postgres",
+  host: process.env.POSTGRES_HOST || "database",
+  port: Number(process.env.POSTGRES_PORT) || 5432,
+  database: process.env.POSTGRES_DB || "hangman",
+  username: process.env.POSTGRES_USER || "postgres",
+  password: process.env.POSTGRES_PASSWORD,
   logging: process.env.NODE_ENV === "production",
-  ...(process.env.NODE_ENV === "production" ? {} : {
-    ssl: true,
-  }),
   dialectOptions: {
-    ssl: process.env.NODE_ENV === "production" ? true : {
-      require: true,
-      rejectUnauthorized: false,
-    }
+    ssl: sslEnabled ? { rejectUnauthorized: false } : false,
+    connectTimeout: 60000,
+  },
+  retry: {
+    match: [
+      /SequelizeConnectionError/,
+      /SequelizeConnectionRefusedError/,
+      /SequelizeHostNotFoundError/,
+      /SequelizeHostNotReachableError/,
+      /SequelizeInvalidConnectionError/,
+      /SequelizeConnectionTimedOutError/,
+      /Connection terminated unexpectedly/
+    ],
+    max: 5
   }
-};
+}
 
 let sequelize = new Sequelize(
-  process.env.POSTGRES_DB,
-  process.env.POSTGRES_USER,
-  process.env.POSTGRES_PASSWORD,
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
   dbConfig,
 );
 

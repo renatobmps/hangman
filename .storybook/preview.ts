@@ -1,8 +1,9 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/nextjs-vite";
 import { withThemeFromJSXProvider } from "@storybook/addon-styling";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import theme from '../src/ui/shared/theme';
-import "../src/index.css";
+import "../src/styles/globals.css";
+import "../src/styles/index.css";
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -34,8 +35,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    tags: ["autodocs"],
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: "todo",
+    },
   },
-  tags: ["autodocs"],
 };
 
 export default preview;

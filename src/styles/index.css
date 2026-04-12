@@ -2,14 +2,14 @@
   font-family: "Eraser";
   src:
     local("Eraser"),
-    url(./fonts/eraser/EraserDust.ttf) format("truetype");
+    url(../fonts/eraser/EraserDust.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Chawp";
   src:
     local("Chawp"),
-    url(./fonts/chawp/chawp.ttf) format("truetype");
+    url(../fonts/chawp/chawp.ttf) format("truetype");
 }
 
 :root {
@@ -62,8 +62,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 #root,
@@ -76,17 +76,17 @@ code {
   justify-content: center;
   min-height: 100vh;
 
-  &.username_natalia {
+  /* &.username_natalia {
     --color-1: #6800ff;
   }
 
   &.username_nicolas {
-    --color-1: #007396
+    --color-1: #007396;
   }
 
   &.username_renatobmps {
-    --color-1: #fd852d
-  }
+    --color-1: #fd852d;
+  } */
 }
 
 #root > main,
