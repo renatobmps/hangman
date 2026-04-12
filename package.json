@@ -7,6 +7,7 @@
     "url": "https://github.com/renatobmps"
   },
   "scripts": {
+    "reset": "docker image prune -f -a",
     "build": "next build --turbopack",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "dev": "next dev",

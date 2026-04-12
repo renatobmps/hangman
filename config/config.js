@@ -9,7 +9,8 @@ const dbConfig = {
   "port": Number(process.env.POSTGRES_PORT),
   "logging": true,
   "dialectOptions": {
-    "connectTimeout": 60000
+    "connectTimeout": 60000,
+    "ssl": false
   },
   "retry": {
     "match": [
@@ -22,12 +23,15 @@ const dbConfig = {
       /Connection terminated unexpectedly/
     ],
     "max": 5
-  },
+  }
 };
 
 module.exports = {
   "development": dbConfig,
-  "test": dbConfig,
+  "test": {
+    ...dbConfig,
+    "logging": true,
+  },
   "production": {
     ...dbConfig,
     "logging": false,

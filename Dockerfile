@@ -23,37 +23,21 @@ LABEL maintainer="Renato Brandão<renatobmps@gmail.com>"
 WORKDIR /app
 ARG NODE_ENV=production
 COPY ./.sequelizerc ./.sequelizerc
-COPY ./config/config.ts ./config/config.ts
+COPY ./config/config.js ./config/config.js
 COPY ./migrations ./migrations
+COPY ./server ./server
 COPY --from=builder ./app/package.json ./package.json
 COPY --from=builder ./app/node_modules ./node_modules
-RUN echo -n $DB_DIALECT | wc -m
-RUN echo -n $DB_NAME | wc -m
-RUN echo -n $DB_HOST | wc -m
-RUN echo -n $DB_USER | wc -m
-RUN echo -n $DB_PASSWORD | wc -m
-RUN echo -n $DB_PORT | wc -m
-RUN --mount=type=secret,id=DB_DIALECT,target=/run/secrets/DB_DIALECT \
-    --mount=type=secret,id=DB_NAME,target=/run/secrets/DB_NAME \
-    --mount=type=secret,id=DB_HOST,target=/run/secrets/DB_HOST \
-    --mount=type=secret,id=DB_USER,target=/run/secrets/DB_USER \
-    --mount=type=secret,id=DB_PASSWORD,target=/run/secrets/DB_PASSWORD \
-    --mount=type=secret,id=DB_PORT,target=/run/secrets/DB_PORT \
-    npm run db:migrate
-
-# docker buildx build --secret id=DB_DIALECT,src=./.env.local --secret id=DB_NAME,src=./.env.local --secret id=DB_HOST,src=./.env.local --secret id=DB_USER,src=./.env.local --secret id=DB_PASSWORD,src=./.env.local --secret id=DB_PORT,src=./.env.local -t hangman:latest .
+CMD [ "npm", "run", "db:migrate" ]
 
 FROM node:24-slim as runner
 LABEL maintainer="Renato Brandão<renatobmps@gmail.com>"
 WORKDIR /app
+ENV PGSSLMODE=disable
 COPY --from=builder ./app/.next ./.next
-COPY --from=builder ./app/.next ./.next
-COPY --from=migration ./app/package.json ./
-COPY --from=migration ./app/node_modules ./node_modules
-RUN --mount=type=secret,id=DB_DIALECT,target=/run/secrets/DB_DIALECT \
-    --mount=type=secret,id=DB_NAME,target=/run/secrets/DB_NAME \
-    --mount=type=secret,id=DB_HOST,target=/run/secrets/DB_HOST \
-    --mount=type=secret,id=DB_USER,target=/run/secrets/DB_USER \
-    --mount=type=secret,id=DB_PASSWORD,target=/run/secrets/DB_PASSWORD \
-    --mount=type=secret,id=DB_PORT,target=/run/secrets/DB_PORT
-CMD [ "npm", "start"]
+COPY --from=builder ./app/package.json ./
+COPY --from=builder ./app/node_modules ./node_modules
+COPY ./.sequelizerc ./.sequelizerc
+COPY ./config ./config
+COPY ./server ./server
+CMD [ "npm", "start" ]
