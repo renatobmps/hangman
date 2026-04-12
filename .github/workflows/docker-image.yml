@@ -16,10 +16,10 @@ jobs:
         env:
           DB_DIAL_SECRET: ${{ secrets.DB_DIALECT }}
           DB_HOST_SECRET: ${{ secrets.DB_HOST }}
-          DB_NAME_SECRET: ${{ secrets.POSTGRES_DB }}
-          DB_PASS_SECRET: ${{ secrets.POSTGRES_PASSWORD }}
-          DB_PORT_SECRET: ${{ secrets.POSTGRES_PORT }}
-          DB_USER_SECRET: ${{ secrets.POSTGRES_USER }}
+          DB_NAME_SECRET: ${{ secrets.DB_NAME }}
+          DB_PASS_SECRET: ${{ secrets.DB_PASSWORD }}
+          DB_PORT_SECRET: ${{ secrets.DB_PORT }}
+          DB_USER_SECRET: ${{ secrets.DB_USER }}
         run: |
           docker --debug build . \
             --build-arg DB_DIALECT="$DB_DIAL_SECRET" \
@@ -30,3 +30,47 @@ jobs:
             --build-arg POSTGRES_USER="$DB_USER_SECRET" \
             --file Dockerfile \
             --tag hangman:$(date +%s)
+
+  migrate:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build migration image
+        env:
+          DB_DIAL_SECRET: ${{ secrets.DB_DIALECT }}
+          DB_HOST_SECRET: ${{ secrets.DB_HOST }}
+          DB_NAME_SECRET: ${{ secrets.DB_NAME }}
+          DB_PASS_SECRET: ${{ secrets.DB_PASSWORD }}
+          DB_PORT_SECRET: ${{ secrets.DB_PORT }}
+          DB_USER_SECRET: ${{ secrets.DB_USER }}
+        run: |
+          docker build . \
+            --target migration \
+            --build-arg DB_DIALECT="$DB_DIAL_SECRET" \
+            --build-arg DB_HOST="$DB_HOST_SECRET" \
+            --build-arg POSTGRES_DB="$DB_NAME_SECRET" \
+            --build-arg POSTGRES_PASSWORD="$DB_PASS_SECRET" \
+            --build-arg DB_PORT="$DB_PORT_SECRET" \
+            --build-arg POSTGRES_USER="$DB_USER_SECRET" \
+            --tag hangman-migration:$(date +%s)
+
+      - name: Run migrations
+        env:
+          DB_DIAL_SECRET: ${{ secrets.DB_DIALECT }}
+          DB_HOST_SECRET: ${{ secrets.DB_HOST }}
+          DB_NAME_SECRET: ${{ secrets.DB_NAME }}
+          DB_PASS_SECRET: ${{ secrets.DB_PASSWORD }}
+          DB_PORT_SECRET: ${{ secrets.DB_PORT }}
+          DB_USER_SECRET: ${{ secrets.DB_USER }}
+        run: |
+          docker run --rm \
+            -e POSTGRES_DIALECT="$DB_DIAL_SECRET" \
+            -e POSTGRES_HOST="$DB_HOST_SECRET" \
+            -e POSTGRES_DB="$DB_NAME_SECRET" \
+            -e POSTGRES_PASSWORD="$DB_PASS_SECRET" \
+            -e POSTGRES_PORT="$DB_PORT_SECRET" \
+            -e POSTGRES_USER="$DB_USER_SECRET" \
+            hangman-migration:$(date +%s)
