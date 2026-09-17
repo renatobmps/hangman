@@ -159,3 +159,4 @@ public/sitemap*.xml
 public/robots.txt
 
 *storybook.log
+storybook-static
