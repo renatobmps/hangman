@@ -1,4 +1,4 @@
-import database from "../models";
+import database from "../sequelize/models";
 
 class Word {
   static async getAllWords(req, res) {

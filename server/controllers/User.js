@@ -1,5 +1,6 @@
-import database from "../models";
+import database from "../sequelize/models";
 import { Op } from "sequelize";
+import bcrypt from 'bcrypt'
 
 class User {
   static async getTopTenUsers(req, res) {

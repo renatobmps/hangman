@@ -1,11 +1,17 @@
 namespace NodeJS {
   interface ProcessEnv {
-    readonly JWT_SECRET: string;
-    readonly NODE_ENV: "development" | "production";
-    readonly POSTGRES_DB: string;
+    // Database
     readonly POSTGRES_HOST: string;
-    readonly POSTGRES_PASSWORD: string;
     readonly POSTGRES_USER: string;
+    readonly POSTGRES_PASSWORD: string;
+    readonly POSTGRES_DB: string;
+    readonly POSTGRES_PORT: number;
+
+    // Auth
+    readonly JWT_SECRET: string;
+
+    // Env
+    readonly NODE_ENV: "production" | "development";
     readonly PUBLIC_URL: string;
   }
 }

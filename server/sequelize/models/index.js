@@ -4,27 +4,24 @@ import TriedLetters from "./triedletters.js";
 import User from "./user.js";
 import UserWord from "./userword.js";
 import Word from "./word.js";
+import config from '../config/config.cjs'
 
 export const dbConfig = {
-  dialect: "postgres",
+  ...config.development,
   dialectModule: pg,
-  host: process.env.POSTGRES_HOST,
   logging: process.env.NODE_ENV === "production",
-  ...(process.env.NODE_ENV === "production" ? {} : {
+  ...(process.env.NODE_ENV === "production" ? {
     ssl: true,
-  }),
+  } : {}),
   dialectOptions: {
-    ssl: process.env.NODE_ENV === "production" ? true : {
-      require: true,
-      rejectUnauthorized: false,
-    }
+    ssl: process.env.NODE_ENV === "production"
   }
 };
 
 let sequelize = new Sequelize(
-  process.env.POSTGRES_DB,
-  process.env.POSTGRES_USER,
-  process.env.POSTGRES_PASSWORD,
+  config.development.database,
+  config.development.username,
+  config.development.password,
   dbConfig,
 );
 

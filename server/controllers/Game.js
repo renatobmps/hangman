@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import db from "../models";
+import db from "../sequelize/models";
 
 class Game {
   _triedLetters = [];
@@ -224,7 +224,7 @@ class Game {
       if (this._state === "won") throw new Error("Game is won");
 
       const data = {
-        letter: letter.toLowerCase(),
+        letter: letter.toLowerCase().trim().replace(/\s/gi, ''),
       };
 
       data.isValid = this.isValidLetter(data.letter);
