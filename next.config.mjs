@@ -12,6 +12,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/design',
+        destination: '/design/index.html',
+        permanent: true
+      }
+    ]
+  },
   typescript: {
     tsconfigPath: "./tsconfig.build.json"
   },

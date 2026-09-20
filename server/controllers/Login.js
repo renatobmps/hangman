@@ -1,4 +1,4 @@
-import db, { dbConfig } from "../models";
+import db, { dbConfig } from "../sequelize/models";
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import createHash from "hash-generator";
