@@ -5,7 +5,6 @@ import SeoHead from "../components/seo_head";
 interface StatusState {
   status: "ok" | "ko";
   time_stamp: number;
-  random: number;
   triedLettersDB: number;
   userDB: number;
   userWordDB: number;
@@ -75,7 +74,6 @@ export default function Login() {
             Timestamp:{" "}
             {status.time_stamp ? formatDate(new Date(status.time_stamp)) : "-"}
           </p>
-          <p>Random: {status.random}</p>
           <p>Total of words: {status.wordDB}</p>
           <p>Number of users: {status.userDB}</p>
           <p>Number of games: {status.userWordDB}</p>

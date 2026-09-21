@@ -70,7 +70,6 @@ class Login {
     const env = process.env;
     const rest = {
       time_stamp: Date.now(),
-      random: Math.floor(Math.random() * 1024),
       env,
       dbConfig,
     };
