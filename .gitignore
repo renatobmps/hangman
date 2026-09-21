@@ -162,10 +162,5 @@ public/robots.txt
 *storybook.log
 storybook-static
 
-# backups
-/bkp/*
-/bkps/*
-/backup/*
-/backups/*
-/back_up/*
-/back_ups/*
+# sequelize
+server/sequelize/bkp/data.cjs

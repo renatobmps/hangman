@@ -30,7 +30,7 @@ class User {
         (user) => user.performance.game.total > 0,
       );
 
-      const orderByResult = activeUsers.sort(
+      const orderByResult = activeUsers.toSorted(
         (a, b) => b.performance.game.won.total - a.performance.game.won.total,
       );
 
