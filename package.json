@@ -2,6 +2,7 @@
   "name": "hangman",
   "version": "0.0.0",
   "homepage": "https://forca-wheat.vercel.app/",
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "prepare": "npx only-allow pnpm && npx husky",
     "migration:generate": "sequelize-cli migration:generate",
