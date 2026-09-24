@@ -1,0 +1,260 @@
+{
+  "name": "front",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/front/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project front --web",
+  "targets": {
+    "migration:generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli migration:generate",
+        "cwd": "apps/front"
+      },
+      "outputs": ["{workspaceRoot}/apps/front/server/sequelize/migrations"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Generate a new migration file",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "migration:run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate",
+        "cwd": "apps/front"
+      },
+      "inputs": ["{projectRoot}/server/sequelize/migrations"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Run current migrations",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "migration:undo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate:undo",
+        "cwd": "apps/front"
+      },
+      "inputs": ["{projectRoot}/server/sequelize/migrations"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Undo last migration",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "migration:undo:all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate:undo:all",
+        "cwd": "apps/front"
+      },
+      "inputs": ["{projectRoot}/server/sequelize/migrations"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Undo all migrations",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "seed:generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli seed:generate",
+        "cwd": "apps/front"
+      },
+      "outputs": ["{workspaceRoot}/apps/front/server/sequelize/seeders"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Generate a new seed file",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "seed:run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:seed:all",
+        "cwd": "apps/front"
+      },
+      "inputs": ["{projectRoot}/server/sequelize/seeders"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Seed the database",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "seed:undo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:seed:undo:all",
+        "cwd": "apps/front"
+      },
+      "inputs": ["{projectRoot}/server/sequelize/seeders"],
+      "metadata": {
+        "technologies": ["sequelize"],
+        "description": "Undo all seed",
+        "help": {
+          "command": "sequelize-cli --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "build": {
+      "dependsOn": ["^build", "storybook-build"],
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        {
+          "externalDependencies": ["next"]
+        },
+        {
+          "dependentTasksOutputFiles": "**/*.d.ts",
+          "transitive": true
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/apps/front/.next/!(cache)/**/*",
+        "{workspaceRoot}/apps/front/.next/!(cache)"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/front",
+        "tty": false,
+        "command": "next build && next-sitemap --config next-sitemap.config.js"
+      },
+      "configurations": {},
+      "parallelism": true,
+      "metadata": {
+        "technologies": ["next"]
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix --max-warnings=0",
+        "cwd": "apps/front"
+      },
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/apps/front/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*",
+        {
+          "externalDependencies": ["eslint"]
+        }
+      ],
+      "outputs": ["{options.outputFile}"],
+      "metadata": {
+        "technologies": ["eslint"],
+        "description": "Fix all files using ESLint",
+        "help": {
+          "command": "pnpm exec eslint --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 6006",
+        "cwd": "apps/front"
+      },
+      "metadata": {
+        "technologies": ["storybook"],
+        "description": "Run Storybook as dev",
+        "help": {
+          "command": "pnpm exec storybook help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      },
+      "continuous": true
+    },
+    "storybook-build": {
+      "dependsOn": ["^storybook-build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -fr storybook-static public/storybook-static ; storybook build && mv storybook-static public/storybook-static",
+        "cwd": "apps/front"
+      },
+      "cache": true,
+      "outputs": ["{workspaceRoot}/apps/front/public/storybook-static"],
+      "inputs": [
+        "{projectRoot}/**/*.tsx",
+        "{projectRoot}/**/*.ts",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/src/stories/**/*",
+        "{projectRoot}/src/ui/**/*"
+      ],
+      "metadata": {
+        "technologies": ["storybook"],
+        "description": "Generates a static Storybook inside `public` directory",
+        "help": {
+          "command": "pnpm exec storybook help build",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

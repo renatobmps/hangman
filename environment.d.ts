@@ -1,5 +1,5 @@
-namespace NodeJS {
-  interface ProcessEnv {
+export namespace NodeJS {
+  export interface ProcessEnv {
     // Database
     readonly POSTGRES_HOST: string;
     readonly POSTGRES_USER: string;
@@ -11,7 +11,8 @@ namespace NodeJS {
     readonly JWT_SECRET: string;
 
     // Env
-    readonly NODE_ENV: "production" | "development";
+    readonly NODE_ENV: 'production' | 'development';
+    readonly NODE_ENVIRONMENT: 'local' | 'cloud';
     readonly PUBLIC_URL: string;
   }
 }
