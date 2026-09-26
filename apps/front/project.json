@@ -161,6 +161,9 @@
         }
       ],
       "outputs": [
+        "{options.outputPath}",
+        "{options.outputPath}/.next/**",
+        "!{options.outputPath}/.next/cache/**",
         "{workspaceRoot}/apps/front/.next/!(cache)/**/*",
         "{workspaceRoot}/apps/front/.next/!(cache)"
       ],
@@ -168,7 +171,8 @@
       "options": {
         "cwd": "apps/front",
         "tty": false,
-        "command": "next build && next-sitemap --config next-sitemap.config.js"
+        "command": "next build && next-sitemap --config next-sitemap.config.js",
+        "outputPath": "dist/apps/front"
       },
       "configurations": {},
       "parallelism": true,
