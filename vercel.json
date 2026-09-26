@@ -2,5 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install",
   "buildCommand": "npx nx build front --prod",
-  "outputDirectory": "dist/apps/front/.next"
+  "outputDirectory": "apps/front/.next"
 }
