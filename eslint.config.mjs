@@ -1,11 +1,54 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import nx from "@nx/eslint-plugin";
 
-import globals from "globals";
-import pluginJs from "@eslint/js";
-
-export default [{
-  languageOptions: {
-    globals: globals.node, // or globals.browser
+export default [
+  ...nx.configs["flat/base"],
+  ...nx.configs["flat/typescript"],
+  ...nx.configs["flat/javascript"],
+  {
+    ignores: [
+      "**/dist",
+      "**/out-tsc"
+    ]
   },
-}, pluginJs.configs.recommended, ...storybook.configs["flat/recommended"]];
+  {
+    files: [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.jsx"
+    ],
+    rules: {
+      "@nx/enforce-module-boundaries": [
+        "error",
+        {
+          enforceBuildableLibDependency: true,
+          allow: [
+            "^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$"
+          ],
+          depConstraints: [
+            {
+              sourceTag: "*",
+              onlyDependOnLibsWithTags: [
+                "*"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    files: [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.cts",
+      "**/*.mts",
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.cjs",
+      "**/*.mjs"
+    ],
+    // Override or add rules here
+    rules: {}
+  }
+];

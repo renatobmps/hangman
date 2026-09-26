@@ -155,8 +155,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-public/sitemap*.xml
-public/robots.txt
+**/*/public/sitemap*.xml
+**/*/public/robots.txt
 
 # storybook
 *storybook.log
@@ -164,3 +164,9 @@ storybook-static
 
 # sequelize
 server/sequelize/bkp/data.cjs
+
+
+
+.nx/cache
+.nx/workspace-data
+.nx/migrate-runs
