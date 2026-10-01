@@ -1,3 +1,10 @@
+// next.config.mjs
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
@@ -17,13 +24,18 @@ const nextConfig = {
       {
         source: '/design',
         destination: '/design/index.html',
-        permanent: true
-      }
-    ]
+        permanent: true,
+      },
+    ];
   },
   typescript: {
-    tsconfigPath: "./tsconfig.build.json"
+    tsconfigPath: './tsconfig.build.json',
   },
-}
+  transpilePackages: ['design'],
+  webpack: (config) => {
+    config.resolve.alias['design'] = path.resolve(__dirname, '../../libs/design/src/index.ts');
+    return config;
+  },
+};
 
-export default nextConfig
+export default nextConfig;
