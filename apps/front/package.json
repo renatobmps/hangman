@@ -26,7 +26,6 @@
     "axios": "^1.20.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^18.0.5",
-    "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.8",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "2.31.0",
