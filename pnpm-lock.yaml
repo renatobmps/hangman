@@ -31,6 +31,10 @@ importers:
         version: 23.2.1(@swc-node/register@1.11.1(@swc/core@1.15.47(@swc/helpers@0.5.23))(@swc/types@0.1.28)(typescript@6.0.3))(@swc/core@1.15.47(@swc/helpers@0.5.23))
 
   apps/front:
+    dependencies:
+      next:
+        specifier: ^14.2.35
+        version: 14.2.35(@babel/core@7.29.7)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^5.3.1
@@ -131,9 +135,6 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
-      next:
-        specifier: ^14.2.35
-        version: 14.2.35(@babel/core@7.29.7)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       next-seo:
         specifier: ^6.8.0
         version: 6.8.0(next@14.2.35(@babel/core@7.29.7)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
