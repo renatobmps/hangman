@@ -23,12 +23,12 @@
     {
       "plugin": "@nx/storybook/plugin",
       "options": {
-        "serveStorybookTargetName": "serve:storybook",
-        "buildStorybookTargetName": "build-storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook",
-        "buildDepsTargetName": "storybook:build-deps",
-        "watchDepsTargetName": "storybook:watch-deps"
+        "serveStorybookTargetName": "storybook",
+        "buildStorybookTargetName": "build",
+        "testStorybookTargetName": "test",
+        "staticStorybookTargetName": "nx-static-storybook",
+        "buildDepsTargetName": "nx-storybook:build-deps",
+        "watchDepsTargetName": "nx-storybook:watch-deps"
       }
     }
   ],
