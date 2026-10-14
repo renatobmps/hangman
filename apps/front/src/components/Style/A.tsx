@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 
-const Style = styled(Link as any)`
+const Style = styled.a`
   color: var(--color-1);
   cursor: pointer;
   text-decoration: none;

@@ -228,10 +228,10 @@ h2 {
 h3 {
   display: block;
   font-size: 1.17em;
-  margin-block-start: 1__qem;
+  /* margin-block-start: 1__qem;
   margin-block-end: 1em;
   margin-inline-start: 0;
-  margin-inline-end: 0;
+  margin-inline-end: 0; */
   font-weight: bold;
 }
 
@@ -339,7 +339,7 @@ caption {
 
 /* lists */
 
-ul,
+/* ul,
 menu,
 dir {
   display: block;
@@ -347,15 +347,15 @@ dir {
   margin-block-start: 1__qem;
   margin-block-end: 1em;
   padding-inline-start: 40px;
-}
+} */
 
-ol {
+/* ol {
   display: block;
   list-style-type: decimal;
   margin-block-start: 1__qem;
   margin-block-end: 1em;
   padding-inline-start: 40px;
-}
+} */
 
 li {
   display: list-item;
@@ -1024,7 +1024,7 @@ input[type='range' i]:disabled {
   color: #c5c5c5;
 }
 
-input[type='button' i]:disabled,
+/* input[type='button' i]:disabled,
 input[type='submit' i]:disabled,
 input[type='reset' i]:disabled,
 input[type='file' i]:disabled::-webkit-file-upload-button,
@@ -1053,7 +1053,7 @@ button:disabled {
     );
     cursor: -internal-auto-base(default, not-allowed);
   }
-}
+} */
 
 input[type='color' i]:disabled {
   @supports blink-feature(AppearanceBase) {
@@ -2029,23 +2029,23 @@ input::-webkit-datetime-edit-second-field[disabled] {
   color: light-dark(GrayText, rgb(165, 165, 165));
 }
 
-a:-webkit-any-link {
+/* a:-webkit-any-link {
   color: -webkit-link;
   text-decoration: underline;
   cursor: pointer;
-}
+} */
 
-a:-webkit-any-link:active {
+/* a:-webkit-any-link:active {
   color: -webkit-activelink;
-}
+} */
 
-a:-webkit-any-link:read-write {
+/* a:-webkit-any-link:read-write {
   cursor: text;
-}
+} */
 
-a:-webkit-any-link:focus-visible {
+/* a:-webkit-any-link:focus-visible {
   outline-offset: 1px;
-}
+} */
 
 /* HTML5 ruby elements */
 

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import Image from 'next/image';
 import {
   FaUserNinja,
   FaUser,
@@ -7,7 +6,6 @@ import {
   FaCircleCheck,
   FaCircleXmark,
 } from 'react-icons/fa6';
-import Link from 'next/link';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import Layout, { LayoutComponents } from '../../../ui/layout';
 import { InputComponents } from '../../../ui/shared/input';
@@ -43,7 +41,7 @@ const S = {
     justify-content: space-between;
     padding: 1rem;
   `,
-  Logo: styled(Image as any)`
+  Logo: styled.img`
     aspect-ratio: 1;
     display: block;
     height: calc(1rem * 4);
@@ -89,7 +87,7 @@ const S = {
       box-shadow: 0px 3px 3px -1px gray;
     }
   `,
-  NavigationMenu: styled(Link as any)`
+  NavigationMenu: styled.a`
     background: transparent;
     border-radius: 0.5rem;
     color: black;
