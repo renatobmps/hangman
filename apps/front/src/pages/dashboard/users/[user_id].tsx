@@ -43,7 +43,7 @@ const S = {
     justify-content: space-between;
     padding: 1rem;
   `,
-  Logo: styled(Image)`
+  Logo: styled(Image as any)`
     aspect-ratio: 1;
     display: block;
     height: calc(1rem * 4);
@@ -89,7 +89,7 @@ const S = {
       box-shadow: 0px 3px 3px -1px gray;
     }
   `,
-  NavigationMenu: styled(Link)`
+  NavigationMenu: styled(Link as any)`
     background: transparent;
     border-radius: 0.5rem;
     color: black;

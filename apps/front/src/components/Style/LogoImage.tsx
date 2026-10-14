@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Img, { ImageProps } from 'next/image';
 
-const Style = styled(Img)`
+const Style = styled(Img as any)`
   aspect-ratio: 1;
   height: 100%;
   max-height: 100%;

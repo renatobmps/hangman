@@ -10,13 +10,26 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "tsc -p libs/design/tsconfig.json"
+      },
+      "metadata": {
+        "technologies": ["typescript"],
+        "description": "Check library type",
+        "help": {
+          "command": "npx tsc --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
       }
     },
     "build": {
+      "dependsOn": ["typecheck"],
       "executor": "nx:run-commands",
       "options": {
         "cwd": "libs/design",
-        "command": "storybook build -o ../../dist/storybook"
+        "command": "storybook build -o ../../dist/storybook && rm -fr ../../apps/front/public/storybook-static ; cp -r ../../dist/storybook ../../apps/front/public/storybook-static"
       },
       "inputs": [
         "default",
@@ -26,19 +39,45 @@
         }
       ],
       "outputs": [
+        "{workspaceRoot}/apps/front/public/storybook-static",
         "{workspaceRoot}/dist/storybook",
         "{options.output-dir}",
         "{options.outputDir}",
         "{options.o}"
       ],
-      "cache": true
+      "cache": true,
+      "metadata": {
+        "technologies": ["storybook"],
+        "description": "Generates a static Storybook inside `public` directory",
+        "help": {
+          "command": "npx storybook help build",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      }
     },
     "storybook": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "libs/design",
         "command": "storybook dev -p 6006 --host 0.0.0.0 --no-open"
-      }
+      },
+      "metadata": {
+        "technologies": ["storybook"],
+        "description": "Run Storybook as dev",
+        "help": {
+          "command": "npx storybook help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      },
+      "continuous": true
     }
   }
 }

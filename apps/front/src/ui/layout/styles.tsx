@@ -41,7 +41,7 @@ export const NavigationMenu = css`
   }
 `;
 
-export const NavigationMenuAsLink = styled(Link)`
+export const NavigationMenuAsLink = styled(Link as any)`
   ${NavigationMenu}
 `;
 
@@ -58,7 +58,7 @@ export const Header = styled.header`
   padding: 1rem;
 `;
 
-export const LogoTop = styled(Image)`
+export const LogoTop = styled(Image as any)`
   aspect-ratio: 1;
   display: block;
   height: calc(1rem * 4);
