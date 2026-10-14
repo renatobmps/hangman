@@ -5,8 +5,8 @@ import GameData from '../components/GameData';
 import GameWrap from '../components/Style/GameWrap';
 import { Modal } from '../components/Modal';
 import { GameRanking } from '../components/GameRanking';
-import MainTitle from '../components/Style/MainTitle';
 import useHome, { GameState as TGameState } from '../hooks/useHome';
+import { Home } from '@design';
 
 export type GameState = TGameState;
 
@@ -36,7 +36,7 @@ export default function App() {
         callbackKeydown={handleKeyDown}
         seoConfig={{ title: 'Jogo' }}
       >
-        <MainTitle>Jogo da forca</MainTitle>
+        <Home.Title>Jogo da forca</Home.Title>
         <GameWrap>
           <GameData isLoading={gameState === 'starting'} gameData={gameData} />
           <hr />

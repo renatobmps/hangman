@@ -2,7 +2,9 @@ import type { Preview } from '@storybook/nextjs-vite';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from '../src/ui/shared/theme';
-import '../src/index.css';
+import '../chrome.css';
+import '../index.css';
+import '@design/styles/tailwind.css';
 
 const GlobalStyles = createGlobalStyle`
   html {

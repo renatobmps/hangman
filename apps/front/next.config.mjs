@@ -33,7 +33,7 @@ const nextConfig = {
   },
   transpilePackages: ['design'],
   webpack: (config) => {
-    config.resolve.alias['design'] = path.resolve(__dirname, '../../libs/design/src/index.ts');
+    config.resolve.alias['@design'] = path.resolve(__dirname, '../../libs/design/src');
     return config;
   },
 };

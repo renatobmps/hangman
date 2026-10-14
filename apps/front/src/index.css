@@ -1,17 +1,3 @@
-@font-face {
-  font-family: "Eraser";
-  src:
-    local("Eraser"),
-    url(./fonts/eraser/EraserDust.ttf) format("truetype");
-}
-
-@font-face {
-  font-family: "Chawp";
-  src:
-    local("Chawp"),
-    url(./fonts/chawp/chawp.ttf) format("truetype");
-}
-
 :root {
   --color-1: #009688;
 }

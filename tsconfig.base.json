@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "strict": false,
     "paths": {
-      "@design": ["./libs/design/src/index.ts"]
+      "@design": ["./libs/design/src/index.ts"],
+      "@design/styles/*": ["./libs/design/src/styles/*"]
     }
   },
   "exclude": ["node_modules", "tmp"],
