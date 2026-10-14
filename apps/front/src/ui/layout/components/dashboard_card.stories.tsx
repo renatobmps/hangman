@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Link from 'next/link';
 import { FaCircleCheck, FaCircleXmark, FaGamepad } from 'react-icons/fa6';
 import styled, { css } from 'styled-components';
 // import { LayoutComponents } from "..";
 
 const S = {
-  DashboardCard: styled(Link)<{ $checked?: boolean }>`
+  DashboardCard: styled.a<{ $checked?: boolean }>`
     --grid_left_proportion: 85%;
 
     ${({ $checked, theme }) => {

@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 export const Root = styled.div`
@@ -41,7 +39,7 @@ export const NavigationMenu = css`
   }
 `;
 
-export const NavigationMenuAsLink = styled(Link)`
+export const NavigationMenuAsLink = styled.a`
   ${NavigationMenu}
 `;
 
@@ -58,7 +56,7 @@ export const Header = styled.header`
   padding: 1rem;
 `;
 
-export const LogoTop = styled(Image)`
+export const LogoTop = styled.img`
   aspect-ratio: 1;
   display: block;
   height: calc(1rem * 4);

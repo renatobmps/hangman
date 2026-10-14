@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app';
+import '../chrome.css';
 import '../index.css';
+import '@design/styles/tailwind.css';
 import reportWebVitals from '../reportWebVitals';
 import * as serviceWorker from '../serviceWorker';
 import { useEffect } from 'react';

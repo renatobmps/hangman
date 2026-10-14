@@ -170,3 +170,6 @@ server/sequelize/bkp/data.cjs
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+#nx example
+.example

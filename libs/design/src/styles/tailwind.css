@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@source "../../../";
+
+@font-face {
+  font-family: 'Eraser';
+  src:
+    local('Eraser'),
+    url(../fonts/eraser/EraserDust.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Chawp';
+  src:
+    local('Chawp'),
+    url(../fonts/chawp/chawp.ttf) format('truetype');
+}
+
+@theme {
+  --color-brand: #009688;
+  --default-font-family: 'Chawp', 'Inter', sans-serif;
+  --font-title: 'Eraser', sans-serif;
+}

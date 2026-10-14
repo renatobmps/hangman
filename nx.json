@@ -19,6 +19,17 @@
       "options": {
         "targetName": "lint"
       }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "serveStorybookTargetName": "storybook",
+        "buildStorybookTargetName": "build",
+        "testStorybookTargetName": "test",
+        "staticStorybookTargetName": "nx-static-storybook",
+        "buildDepsTargetName": "nx-storybook:build-deps",
+        "watchDepsTargetName": "nx-storybook:watch-deps"
+      }
     }
   ],
   "generators": {
@@ -26,6 +37,11 @@
       "application": {
         "style": "css",
         "linter": "eslint"
+      }
+    },
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
       }
     }
   }

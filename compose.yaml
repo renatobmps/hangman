@@ -1,7 +1,11 @@
 services:
   database:
-    image: "postgres:16.1-alpine3.19"
+    image: 'postgres:16.1-alpine3.19'
     env_file:
       - .env
     ports:
-      - "5432:5432"
+      - '5432:5432'
+  moto:
+    image: motoserver/moto:latest
+    ports: ['5000:5000'] # local S3 (set S3_ENDPOINT=http://localhost:5000)
+volumes: { pgdata: {}, node_modules: {} }

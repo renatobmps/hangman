@@ -147,7 +147,7 @@
       }
     },
     "build": {
-      "dependsOn": ["^build", "storybook-build"],
+      "dependsOn": ["design:build"],
       "cache": true,
       "inputs": [
         "default",
@@ -210,7 +210,7 @@
         }
       }
     },
-    "storybook": {
+    "legacy-storybook": {
       "executor": "nx:run-commands",
       "options": {
         "command": "storybook dev -p 6006",
@@ -230,8 +230,7 @@
       },
       "continuous": true
     },
-    "storybook-build": {
-      "dependsOn": ["^storybook-build"],
+    "legacy-storybook-build": {
       "executor": "nx:run-commands",
       "options": {
         "command": "rm -fr storybook-static public/storybook-static ; storybook build && mv storybook-static public/storybook-static",
